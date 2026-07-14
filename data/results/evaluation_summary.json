@@ -1,0 +1,110 @@
+[
+  {
+    "method": "bm25",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.6,
+    "accuracy_at_5": 0.6333,
+    "mrr_at_20": 0.6184,
+    "latency_mean_ms": 2.415
+  },
+  {
+    "method": "bm25",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.1,
+    "mrr_at_20": 0.0553,
+    "latency_mean_ms": 3.983
+  },
+  {
+    "method": "bm25",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 1.626
+  },
+  {
+    "method": "bm25",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.8,
+    "accuracy_at_5": 0.8,
+    "mrr_at_20": 0.8,
+    "latency_mean_ms": 1.635
+  },
+  {
+    "method": "exact",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.5667,
+    "accuracy_at_5": 0.5667,
+    "mrr_at_20": 0.5667,
+    "latency_mean_ms": 0.202
+  },
+  {
+    "method": "exact",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.0,
+    "mrr_at_20": 0.0,
+    "latency_mean_ms": 0.178
+  },
+  {
+    "method": "exact",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 0.254
+  },
+  {
+    "method": "exact",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.7,
+    "accuracy_at_5": 0.7,
+    "mrr_at_20": 0.7,
+    "latency_mean_ms": 0.175
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.6667,
+    "accuracy_at_5": 0.6667,
+    "mrr_at_20": 0.669,
+    "latency_mean_ms": 48.583
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.0,
+    "mrr_at_20": 0.0071,
+    "latency_mean_ms": 42.914
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 44.204
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 58.629
+  }
+]

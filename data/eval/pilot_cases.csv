@@ -1,0 +1,31 @@
+case_id,query_pt,target_hpo_id,stratum,provenance
+OFF-01,Microcefalia,HP:0000252,official_label,HPO-PT official label
+OFF-02,Macrocefalia,HP:0000256,official_label,HPO-PT official label
+OFF-03,Estrabismo,HP:0000486,official_label,HPO-PT official label
+OFF-04,Catarata,HP:0000518,official_label,HPO-PT official label
+OFF-05,Cegueira,HP:0000618,official_label,HPO-PT official label
+OFF-06,Hipertensão,HP:0000822,official_label,HPO-PT official label
+OFF-07,Escoliose torácica,HP:0002943,official_label,HPO-PT official label
+OFF-08,Fraqueza muscular generalizada,HP:0003324,official_label,HPO-PT official label
+OFF-09,Dor lombar,HP:0003419,official_label,HPO-PT official label
+OFF-10,Baixa estatura,HP:0004322,official_label,HPO-PT official label
+ORT-01,micro cefalia,HP:0000252,orthographic_variation,Synthetic orthographic variation
+ORT-02,macro-cefalia,HP:0000256,orthographic_variation,Synthetic orthographic variation
+ORT-03,estrabísmo,HP:0000486,orthographic_variation,Synthetic orthographic variation
+ORT-04,catarata.,HP:0000518,orthographic_variation,Synthetic orthographic variation
+ORT-05,CEGUEIRA,HP:0000618,orthographic_variation,Synthetic orthographic variation
+ORT-06,hipertensao,HP:0000822,orthographic_variation,Synthetic orthographic variation
+ORT-07,escoliose toracica,HP:0002943,orthographic_variation,Synthetic orthographic variation
+ORT-08,fraquesa muscular generalizada,HP:0003324,orthographic_variation,Synthetic orthographic variation
+ORT-09,dor-lombar,HP:0003419,orthographic_variation,Synthetic orthographic variation
+ORT-10,baixa-estatura,HP:0004322,orthographic_variation,Synthetic orthographic variation
+PAR-01,cabeça menor que o esperado para a idade,HP:0000252,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-02,cabeça aumentada para a idade,HP:0000256,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-03,desvio persistente dos olhos,HP:0000486,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-04,opacidade do cristalino,HP:0000518,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-05,ausência de visão,HP:0000618,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-06,pressão arterial elevada,HP:0000822,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-07,curvatura lateral da coluna na região torácica,HP:0002943,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-08,fraqueza em todos os grupos musculares,HP:0003324,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-09,dor na região inferior das costas,HP:0003419,clinical_paraphrase,Synthetic clinical paraphrase
+PAR-10,altura abaixo do esperado para a idade,HP:0004322,clinical_paraphrase,Synthetic clinical paraphrase

@@ -1,0 +1,21 @@
+{
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "hpo_release": "2026-06-23",
+  "translation_commit": "62f1d254f93e47d87e874783019ccd7480400e76",
+  "generated_at": "2026-07-14T17:30:04.837716+00:00",
+  "active_terms": 19836,
+  "translated_labels_pt": 7158,
+  "translated_definitions_pt": 1,
+  "label_coverage_percent": 36.09,
+  "sources": {
+    "hpo": {
+      "url": "https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/hp.json",
+      "sha256": "3b646565695329aa399e937883c68d5d424d0df5eaab2f22baa0e08d44fdbe87"
+    },
+    "hpo_pt": {
+      "url": "https://raw.githubusercontent.com/obophenotype/hpo-translations/main/babelon/hp-pt.babelon.tsv",
+      "commit": "62f1d254f93e47d87e874783019ccd7480400e76",
+      "sha256": "31f642ef8f6951287d9386d3b3454990504143520161ef4615c1c5c0ed85ebd0"
+    }
+  }
+}

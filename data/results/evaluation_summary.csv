@@ -1,0 +1,13 @@
+method,stratum,n,accuracy_at_1,accuracy_at_5,mrr_at_20,latency_mean_ms
+bm25,ALL,30,0.6,0.6333,0.6184,2.415
+bm25,clinical_paraphrase,10,0.0,0.1,0.0553,3.983
+bm25,official_label,10,1.0,1.0,1.0,1.626
+bm25,orthographic_variation,10,0.8,0.8,0.8,1.635
+exact,ALL,30,0.5667,0.5667,0.5667,0.202
+exact,clinical_paraphrase,10,0.0,0.0,0.0,0.178
+exact,official_label,10,1.0,1.0,1.0,0.254
+exact,orthographic_variation,10,0.7,0.7,0.7,0.175
+fuzzy,ALL,30,0.6667,0.6667,0.669,48.583
+fuzzy,clinical_paraphrase,10,0.0,0.0,0.0071,42.914
+fuzzy,official_label,10,1.0,1.0,1.0,44.204
+fuzzy,orthographic_variation,10,1.0,1.0,1.0,58.629
