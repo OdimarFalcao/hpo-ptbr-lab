@@ -7,6 +7,7 @@ Protótipo acadêmico para recuperar termos válidos da Human Phenotype Ontology
 - Snapshot versionado da HPO `2026-06-23` e da tradução portuguesa.
 - Análise de cobertura dos rótulos em português.
 - Três baselines reproduzíveis: exact match, fuzzy match e BM25.
+- Baseline semântico offline experimental, isolado do dashboard.
 - Piloto técnico com 30 expressões públicas/sintéticas.
 - Dashboard Streamlit com cobertura, mapeador, resultados e roadmap.
 
@@ -34,10 +35,43 @@ Depois execute:
 ```powershell
 python scripts/build_snapshot.py
 python scripts/run_evaluation.py
+python scripts/run_semantic_evaluation.py
 python scripts/create_notebook.py
 ```
 
 O snapshot processado e os resultados usados pelo dashboard já estão versionados. Os arquivos brutos ficam fora do Git.
+
+## Experimento semântico offline
+
+O primeiro baseline semântico usa o modelo multilíngue `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`, fixado por revisão, para comparar cada consulta com os 7.158 rótulos HPO em português. Ele permanece fora do mapeador Streamlit enquanto sua utilidade não estiver demonstrada.
+
+No piloto atual, obteve Accuracy@1 de 40,00% no geral e 10,00% nas paráfrases clínicas. Em Accuracy@5, obteve 60,00% no geral e 20,00% nas paráfrases. O ganho semântico nas paráfrases foi pequeno e veio acompanhado de queda acentuada nas variações ortográficas; portanto, este modelo isolado não substitui os baselines lexicais.
+
+Os resultados e a proveniência ficam em `data/results/semantic_*`.
+
+## Protocolo do Experimento 1
+
+Os 30 casos de `data/eval/pilot_cases.csv` são o conjunto de desenvolvimento exploratório. O holdout usa dez HPO IDs inéditos, foi aprovado cegamente por Odimar e está congelado em `data/eval/holdout_cases.csv`, com checksum e proveniência em `data/eval/holdout_manifest.json`.
+
+Fluxo operacional:
+
+```powershell
+# Desenvolvimento: pode ser repetido
+python scripts/run_experiment1.py --dataset development
+
+# Se Odimar rejeitar um conceito após registrar o motivo no CSV
+python scripts/replace_rejected_holdout.py
+
+# Somente depois de todos os status serem "approved"
+python scripts/freeze_holdout.py
+
+# Execução única, apenas com Git limpo e holdout congelado
+python scripts/run_experiment1.py --dataset holdout --confirm-holdout
+```
+
+O híbrido usa short-circuit exato e Reciprocal Rank Fusion sem pesos (`k=60`) sobre os Top-20 de fuzzy, BM25 e semantic. O score de fusão não é confiança calibrada.
+
+No desenvolvimento, o híbrido obteve Accuracy@1 geral de 66,67%, Accuracy@5 geral de 73,33% e Accuracy@5 de 20,00% nas paráfrases. Ele empatou com o melhor método individual nas paráfrases e, portanto, não cumpriu o critério de promoção ao dashboard. O holdout ainda não foi executado.
 
 ## Executar
 

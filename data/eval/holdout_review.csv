@@ -1,0 +1,11 @@
+selection_order,hpo_id,label_pt,label_en,label_word_bucket,orthographic_rule,orthographic_query,proposed_paraphrase_pt,review_status,review_notes
+1,HP:0003153,Cistationinúria,Cystathioninuria,1,remove_accent,cistationinuria,excreção urinária aumentada de cistationina,approved,Aprovado por Odimar em 2026-07-16
+2,HP:0002937,Hemivértebra,Hemivertebrae,1,remove_accent,hemivertebra,formação de apenas metade de uma vértebra,approved,Aprovado por Odimar em 2026-07-16
+3,HP:0000555,Leucocoria,Leukocoria,1,separator,leuco coria,reflexo branco visível na pupila,approved,Aprovado por Odimar em 2026-07-16
+4,HP:0000096,Glomerulosclerose,Glomerular sclerosis,1,separator,glomerul osclerose,cicatrização dos glomérulos renais,approved,Aprovado por Odimar em 2026-07-16
+5,HP:0030250,Granulomatose pulmonar,Pulmonary granulomatosis,2,case_punctuation,GRANULOMATOSE PULMONAR.,formação de granulomas nos pulmões,approved,Aprovado por Odimar em 2026-07-16
+6,HP:0030491,Atrofia coriocapilar,Choriocapillaris atrophy,2,case_punctuation,ATROFIA CORIOCAPILAR.,redução da camada capilar da coroide,approved,Aprovado por Odimar em 2026-07-16
+7,HP:0003587,Início insidioso,Insidious onset,2,deletion,início isidioso,aparecimento gradual e pouco perceptível,approved,Aprovado por Odimar em 2026-07-16
+8,HP:0030326,Contagem anormal de macrófagos,Abnormal macrophage count,3,deletion,contagem anorml de macrófagos,quantidade de macrófagos fora do intervalo esperado,approved,Aprovado por Odimar em 2026-07-16
+9,HP:0020076,Cisto ganglionar do punho,Wrist ganglion,3,transposition,cisto ganglinoar do punho,formação cística junto à articulação do punho,approved,Aprovado por Odimar em 2026-07-16
+10,HP:0011778,Adenoma atípico da tireoide,Thyroid atypical adenoma,3,transposition,adenoma atípioc da tireoide,tumor adenomatoso tireoidiano com características atípicas,approved,Aprovado por Odimar em 2026-07-16

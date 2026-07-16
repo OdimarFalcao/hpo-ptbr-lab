@@ -1,0 +1,40 @@
+{
+  "status": "frozen",
+  "frozen_at": "2026-07-16T19:20:21.536565+00:00",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "selection_seed": 20260717,
+  "case_count": 30,
+  "concept_count": 10,
+  "strata": {
+    "official_label": 10,
+    "orthographic_variation": 10,
+    "clinical_paraphrase": 10
+  },
+  "development_hpo_ids": [
+    "HP:0000252",
+    "HP:0000256",
+    "HP:0000486",
+    "HP:0000518",
+    "HP:0000618",
+    "HP:0000822",
+    "HP:0002943",
+    "HP:0003324",
+    "HP:0003419",
+    "HP:0004322"
+  ],
+  "holdout_hpo_ids": [
+    "HP:0000096",
+    "HP:0000555",
+    "HP:0002937",
+    "HP:0003153",
+    "HP:0003587",
+    "HP:0011778",
+    "HP:0020076",
+    "HP:0030250",
+    "HP:0030326",
+    "HP:0030491"
+  ],
+  "sha256": "60429c577f88fe5d99fec7f674edfd922f47d1da05306b4e0fecb1503d805f5e",
+  "review_file": "holdout_review.csv",
+  "rejections": []
+}

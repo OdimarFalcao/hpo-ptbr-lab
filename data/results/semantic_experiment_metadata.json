@@ -1,0 +1,10 @@
+{
+  "experiment": "semantic-baseline-1",
+  "generated_at": "2026-07-16T18:24:54.438466+00:00",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "corpus_field": "label_pt",
+  "corpus_terms": 7158,
+  "pilot_cases": 30
+}

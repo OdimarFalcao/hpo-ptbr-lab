@@ -1,0 +1,5 @@
+method,stratum,n,accuracy_at_1,accuracy_at_5,mrr_at_20,latency_mean_ms,invalid_id_rate
+semantic,ALL,30,0.4,0.6,0.4772,52.008,0.0
+semantic,clinical_paraphrase,10,0.1,0.2,0.1283,57.973,0.0
+semantic,official_label,10,1.0,1.0,1.0,56.254,0.0
+semantic,orthographic_variation,10,0.1,0.6,0.3033,41.797,0.0

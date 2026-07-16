@@ -22,6 +22,8 @@ def _summarize(rows: list[dict[str, object]]) -> dict[str, float | int]:
     total = len(rows)
     reciprocal_ranks = [1 / int(row["target_rank"]) if row["target_rank"] else 0.0 for row in rows]
     latencies = [float(row["latency_ms"]) for row in rows]
+    candidate_count = sum(int(row["candidate_count"]) for row in rows)
+    invalid_id_count = sum(int(row["invalid_id_count"]) for row in rows)
     return {
         "n": total,
         "accuracy_at_1": round(sum(row["target_rank"] == 1 for row in rows) / total, 4),
@@ -31,6 +33,7 @@ def _summarize(rows: list[dict[str, object]]) -> dict[str, float | int]:
         ),
         "mrr_at_20": round(statistics.fmean(reciprocal_ranks), 4),
         "latency_mean_ms": round(statistics.fmean(latencies), 3),
+        "invalid_id_rate": round(invalid_id_count / candidate_count, 4) if candidate_count else 0.0,
     }
 
 
@@ -43,6 +46,9 @@ def evaluate_cases(
     for method, mapper in mappers.items():
         for case in cases:
             result = mapper.map(case["query_pt"], top_k=top_k)
+            valid_ids = {record.hpo_id for record in mapper.records}
+            candidate_ids = [candidate.hpo_id for candidate in result.candidates]
+            invalid_ids = [hpo_id for hpo_id in candidate_ids if hpo_id not in valid_ids]
             target_rank = next(
                 (candidate.rank for candidate in result.candidates if candidate.hpo_id == case["target_hpo_id"]),
                 None,
@@ -56,8 +62,11 @@ def evaluate_cases(
                     "target_hpo_id": case["target_hpo_id"],
                     "target_rank": target_rank,
                     "latency_ms": result.latency_ms,
+                    "candidate_count": len(candidate_ids),
+                    "invalid_id_count": len(invalid_ids),
+                    "invalid_hpo_ids": json.dumps(invalid_ids, ensure_ascii=False),
                     "top_hpo_ids": json.dumps(
-                        [candidate.hpo_id for candidate in result.candidates[:5]], ensure_ascii=False
+                        candidate_ids[:5], ensure_ascii=False
                     ),
                 }
             )

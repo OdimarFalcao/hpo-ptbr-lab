@@ -1,0 +1,43 @@
+{
+  "experiment": "experiment-1-hybrid-retrieval",
+  "dataset": "development",
+  "generated_at": "2026-07-16T18:21:27.960826+00:00",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "case_file": "data/eval/pilot_cases.csv",
+  "case_count": 30,
+  "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "hybrid": {
+    "method": "unweighted_reciprocal_rank_fusion",
+    "rrf_k": 60,
+    "source_top_k": 20,
+    "sources": [
+      "fuzzy",
+      "bm25",
+      "semantic"
+    ],
+    "exact_short_circuit": true
+  },
+  "git_commit": "e81ad211d8353091cabf8662a8947ff7e06c5821",
+  "git_dirty_before_run": true,
+  "result_fingerprint_without_timing": "85e695f2acc746b82ee0d4d8e605aa4fbadd8892cc61e10de5446f1ef6216494",
+  "promotion_gate": {
+    "passed": false,
+    "criteria": {
+      "paraphrase_at_5_strictly_better": false,
+      "official_at_1_is_100_percent": true,
+      "orthographic_drop_at_most_one_case": true,
+      "invalid_id_rate_is_zero": true
+    },
+    "observed": {
+      "best_individual_paraphrase_accuracy_at_5": 0.2,
+      "hybrid_paraphrase_accuracy_at_5": 0.2,
+      "hybrid_official_accuracy_at_1": 1.0,
+      "hybrid_orthographic_accuracy_at_1": 1.0,
+      "fuzzy_orthographic_accuracy_at_1": 1.0,
+      "hybrid_invalid_id_rate": 0.0
+    }
+  },
+  "eligible_for_dashboard_promotion": false,
+  "holdout_manifest": null
+}

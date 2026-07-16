@@ -6,7 +6,7 @@
     "accuracy_at_1": 0.6,
     "accuracy_at_5": 0.6333,
     "mrr_at_20": 0.6184,
-    "latency_mean_ms": 2.927,
+    "latency_mean_ms": 6.081,
     "invalid_id_rate": 0.0
   },
   {
@@ -16,7 +16,7 @@
     "accuracy_at_1": 0.0,
     "accuracy_at_5": 0.1,
     "mrr_at_20": 0.0553,
-    "latency_mean_ms": 4.827,
+    "latency_mean_ms": 10.889,
     "invalid_id_rate": 0.0
   },
   {
@@ -26,7 +26,7 @@
     "accuracy_at_1": 1.0,
     "accuracy_at_5": 1.0,
     "mrr_at_20": 1.0,
-    "latency_mean_ms": 1.93,
+    "latency_mean_ms": 3.558,
     "invalid_id_rate": 0.0
   },
   {
@@ -36,7 +36,7 @@
     "accuracy_at_1": 0.8,
     "accuracy_at_5": 0.8,
     "mrr_at_20": 0.8,
-    "latency_mean_ms": 2.023,
+    "latency_mean_ms": 3.795,
     "invalid_id_rate": 0.0
   },
   {
@@ -46,7 +46,7 @@
     "accuracy_at_1": 0.5667,
     "accuracy_at_5": 0.5667,
     "mrr_at_20": 0.5667,
-    "latency_mean_ms": 0.213,
+    "latency_mean_ms": 0.471,
     "invalid_id_rate": 0.0
   },
   {
@@ -56,7 +56,7 @@
     "accuracy_at_1": 0.0,
     "accuracy_at_5": 0.0,
     "mrr_at_20": 0.0,
-    "latency_mean_ms": 0.189,
+    "latency_mean_ms": 0.408,
     "invalid_id_rate": 0.0
   },
   {
@@ -66,7 +66,7 @@
     "accuracy_at_1": 1.0,
     "accuracy_at_5": 1.0,
     "mrr_at_20": 1.0,
-    "latency_mean_ms": 0.255,
+    "latency_mean_ms": 0.591,
     "invalid_id_rate": 0.0
   },
   {
@@ -76,7 +76,7 @@
     "accuracy_at_1": 0.7,
     "accuracy_at_5": 0.7,
     "mrr_at_20": 0.7,
-    "latency_mean_ms": 0.194,
+    "latency_mean_ms": 0.414,
     "invalid_id_rate": 0.0
   },
   {
@@ -86,7 +86,7 @@
     "accuracy_at_1": 0.6667,
     "accuracy_at_5": 0.6667,
     "mrr_at_20": 0.669,
-    "latency_mean_ms": 46.982,
+    "latency_mean_ms": 94.454,
     "invalid_id_rate": 0.0
   },
   {
@@ -96,7 +96,7 @@
     "accuracy_at_1": 0.0,
     "accuracy_at_5": 0.0,
     "mrr_at_20": 0.0071,
-    "latency_mean_ms": 50.425,
+    "latency_mean_ms": 103.588,
     "invalid_id_rate": 0.0
   },
   {
@@ -106,7 +106,7 @@
     "accuracy_at_1": 1.0,
     "accuracy_at_5": 1.0,
     "mrr_at_20": 1.0,
-    "latency_mean_ms": 44.63,
+    "latency_mean_ms": 94.842,
     "invalid_id_rate": 0.0
   },
   {
@@ -116,7 +116,87 @@
     "accuracy_at_1": 1.0,
     "accuracy_at_5": 1.0,
     "mrr_at_20": 1.0,
-    "latency_mean_ms": 45.89,
+    "latency_mean_ms": 84.931,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.6667,
+    "accuracy_at_5": 0.7333,
+    "mrr_at_20": 0.6922,
+    "latency_mean_ms": 67.018,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.2,
+    "mrr_at_20": 0.0767,
+    "latency_mean_ms": 159.51,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 0.474,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 41.068,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.4,
+    "accuracy_at_5": 0.6,
+    "mrr_at_20": 0.4772,
+    "latency_mean_ms": 54.035,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.1,
+    "accuracy_at_5": 0.2,
+    "mrr_at_20": 0.1283,
+    "latency_mean_ms": 60.753,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 43.038,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.1,
+    "accuracy_at_5": 0.6,
+    "mrr_at_20": 0.3033,
+    "latency_mean_ms": 58.312,
     "invalid_id_rate": 0.0
   }
 ]

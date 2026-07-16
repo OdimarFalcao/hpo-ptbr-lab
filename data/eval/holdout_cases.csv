@@ -1,0 +1,31 @@
+case_id,query_pt,target_hpo_id,stratum,provenance
+HLD-OFF-01,Cistationinúria,HP:0003153,official_label,HPO-PT official label
+HLD-ORT-01,cistationinuria,HP:0003153,orthographic_variation,Deterministic remove_accent variation
+HLD-PAR-01,excreção urinária aumentada de cistationina,HP:0003153,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-02,Hemivértebra,HP:0002937,official_label,HPO-PT official label
+HLD-ORT-02,hemivertebra,HP:0002937,orthographic_variation,Deterministic remove_accent variation
+HLD-PAR-02,formação de apenas metade de uma vértebra,HP:0002937,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-03,Leucocoria,HP:0000555,official_label,HPO-PT official label
+HLD-ORT-03,leuco coria,HP:0000555,orthographic_variation,Deterministic separator variation
+HLD-PAR-03,reflexo branco visível na pupila,HP:0000555,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-04,Glomerulosclerose,HP:0000096,official_label,HPO-PT official label
+HLD-ORT-04,glomerul osclerose,HP:0000096,orthographic_variation,Deterministic separator variation
+HLD-PAR-04,cicatrização dos glomérulos renais,HP:0000096,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-05,Granulomatose pulmonar,HP:0030250,official_label,HPO-PT official label
+HLD-ORT-05,GRANULOMATOSE PULMONAR.,HP:0030250,orthographic_variation,Deterministic case_punctuation variation
+HLD-PAR-05,formação de granulomas nos pulmões,HP:0030250,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-06,Atrofia coriocapilar,HP:0030491,official_label,HPO-PT official label
+HLD-ORT-06,ATROFIA CORIOCAPILAR.,HP:0030491,orthographic_variation,Deterministic case_punctuation variation
+HLD-PAR-06,redução da camada capilar da coroide,HP:0030491,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-07,Início insidioso,HP:0003587,official_label,HPO-PT official label
+HLD-ORT-07,início isidioso,HP:0003587,orthographic_variation,Deterministic deletion variation
+HLD-PAR-07,aparecimento gradual e pouco perceptível,HP:0003587,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-08,Contagem anormal de macrófagos,HP:0030326,official_label,HPO-PT official label
+HLD-ORT-08,contagem anorml de macrófagos,HP:0030326,orthographic_variation,Deterministic deletion variation
+HLD-PAR-08,quantidade de macrófagos fora do intervalo esperado,HP:0030326,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-09,Cisto ganglionar do punho,HP:0020076,official_label,HPO-PT official label
+HLD-ORT-09,cisto ganglinoar do punho,HP:0020076,orthographic_variation,Deterministic transposition variation
+HLD-PAR-09,formação cística junto à articulação do punho,HP:0020076,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
+HLD-OFF-10,Adenoma atípico da tireoide,HP:0011778,official_label,HPO-PT official label
+HLD-ORT-10,adenoma atípioc da tireoide,HP:0011778,orthographic_variation,Deterministic transposition variation
+HLD-PAR-10,tumor adenomatoso tireoidiano com características atípicas,HP:0011778,clinical_paraphrase,Synthetic paraphrase approved blindly by Odimar
