@@ -1,0 +1,202 @@
+[
+  {
+    "method": "bm25",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.5667,
+    "accuracy_at_5": 0.6333,
+    "mrr_at_20": 0.5986,
+    "latency_mean_ms": 9.375,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "bm25",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.1,
+    "accuracy_at_5": 0.1,
+    "mrr_at_20": 0.1125,
+    "latency_mean_ms": 14.114,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "bm25",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 6.906,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "bm25",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.6,
+    "accuracy_at_5": 0.8,
+    "mrr_at_20": 0.6833,
+    "latency_mean_ms": 7.105,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "exact",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.4667,
+    "accuracy_at_5": 0.4667,
+    "mrr_at_20": 0.4667,
+    "latency_mean_ms": 0.833,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "exact",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.0,
+    "mrr_at_20": 0.0,
+    "latency_mean_ms": 0.804,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "exact",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 0.907,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "exact",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.4,
+    "accuracy_at_5": 0.4,
+    "mrr_at_20": 0.4,
+    "latency_mean_ms": 0.788,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.6667,
+    "accuracy_at_5": 0.6667,
+    "mrr_at_20": 0.6667,
+    "latency_mean_ms": 150.948,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.0,
+    "mrr_at_20": 0.0,
+    "latency_mean_ms": 146.56,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 177.621,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "fuzzy",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 128.661,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.6,
+    "accuracy_at_5": 0.7333,
+    "mrr_at_20": 0.6511,
+    "latency_mean_ms": 123.932,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.0,
+    "accuracy_at_5": 0.2,
+    "mrr_at_20": 0.0533,
+    "latency_mean_ms": 229.597,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 0.828,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "hybrid",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.8,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 0.9,
+    "latency_mean_ms": 141.37,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "ALL",
+    "n": 30,
+    "accuracy_at_1": 0.4667,
+    "accuracy_at_5": 0.5667,
+    "mrr_at_20": 0.5127,
+    "latency_mean_ms": 79.244,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "clinical_paraphrase",
+    "n": 10,
+    "accuracy_at_1": 0.1,
+    "accuracy_at_5": 0.1,
+    "mrr_at_20": 0.1125,
+    "latency_mean_ms": 108.419,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "official_label",
+    "n": 10,
+    "accuracy_at_1": 1.0,
+    "accuracy_at_5": 1.0,
+    "mrr_at_20": 1.0,
+    "latency_mean_ms": 62.673,
+    "invalid_id_rate": 0.0
+  },
+  {
+    "method": "semantic",
+    "stratum": "orthographic_variation",
+    "n": 10,
+    "accuracy_at_1": 0.3,
+    "accuracy_at_5": 0.6,
+    "mrr_at_20": 0.4256,
+    "latency_mean_ms": 66.64,
+    "invalid_id_rate": 0.0
+  }
+]

@@ -71,7 +71,11 @@ python scripts/run_experiment1.py --dataset holdout --confirm-holdout
 
 O híbrido usa short-circuit exato e Reciprocal Rank Fusion sem pesos (`k=60`) sobre os Top-20 de fuzzy, BM25 e semantic. O score de fusão não é confiança calibrada.
 
-No desenvolvimento, o híbrido obteve Accuracy@1 geral de 66,67%, Accuracy@5 geral de 73,33% e Accuracy@5 de 20,00% nas paráfrases. Ele empatou com o melhor método individual nas paráfrases e, portanto, não cumpriu o critério de promoção ao dashboard. O holdout ainda não foi executado.
+No desenvolvimento, o híbrido obteve Accuracy@1 geral de 66,67%, Accuracy@5 geral de 73,33% e Accuracy@5 de 20,00% nas paráfrases. Ele empatou com o melhor método individual nas paráfrases.
+
+No holdout congelado, o híbrido obteve Accuracy@1 geral de 60,00%, Accuracy@5 geral de 73,33% e Accuracy@5 de 20,00% nas paráfrases. Superou os métodos individuais nas paráfrases, mas caiu para 80,00% de Accuracy@1 ortográfica contra 100,00% do fuzzy. Como o limite pré-registrado permitia queda de apenas um caso, o critério de promoção falhou. O híbrido permanece fora do dashboard e o holdout não deve ser reutilizado para ajuste.
+
+A análise completa está em `data/results/experiment1_report.md`.
 
 ## Executar
 
