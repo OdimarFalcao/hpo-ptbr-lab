@@ -3,30 +3,49 @@
     "id": "demo-01",
     "text": "Descrição sintética com microcefalia e baixa estatura.",
     "expected_hpo_ids": ["HP:0000252", "HP:0004322"],
+    "mentions": [
+      {"text": "microcefalia", "start": 24, "end": 36, "hpo_id": "HP:0000252", "detectable": true},
+      {"text": "baixa estatura", "start": 39, "end": 53, "hpo_id": "HP:0004322", "detectable": true}
+    ],
     "purpose": "Dois rótulos oficiais em uma descrição curta."
   },
   {
     "id": "demo-02",
     "text": "Exemplo artificial com hipertensão e catarata.",
     "expected_hpo_ids": ["HP:0000822", "HP:0000518"],
+    "mentions": [
+      {"text": "hipertensão", "start": 23, "end": 34, "hpo_id": "HP:0000822", "detectable": true},
+      {"text": "catarata", "start": 37, "end": 45, "hpo_id": "HP:0000518", "detectable": true}
+    ],
     "purpose": "Dois fenótipos sem relação diagnóstica declarada."
   },
   {
     "id": "demo-03",
     "text": "Texto sintético: macrocefalia associada a escoliose torácica.",
     "expected_hpo_ids": ["HP:0000256", "HP:0002943"],
+    "mentions": [
+      {"text": "macrocefalia", "start": 17, "end": 29, "hpo_id": "HP:0000256", "detectable": true},
+      {"text": "escoliose torácica", "start": 42, "end": 60, "hpo_id": "HP:0002943", "detectable": true}
+    ],
     "purpose": "Rótulos com uma e duas palavras."
   },
   {
     "id": "demo-04",
     "text": "Descrição inventada contendo micro cefalia e hipotonia facial.",
     "expected_hpo_ids": ["HP:0000252", "HP:0000297"],
+    "mentions": [
+      {"text": "micro cefalia", "start": 29, "end": 42, "hpo_id": "HP:0000252", "detectable": true},
+      {"text": "hipotonia facial", "start": 45, "end": 61, "hpo_id": "HP:0000297", "detectable": true}
+    ],
     "purpose": "Variação ortográfica e rótulo oficial."
   },
   {
     "id": "demo-05",
     "text": "A cabeça parece menor do que o esperado.",
     "expected_hpo_ids": ["HP:0000252"],
+    "mentions": [
+      {"text": "cabeça parece menor do que o esperado", "start": 2, "end": 39, "hpo_id": "HP:0000252", "detectable": false}
+    ],
     "purpose": "Caso negativo conhecido: a paráfrase pode não ser detectada pelo baseline lexical."
   }
 ]

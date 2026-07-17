@@ -89,6 +89,12 @@ A busca do melhor rótulo por janela usa `rapidfuzz.process.extractOne` com dese
 python scripts/benchmark_evidence.py --runs 3
 ```
 
+Os cinco exemplos também possuem offsets e alvos HPO explícitos para uma verificação funcional reproduzível. Ela recupera as oito menções marcadas como detectáveis e preserva a paráfrase negativa como falha conhecida. Esse resultado é um sanity check de desenvolvimento construído, não medida de generalização. Relatório em `data/results/evidence_evaluation_report.md` e execução por:
+
+```powershell
+python scripts/evaluate_evidence.py
+```
+
 ## Executar
 
 ```powershell

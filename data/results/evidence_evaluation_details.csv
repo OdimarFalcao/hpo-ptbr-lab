@@ -1,0 +1,10 @@
+case_id,mention_text,start,end,target_hpo_id,detectable,span_detected,target_rank,top_hpo_ids,detector_score,latency_ms
+demo-01,microcefalia,24,36,HP:0000252,True,True,1,"[""HP:0000252"", ""HP:0000256"", ""HP:0000253"", ""HP:0000238"", ""HP:0000568""]",1.0,233.593
+demo-01,baixa estatura,39,53,HP:0004322,True,True,1,"[""HP:0004322"", ""HP:0003502"", ""HP:0003498"", ""HP:0003508"", ""HP:0003510""]",1.0,233.593
+demo-02,hipertensão,23,34,HP:0000822,True,True,1,"[""HP:0000822"", ""HP:0007906"", ""HP:0008071"", ""HP:0030950"", ""HP:0032547""]",1.0,195.163
+demo-02,catarata,37,45,HP:0000518,True,True,1,"[""HP:0000518"", ""HP:0000519"", ""HP:0000523"", ""HP:0007648"", ""HP:0007657""]",1.0,195.163
+demo-03,macrocefalia,17,29,HP:0000256,True,True,1,"[""HP:0000256"", ""HP:0000252"", ""HP:0004481"", ""HP:0004482"", ""HP:0004488""]",1.0,248.229
+demo-03,escoliose torácica,42,60,HP:0002943,True,True,1,"[""HP:0002943"", ""HP:0006589"", ""HP:0012727"", ""HP:0012728"", ""HP:0012729""]",1.0,248.229
+demo-04,micro cefalia,29,42,HP:0000252,True,True,1,"[""HP:0000252"", ""HP:0000256"", ""HP:0000253"", ""HP:0032561"", ""HP:0000238""]",0.96,271.046
+demo-04,hipotonia facial,45,61,HP:0000297,True,True,1,"[""HP:0000297"", ""HP:0000287"", ""HP:0000291"", ""HP:0000292"", ""HP:0000301""]",1.0,271.046
+demo-05,cabeça parece menor do que o esperado,2,39,HP:0000252,False,False,,[],,99.757

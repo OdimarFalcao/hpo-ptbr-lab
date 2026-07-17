@@ -199,6 +199,29 @@ elif page == "Experimento":
     st.caption(
         "O piloto é técnico e sintético; não constitui benchmark clínico nem evidência de validade externa."
     )
+    st.subheader("Verificação funcional da descrição sintética")
+    evidence_summary = json.loads(
+        (ROOT / "data/results/evidence_evaluation_summary.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Menções detectáveis", evidence_summary["n_detectable_mentions"])
+    col2.metric(
+        "Recall de trecho",
+        f"{evidence_summary['exact_span_recall'] * 100:.0f}%",
+    )
+    col3.metric(
+        "HPO Accuracy@1",
+        f"{evidence_summary['hpo_accuracy_at_1'] * 100:.0f}%",
+    )
+    col4.metric(
+        "Falha conhecida reproduzida",
+        f"{evidence_summary['known_miss_reproduction_rate'] * 100:.0f}%",
+    )
+    st.warning(
+        "Sanity check construído com cinco textos de desenvolvimento: não mede generalização e não utiliza o holdout."
+    )
 
 else:
     st.header("Arquitetura por fases")

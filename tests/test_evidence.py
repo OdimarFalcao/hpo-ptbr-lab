@@ -90,6 +90,16 @@ def test_demo_cases_reference_only_valid_snapshot_ids():
     assert len(cases) == 5
     assert all(case["expected_hpo_ids"] for case in cases)
     assert all(
+        case["expected_hpo_ids"]
+        == [mention["hpo_id"] for mention in case["mentions"]]
+        for case in cases
+    )
+    assert all(
+        case["text"][mention["start"] : mention["end"]] == mention["text"]
+        for case in cases
+        for mention in case["mentions"]
+    )
+    assert all(
         hpo_id in valid_ids
         for case in cases
         for hpo_id in case["expected_hpo_ids"]
