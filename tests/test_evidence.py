@@ -44,6 +44,18 @@ def test_recovers_orthographic_variation_and_removes_nested_span(records):
     assert result.spans[0].candidates[0].hpo_id == "HP:0000252"
 
 
+def test_detector_breaks_equal_score_ties_by_hpo_id():
+    records = [
+        HpoRecord("HP:0000002", "Second", "Termo igual"),
+        HpoRecord("HP:0000001", "First", "Termo igual"),
+    ]
+    extractor = EvidenceExtractor(FuzzyMapper(records, "test"))
+
+    result = extractor.map_text("Termo igual")
+
+    assert result.spans[0].candidates[0].hpo_id == "HP:0000001"
+
+
 def test_export_is_repeatable_ignoring_latency(records):
     extractor = EvidenceExtractor(FuzzyMapper(records, "test"))
 

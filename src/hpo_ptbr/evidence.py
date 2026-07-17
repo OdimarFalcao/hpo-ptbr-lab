@@ -4,7 +4,10 @@ import re
 from dataclasses import asdict, dataclass
 from time import perf_counter
 
+from rapidfuzz import fuzz, process
+
 from .models import Candidate
+from .normalize import normalize_text
 from .rankers import BaseMapper, FuzzyMapper
 
 TOKEN_PATTERN = re.compile(r"\b\w+(?:[-']\w+)*\b", re.UNICODE)
@@ -77,6 +80,16 @@ class EvidenceExtractor:
             raise ValueError("Detector e mapper devem usar a mesma versão de dados.")
         self.max_span_tokens = max_span_tokens
         self.detection_threshold = detection_threshold
+        detector_entries = sorted(
+            zip(
+                self.detector.records,
+                self.detector.normalized_labels,
+                strict=True,
+            ),
+            key=lambda item: item[0].hpo_id,
+        )
+        self._detector_records = [entry[0] for entry in detector_entries]
+        self._detector_labels = [entry[1] for entry in detector_entries]
 
     def map_text(
         self,
@@ -128,20 +141,24 @@ class EvidenceExtractor:
                 span_text = text[start_token.start() : end_token.end()]
                 if len(span_text) < 3:
                     continue
-                result = self.detector.map(span_text, top_k=1)
-                if not result.candidates:
+                match = process.extractOne(
+                    normalize_text(span_text),
+                    self._detector_labels,
+                    scorer=fuzz.WRatio,
+                    score_cutoff=self.detection_threshold * 100,
+                )
+                if match is None:
                     continue
-                candidate = result.candidates[0]
-                if candidate.score < self.detection_threshold:
-                    continue
+                _, score, record_index = match
+                record = self._detector_records[record_index]
                 detected.append(
                     _DetectedSpan(
                         text=span_text,
                         start=start_token.start(),
                         end=end_token.end(),
                         token_count=end_index - start_index + 1,
-                        score=candidate.score,
-                        hpo_id=candidate.hpo_id,
+                        score=score / 100,
+                        hpo_id=record.hpo_id,
                     )
                 )
         return detected

@@ -83,6 +83,12 @@ A página `Descrição sintética` recebe um texto inventado, identifica janelas
 
 O detector usa fuzzy match com limiar fixo de `0.92`; o método escolhido pelo usuário apenas ordena os candidatos de cada trecho detectado. `detector_score` e `score` são scores de ranking, não confiança calibrada. Essa prova de conceito pode omitir paráfrases clínicas, não processa prontuários e não altera os resultados do holdout congelado.
 
+A busca do melhor rótulo por janela usa `rapidfuzz.process.extractOne` com desempate determinístico por HPO ID. A medição local controlada dos cinco exemplos reduziu a mediana observada de 1.713,280 ms para 183,042 ms sem alterar os trechos ou IDs retornados. Valores brutos, metodologia e limitações estão em `data/results/evidence_performance.md`. Para medir a versão atual:
+
+```powershell
+python scripts/benchmark_evidence.py --runs 3
+```
+
 ## Executar
 
 ```powershell
