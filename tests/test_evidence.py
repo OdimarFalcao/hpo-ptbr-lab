@@ -1,0 +1,84 @@
+import json
+from pathlib import Path
+
+import pytest
+
+from hpo_ptbr.data import HpoRecord, load_snapshot
+from hpo_ptbr.evidence import EvidenceExtractor
+from hpo_ptbr.rankers import FuzzyMapper
+
+
+@pytest.fixture
+def records():
+    return [
+        HpoRecord("HP:0000252", "Microcephaly", "Microcefalia"),
+        HpoRecord("HP:0000822", "Hypertension", "Hipertensão"),
+        HpoRecord("HP:0004322", "Short stature", "Baixa estatura"),
+    ]
+
+
+def test_extracts_non_overlapping_evidence_with_offsets(records):
+    mapper = FuzzyMapper(records, "test")
+    extractor = EvidenceExtractor(mapper)
+
+    result = extractor.map_text(
+        "Descrição sintética com microcefalia e baixa estatura.", top_k=2
+    )
+
+    assert [span.text for span in result.spans] == ["microcefalia", "baixa estatura"]
+    assert [span.candidates[0].hpo_id for span in result.spans] == [
+        "HP:0000252",
+        "HP:0004322",
+    ]
+    assert all(result.text[span.start : span.end] == span.text for span in result.spans)
+
+
+def test_recovers_orthographic_variation_and_removes_nested_span(records):
+    mapper = FuzzyMapper(records, "test")
+    extractor = EvidenceExtractor(mapper, detection_threshold=0.9)
+
+    result = extractor.map_text("Há micro cefalia no texto.")
+
+    assert len(result.spans) == 1
+    assert result.spans[0].text == "micro cefalia"
+    assert result.spans[0].candidates[0].hpo_id == "HP:0000252"
+
+
+def test_export_is_repeatable_ignoring_latency(records):
+    extractor = EvidenceExtractor(FuzzyMapper(records, "test"))
+
+    first = extractor.map_text("Hipertensão.").to_dict()
+    second = extractor.map_text("Hipertensão.").to_dict()
+    first.pop("latency_ms")
+    second.pop("latency_ms")
+
+    assert first == second
+    assert first["detector"] == "fuzzy_windows"
+    assert first["spans"][0]["detector_score"] == 1.0
+
+
+def test_rejects_realistic_but_unsupported_input_sizes(records):
+    extractor = EvidenceExtractor(FuzzyMapper(records, "test"))
+
+    with pytest.raises(ValueError):
+        extractor.map_text(" ")
+    with pytest.raises(ValueError):
+        extractor.map_text("x" * 1001)
+
+
+def test_demo_cases_reference_only_valid_snapshot_ids():
+    root = Path(__file__).resolve().parents[1]
+    valid_ids = {
+        record.hpo_id for record in load_snapshot(root / "data/processed/hpo_ptbr.csv")
+    }
+    cases = json.loads(
+        (root / "data/demo/synthetic_descriptions.json").read_text(encoding="utf-8")
+    )
+
+    assert len(cases) == 5
+    assert all(case["expected_hpo_ids"] for case in cases)
+    assert all(
+        hpo_id in valid_ids
+        for case in cases
+        for hpo_id in case["expected_hpo_ids"]
+    )

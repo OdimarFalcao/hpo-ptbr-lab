@@ -9,7 +9,7 @@ Protótipo acadêmico para recuperar termos válidos da Human Phenotype Ontology
 - Três baselines reproduzíveis: exact match, fuzzy match e BM25.
 - Baseline semântico offline experimental, isolado do dashboard.
 - Piloto técnico com 30 expressões públicas/sintéticas.
-- Dashboard Streamlit com cobertura, mapeador, resultados e roadmap.
+- Dashboard Streamlit com cobertura, mapeador, descrição sintética, resultados e roadmap.
 
 ## Limites
 
@@ -76,6 +76,12 @@ No desenvolvimento, o híbrido obteve Accuracy@1 geral de 66,67%, Accuracy@5 ger
 No holdout congelado, o híbrido obteve Accuracy@1 geral de 60,00%, Accuracy@5 geral de 73,33% e Accuracy@5 de 20,00% nas paráfrases. Superou os métodos individuais nas paráfrases, mas caiu para 80,00% de Accuracy@1 ortográfica contra 100,00% do fuzzy. Como o limite pré-registrado permitia queda de apenas um caso, o critério de promoção falhou. O híbrido permanece fora do dashboard e o holdout não deve ser reutilizado para ajuste.
 
 A análise completa está em `data/results/experiment1_report.md`.
+
+## Prova de conceito com evidência textual
+
+A página `Descrição sintética` recebe um texto inventado, identifica janelas lexicais compatíveis com rótulos portugueses e apresenta candidatos HPO válidos com offsets e alternativas. O resultado pode ser exportado em JSON estruturado. Os cinco exemplos versionados ficam em `data/demo/synthetic_descriptions.json`.
+
+O detector usa fuzzy match com limiar fixo de `0.92`; o método escolhido pelo usuário apenas ordena os candidatos de cada trecho detectado. `detector_score` e `score` são scores de ranking, não confiança calibrada. Essa prova de conceito pode omitir paráfrases clínicas, não processa prontuários e não altera os resultados do holdout congelado.
 
 ## Executar
 

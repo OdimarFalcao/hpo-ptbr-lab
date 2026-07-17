@@ -1,0 +1,32 @@
+[
+  {
+    "id": "demo-01",
+    "text": "Descrição sintética com microcefalia e baixa estatura.",
+    "expected_hpo_ids": ["HP:0000252", "HP:0004322"],
+    "purpose": "Dois rótulos oficiais em uma descrição curta."
+  },
+  {
+    "id": "demo-02",
+    "text": "Exemplo artificial com hipertensão e catarata.",
+    "expected_hpo_ids": ["HP:0000822", "HP:0000518"],
+    "purpose": "Dois fenótipos sem relação diagnóstica declarada."
+  },
+  {
+    "id": "demo-03",
+    "text": "Texto sintético: macrocefalia associada a escoliose torácica.",
+    "expected_hpo_ids": ["HP:0000256", "HP:0002943"],
+    "purpose": "Rótulos com uma e duas palavras."
+  },
+  {
+    "id": "demo-04",
+    "text": "Descrição inventada contendo micro cefalia e hipotonia facial.",
+    "expected_hpo_ids": ["HP:0000252", "HP:0000297"],
+    "purpose": "Variação ortográfica e rótulo oficial."
+  },
+  {
+    "id": "demo-05",
+    "text": "A cabeça parece menor do que o esperado.",
+    "expected_hpo_ids": ["HP:0000252"],
+    "purpose": "Caso negativo conhecido: a paráfrase pode não ser detectada pelo baseline lexical."
+  }
+]

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "src"))
 
 from hpo_ptbr.data import load_metadata, load_snapshot
+from hpo_ptbr.evidence import EvidenceExtractor
 from hpo_ptbr.rankers import Bm25Mapper, ExactMapper, FuzzyMapper
 
 st.set_page_config(page_title="HPO-PTBR Lab", page_icon="🧬", layout="wide")
@@ -55,7 +56,10 @@ st.markdown(
 
 with st.sidebar:
     st.subheader("Navegação")
-    page = st.radio("Página", ["Cobertura", "Mapeador", "Experimento", "Arquitetura"])
+    page = st.radio(
+        "Página",
+        ["Cobertura", "Mapeador", "Descrição sintética", "Experimento", "Arquitetura"],
+    )
     st.divider()
     st.caption(f"Dados: `{metadata['data_version']}`")
     st.caption(f"Gerado em: {str(metadata['generated_at'])[:10]}")
@@ -129,6 +133,58 @@ elif page == "Mapeador":
                     file_name="hpo_ptbr_resultados.json",
                     mime="application/json",
                 )
+
+elif page == "Descrição sintética":
+    st.header("Descrição sintética → evidências HPO")
+    st.markdown(
+        '<div class="notice"><strong>Prova de conceito experimental:</strong> use somente texto inventado. O detector lexical pode omitir paráfrases e não realiza diagnóstico.</div>',
+        unsafe_allow_html=True,
+    )
+    examples = json.loads(
+        (ROOT / "data/demo/synthetic_descriptions.json").read_text(encoding="utf-8")
+    )
+    example = st.selectbox(
+        "Exemplo sintético",
+        examples,
+        format_func=lambda item: f"{item['id']} — {item['purpose']}",
+    )
+    description = st.text_area(
+        "Descrição",
+        value=example["text"],
+        height=120,
+        max_chars=1000,
+    )
+    method_name = st.selectbox("Método para ordenar candidatos", list(mappers), index=1)
+    top_k = st.slider("Alternativas por trecho", 1, 10, 5)
+    if st.button("Identificar evidências", type="primary"):
+        try:
+            extractor = EvidenceExtractor(mappers[method_name])
+            result = extractor.map_text(description, top_k=top_k)
+        except ValueError as error:
+            st.error(str(error))
+        else:
+            if not result.spans:
+                st.warning(
+                    "Nenhum trecho atingiu o limiar lexical. Isso é esperado em algumas paráfrases."
+                )
+            for span in result.spans:
+                st.subheader(f'“{span.text}” · caracteres {span.start}–{span.end}')
+                st.caption(
+                    f"Score do detector: {span.detector_score:.3f}. É um score de ranking, não confiança calibrada."
+                )
+                st.dataframe(
+                    pd.DataFrame([candidate.to_dict() for candidate in span.candidates]),
+                    width="stretch",
+                    hide_index=True,
+                )
+            serialized = json.dumps(result.to_dict(), ensure_ascii=False, indent=2)
+            st.download_button(
+                "Baixar resultado estruturado",
+                data=serialized,
+                file_name="hpo_ptbr_evidencias_sinteticas.json",
+                mime="application/json",
+            )
+            st.caption(f"Latência total: {result.latency_ms} ms")
 
 elif page == "Experimento":
     st.header("Piloto com 30 expressões")
