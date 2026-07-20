@@ -47,6 +47,21 @@ def load_summary(path: str | Path) -> list[dict[str, str]]:
     return rows
 
 
+def write_comparison_csv(
+    path: str | Path, rows: list[dict[str, object]]
+) -> None:
+    if not rows:
+        raise ValueError("Não há linhas para consolidar.")
+    with Path(path).open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=list(rows[0]),
+            lineterminator="\n",
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 def build_comparison_rows(
     experiment0: list[dict[str, str]],
     development: list[dict[str, str]],

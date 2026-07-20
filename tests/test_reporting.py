@@ -5,6 +5,7 @@ from hpo_ptbr.reporting import (
     build_comparison_rows,
     load_summary,
     render_comparison_markdown,
+    write_comparison_csv,
 )
 
 
@@ -61,3 +62,13 @@ def test_report_separates_holdout_and_sanity_check():
     assert "não devem ser reutilizados para ajuste" in report
     assert "não é benchmark, holdout ou evidência clínica" in report
     assert "Decisão: não promover" in report
+
+
+def test_comparison_csv_uses_cross_platform_line_endings(tmp_path):
+    output = tmp_path / "comparison.csv"
+
+    write_comparison_csv(output, [{"method": "exact", "accuracy_at_1": 1.0}])
+
+    content = output.read_bytes()
+    assert b"\r\n" not in content
+    assert content.endswith(b"\n")

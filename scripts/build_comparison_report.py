@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import json
 import sys
 from pathlib import Path
@@ -12,6 +11,7 @@ from hpo_ptbr.reporting import (
     build_comparison_rows,
     load_summary,
     render_comparison_markdown,
+    write_comparison_csv,
 )
 
 
@@ -29,12 +29,7 @@ def main() -> None:
         (results / "evidence_evaluation_summary.json").read_text(encoding="utf-8")
     )
 
-    with (results / "comparison_metrics.csv").open(
-        "w", encoding="utf-8", newline=""
-    ) as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
-        writer.writeheader()
-        writer.writerows(rows)
+    write_comparison_csv(results / "comparison_metrics.csv", rows)
     (results / "comparison_report.md").write_text(
         render_comparison_markdown(rows, coverage, evidence), encoding="utf-8"
     )
