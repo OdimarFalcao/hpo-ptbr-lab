@@ -115,6 +115,8 @@ Antes de publicar o dashboard:
 python scripts/check_dashboard_readiness.py
 ```
 
+O workflow `.github/workflows/ci.yml` executa testes, verifica a prontidão do dashboard e confirma que a consolidação versionada foi regenerada antes de cada alteração na `main`.
+
 ## Testar
 
 ```powershell
