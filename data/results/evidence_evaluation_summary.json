@@ -1,14 +1,14 @@
 {
-  "n_cases": 5,
-  "n_gold_mentions": 9,
-  "n_detectable_mentions": 8,
-  "n_known_miss_mentions": 1,
-  "exact_span_recall": 1.0,
-  "predicted_span_precision": 1.0,
-  "hpo_accuracy_at_1": 1.0,
-  "hpo_accuracy_at_5": 1.0,
+  "n_cases": 10,
+  "n_gold_mentions": 30,
+  "n_detectable_mentions": 25,
+  "n_known_miss_mentions": 5,
+  "exact_span_recall": 0.96,
+  "predicted_span_precision": 0.9231,
+  "hpo_accuracy_at_1": 0.96,
+  "hpo_accuracy_at_5": 0.96,
   "known_miss_reproduction_rate": 1.0,
   "invalid_id_rate": 0.0,
-  "latency_mean_ms": 209.558,
-  "latency_median_ms": 233.593
+  "latency_mean_ms": 400.336,
+  "latency_median_ms": 379.27
 }

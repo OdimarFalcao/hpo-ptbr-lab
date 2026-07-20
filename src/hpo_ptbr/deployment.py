@@ -10,7 +10,7 @@ DASHBOARD_REQUIRED_FILES = (
     "data/processed/untranslated_terms.csv",
     "data/results/evaluation_summary.csv",
     "data/results/evidence_evaluation_summary.json",
-    "data/demo/synthetic_descriptions.json",
+    "data/demo/synthetic_review_cases.json",
 )
 
 HEAVY_OFFLINE_DEPENDENCIES = {"sentence-transformers", "torch"}

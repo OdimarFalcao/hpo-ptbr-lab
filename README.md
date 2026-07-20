@@ -87,7 +87,7 @@ python scripts/build_comparison_report.py
 
 ## Prova de conceito com evidência textual
 
-A página `Descrição sintética` recebe um texto inventado, identifica janelas lexicais compatíveis com rótulos portugueses e apresenta candidatos HPO válidos com offsets e alternativas. O resultado pode ser exportado em JSON estruturado. Os cinco exemplos versionados ficam em `data/demo/synthetic_descriptions.json`.
+A página `Descrição sintética` recebe um texto inventado, destaca evidências lexicais e organiza candidatos HPO para revisão humana. O usuário pode selecionar um conceito, marcar a decisão como pendente, aceita, alternativa ou descartada e exportar a revisão em JSON. Os dez cenários multissistêmicos ficam em `data/demo/synthetic_review_cases.json`; nenhum de seus IDs pertence ao holdout.
 
 O detector usa fuzzy match com limiar fixo de `0.92`; o método escolhido pelo usuário apenas ordena os candidatos de cada trecho detectado. `detector_score` e `score` são scores de ranking, não confiança calibrada. Essa prova de conceito pode omitir paráfrases clínicas, não processa prontuários e não altera os resultados do holdout congelado.
 
@@ -97,7 +97,7 @@ A busca do melhor rótulo por janela usa `rapidfuzz.process.extractOne` com dese
 python scripts/benchmark_evidence.py --runs 3
 ```
 
-Os cinco exemplos também possuem offsets e alvos HPO explícitos para uma verificação funcional reproduzível. Ela recupera as oito menções marcadas como detectáveis e preserva a paráfrase negativa como falha conhecida. Esse resultado é um sanity check de desenvolvimento construído, não medida de generalização. Relatório em `data/results/evidence_evaluation_report.md` e execução por:
+Os dez cenários possuem 30 menções com offsets e alvos HPO explícitos para uma verificação funcional reproduzível. O baseline recupera 24 das 25 menções lexicais esperadas, mantém cinco paráfrases como falhas conhecidas e retorna zero IDs inválidos. Esse resultado é um sanity check de desenvolvimento construído, não medida de generalização. Relatório em `data/results/evidence_evaluation_report.md` e execução por:
 
 ```powershell
 python scripts/evaluate_evidence.py

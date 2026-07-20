@@ -1,3 +1,4 @@
+import csv
 import json
 from pathlib import Path
 
@@ -84,10 +85,17 @@ def test_demo_cases_reference_only_valid_snapshot_ids():
         record.hpo_id for record in load_snapshot(root / "data/processed/hpo_ptbr.csv")
     }
     cases = json.loads(
-        (root / "data/demo/synthetic_descriptions.json").read_text(encoding="utf-8")
+        (root / "data/demo/synthetic_review_cases.json").read_text(encoding="utf-8")
     )
 
-    assert len(cases) == 5
+    with (root / "data/eval/holdout_cases.csv").open(
+        encoding="utf-8", newline=""
+    ) as handle:
+        holdout_ids = {
+            row["target_hpo_id"] for row in csv.DictReader(handle)
+        }
+
+    assert len(cases) == 10
     assert all(case["expected_hpo_ids"] for case in cases)
     assert all(
         case["expected_hpo_ids"]
@@ -103,4 +111,12 @@ def test_demo_cases_reference_only_valid_snapshot_ids():
         hpo_id in valid_ids
         for case in cases
         for hpo_id in case["expected_hpo_ids"]
+    )
+    assert not (
+        holdout_ids
+        & {
+            hpo_id
+            for case in cases
+            for hpo_id in case["expected_hpo_ids"]
+        }
     )

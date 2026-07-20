@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from hpo_ptbr.data import load_metadata, load_snapshot
 from hpo_ptbr.evidence import EvidenceExtractor
 from hpo_ptbr.rankers import Bm25Mapper, ExactMapper, FuzzyMapper
+from hpo_ptbr.review import build_review_export, highlight_evidence, unmatched_mentions
 
 st.set_page_config(page_title="HPO-PTBR Lab", page_icon="🧬", layout="wide")
 
@@ -24,6 +25,8 @@ st.markdown(
     .hero h1 {margin:0; font-size:2.1rem;}
     .hero p {margin:.45rem 0 0; opacity:.9;}
     .notice {padding:.9rem 1rem; border-left:4px solid #f59e0b; background:#fffbeb; border-radius:8px;}
+    .evidence-text {padding:1rem 1.1rem; border:1px solid #cbd5e1; border-radius:10px; background:#f8fafc; font-size:1.05rem; line-height:1.8;}
+    .evidence-text mark {background:#fef08a; padding:.1rem .2rem; border-radius:4px;}
     </style>
     """,
     unsafe_allow_html=True,
@@ -135,56 +138,138 @@ elif page == "Mapeador":
                 )
 
 elif page == "Descrição sintética":
-    st.header("Descrição sintética → evidências HPO")
+    st.header("Revisão de fenótipos em texto sintético")
     st.markdown(
-        '<div class="notice"><strong>Prova de conceito experimental:</strong> use somente texto inventado. O detector lexical pode omitir paráfrases e não realiza diagnóstico.</div>',
+        '<div class="notice"><strong>Prova de conceito experimental:</strong> revise sugestões HPO extraídas de texto totalmente inventado. A ferramenta pode omitir fenótipos, não mede confiança clínica e não realiza diagnóstico.</div>',
         unsafe_allow_html=True,
     )
     examples = json.loads(
-        (ROOT / "data/demo/synthetic_descriptions.json").read_text(encoding="utf-8")
+        (ROOT / "data/demo/synthetic_review_cases.json").read_text(encoding="utf-8")
     )
     example = st.selectbox(
-        "Exemplo sintético",
+        "Cenário sintético",
         examples,
-        format_func=lambda item: f"{item['id']} — {item['purpose']}",
+        format_func=lambda item: f"{item['domain']} — {item['title']}",
     )
     description = st.text_area(
-        "Descrição",
+        "Descrição para revisão",
         value=example["text"],
-        height=120,
+        height=140,
         max_chars=1000,
     )
-    method_name = st.selectbox("Método para ordenar candidatos", list(mappers), index=1)
-    top_k = st.slider("Alternativas por trecho", 1, 10, 5)
-    if st.button("Identificar evidências", type="primary"):
+    with st.expander("Configurações técnicas"):
+        method_name = st.selectbox(
+            "Método para ordenar candidatos", list(mappers), index=1
+        )
+        top_k = st.slider("Alternativas por trecho", 1, 10, 5)
+        st.caption(
+            "Scores são usados apenas para ordenação e não representam probabilidade clínica."
+        )
+    context = {
+        "case_id": example["id"],
+        "description": description,
+        "method": method_name,
+        "top_k": top_k,
+    }
+    if st.button("Analisar descrição sintética", type="primary"):
         try:
             extractor = EvidenceExtractor(mappers[method_name])
             result = extractor.map_text(description, top_k=top_k)
         except ValueError as error:
             st.error(str(error))
         else:
-            if not result.spans:
-                st.warning(
-                    "Nenhum trecho atingiu o limiar lexical. Isso é esperado em algumas paráfrases."
-                )
-            for span in result.spans:
-                st.subheader(f'“{span.text}” · caracteres {span.start}–{span.end}')
-                st.caption(
-                    f"Score do detector: {span.detector_score:.3f}. É um score de ranking, não confiança calibrada."
-                )
-                st.dataframe(
-                    pd.DataFrame([candidate.to_dict() for candidate in span.candidates]),
-                    width="stretch",
-                    hide_index=True,
-                )
-            serialized = json.dumps(result.to_dict(), ensure_ascii=False, indent=2)
-            st.download_button(
-                "Baixar resultado estruturado",
-                data=serialized,
-                file_name="hpo_ptbr_evidencias_sinteticas.json",
-                mime="application/json",
+            st.session_state["evidence_analysis"] = result.to_dict()
+            st.session_state["evidence_context"] = context
+
+    analysis = st.session_state.get("evidence_analysis")
+    if analysis and st.session_state.get("evidence_context") == context:
+        spans = analysis["spans"]
+        missed_mentions = unmatched_mentions(example, spans)
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Evidências encontradas", len(spans))
+        col2.metric("Sugestões para revisar", len(spans))
+        col3.metric("Menções do cenário não encontradas", len(missed_mentions))
+
+        st.subheader("Texto com evidências destacadas")
+        st.markdown(
+            highlight_evidence(description, spans),
+            unsafe_allow_html=True,
+        )
+        if missed_mentions:
+            missed_text = ", ".join(f'“{mention["text"]}”' for mention in missed_mentions)
+            st.warning(
+                f"Neste cenário de teste, ficaram sem correspondência automática: {missed_text}."
             )
-            st.caption(f"Latência total: {result.latency_ms} ms")
+        st.caption(
+            "Ausência de destaque não significa ausência de fenótipo. Todo resultado exige revisão humana."
+        )
+
+        reviews = []
+        for index, span in enumerate(spans, start=1):
+            candidates = span["candidates"]
+            with st.container(border=True):
+                st.markdown(f"### Evidência {index}: “{span['text']}”")
+                if not candidates:
+                    st.warning("O trecho não possui candidato HPO para revisão.")
+                    reviews.append(
+                        {
+                            "evidence_text": span["text"],
+                            "start": span["start"],
+                            "end": span["end"],
+                            "selected_hpo_id": None,
+                            "review_status": "Sem candidato",
+                        }
+                    )
+                    continue
+                candidate_by_id = {
+                    candidate["hpo_id"]: candidate for candidate in candidates
+                }
+                selected_hpo_id = st.selectbox(
+                    "Conceito HPO selecionado",
+                    list(candidate_by_id),
+                    format_func=lambda hpo_id, options=candidate_by_id: (
+                        f"{options[hpo_id]['label_pt']} — {hpo_id}"
+                    ),
+                    key=f"selected_{example['id']}_{index}",
+                )
+                review_status = st.selectbox(
+                    "Decisão da revisão",
+                    ["Pendente", "Aceitar sugestão", "Revisar alternativas", "Descartar trecho"],
+                    key=f"status_{example['id']}_{index}",
+                )
+                with st.expander("Alternativas e detalhes técnicos"):
+                    alternatives = pd.DataFrame(candidates).rename(
+                        columns={
+                            "hpo_id": "HPO ID",
+                            "label_pt": "Termo em português",
+                            "label_en": "Termo em inglês",
+                            "score": "Score de ranking",
+                            "rank": "Posição",
+                        }
+                    )
+                    st.dataframe(alternatives, width="stretch", hide_index=True)
+                    st.caption(
+                        f"Trecho nos caracteres {span['start']}–{span['end']}; score do detector {span['detector_score']:.3f}."
+                    )
+                reviews.append(
+                    {
+                        "evidence_text": span["text"],
+                        "start": span["start"],
+                        "end": span["end"],
+                        "selected_hpo_id": selected_hpo_id,
+                        "review_status": review_status,
+                    }
+                )
+
+        review_payload = build_review_export(analysis, reviews)
+        serialized = json.dumps(review_payload, ensure_ascii=False, indent=2)
+        st.download_button(
+            "Baixar revisão estruturada",
+            data=serialized,
+            file_name="hpo_ptbr_revisao_sintetica.json",
+            mime="application/json",
+        )
+        st.caption(f"Tempo de processamento: {analysis['latency_ms']} ms")
 
 elif page == "Experimento":
     st.header("Piloto com 30 expressões")
@@ -220,7 +305,7 @@ elif page == "Experimento":
         f"{evidence_summary['known_miss_reproduction_rate'] * 100:.0f}%",
     )
     st.warning(
-        "Sanity check construído com cinco textos de desenvolvimento: não mede generalização e não utiliza o holdout."
+        f"Sanity check construído com {evidence_summary['n_cases']} textos de desenvolvimento: não mede generalização e não utiliza o holdout."
     )
 
 else:

@@ -1,0 +1,132 @@
+[
+  {
+    "id": "caso-01",
+    "title": "Neuromuscular e ocular",
+    "domain": "Neurologia",
+    "text": "Na avaliação sintética foram registrados fraqueza muscular proximal, ptose e nistagmo.",
+    "expected_hpo_ids": ["HP:0003701", "HP:0000508", "HP:0000639"],
+    "mentions": [
+      {"text": "fraqueza muscular proximal", "start": 41, "end": 67, "hpo_id": "HP:0003701", "detectable": true},
+      {"text": "ptose", "start": 69, "end": 74, "hpo_id": "HP:0000508", "detectable": true},
+      {"text": "nistagmo", "start": 77, "end": 85, "hpo_id": "HP:0000639", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-02",
+    "title": "Renal e respiratório",
+    "domain": "Multissistêmico",
+    "text": "O registro sintético descreve proteinúria, hematúria microscópica e dispneia aos esforços.",
+    "expected_hpo_ids": ["HP:0000093", "HP:0002907", "HP:0002875"],
+    "mentions": [
+      {"text": "proteinúria", "start": 30, "end": 41, "hpo_id": "HP:0000093", "detectable": true},
+      {"text": "hematúria microscópica", "start": 43, "end": 65, "hpo_id": "HP:0002907", "detectable": true},
+      {"text": "dispneia aos esforços", "start": 68, "end": 89, "hpo_id": "HP:0002875", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-03",
+    "title": "Esquelético e extremidades",
+    "domain": "Musculoesquelético",
+    "text": "No exemplo artificial constam cifose, sindactilia cutânea e polidactilia.",
+    "expected_hpo_ids": ["HP:0002808", "HP:0012725", "HP:0010442"],
+    "mentions": [
+      {"text": "cifose", "start": 30, "end": 36, "hpo_id": "HP:0002808", "detectable": true},
+      {"text": "sindactilia cutânea", "start": 38, "end": 57, "hpo_id": "HP:0012725", "detectable": true},
+      {"text": "polidactilia", "start": 60, "end": 72, "hpo_id": "HP:0010442", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-04",
+    "title": "Cardíaco e ocular",
+    "domain": "Multissistêmico",
+    "text": "A descrição inventada lista arritmia ventricular, miopia e estrabismo.",
+    "expected_hpo_ids": ["HP:0004308", "HP:0000545", "HP:0000486"],
+    "mentions": [
+      {"text": "arritmia ventricular", "start": 28, "end": 48, "hpo_id": "HP:0004308", "detectable": true},
+      {"text": "miopia", "start": 50, "end": 56, "hpo_id": "HP:0000545", "detectable": true},
+      {"text": "estrabismo", "start": 59, "end": 69, "hpo_id": "HP:0000486", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-05",
+    "title": "Coordenação e força",
+    "domain": "Neurologia",
+    "text": "Foram registrados ataxia progressiva da marcha, tremor postural do membro superior e fraqueza muscular no membro inferior.",
+    "expected_hpo_ids": ["HP:0007240", "HP:0007351", "HP:0007340"],
+    "mentions": [
+      {"text": "ataxia progressiva da marcha", "start": 18, "end": 46, "hpo_id": "HP:0007240", "detectable": true},
+      {"text": "tremor postural do membro superior", "start": 48, "end": 82, "hpo_id": "HP:0007351", "detectable": true},
+      {"text": "fraqueza muscular no membro inferior", "start": 85, "end": 121, "hpo_id": "HP:0007340", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-06",
+    "title": "Audição, pele e digestivo",
+    "domain": "Multissistêmico",
+    "text": "O texto sintético contém surdez unilateral, ictiose e constipação crônica.",
+    "expected_hpo_ids": ["HP:0009900", "HP:0008064", "HP:0012450"],
+    "mentions": [
+      {"text": "surdez unilateral", "start": 25, "end": 42, "hpo_id": "HP:0009900", "detectable": true},
+      {"text": "ictiose", "start": 44, "end": 51, "hpo_id": "HP:0008064", "detectable": true},
+      {"text": "constipação crônica", "start": 54, "end": 73, "hpo_id": "HP:0012450", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-07",
+    "title": "Variações de escrita",
+    "domain": "Ortografia",
+    "text": "Anotação sintética: proteinuria, estrabizmo e nistágmo.",
+    "expected_hpo_ids": ["HP:0000093", "HP:0000486", "HP:0000639"],
+    "mentions": [
+      {"text": "proteinuria", "start": 20, "end": 31, "hpo_id": "HP:0000093", "detectable": true},
+      {"text": "estrabizmo", "start": 33, "end": 43, "hpo_id": "HP:0000486", "detectable": true},
+      {"text": "nistágmo", "start": 46, "end": 54, "hpo_id": "HP:0000639", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-08",
+    "title": "Paráfrases cotidianas",
+    "domain": "Linguagem clínica",
+    "text": "A anotação artificial menciona pálpebra caída, olhos desalinhados e perda de audição de um lado.",
+    "expected_hpo_ids": ["HP:0000508", "HP:0000486", "HP:0009900"],
+    "mentions": [
+      {"text": "pálpebra caída", "start": 31, "end": 45, "hpo_id": "HP:0000508", "detectable": false},
+      {"text": "olhos desalinhados", "start": 47, "end": 65, "hpo_id": "HP:0000486", "detectable": false},
+      {"text": "perda de audição de um lado", "start": 68, "end": 95, "hpo_id": "HP:0009900", "detectable": false}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-09",
+    "title": "Rótulo e paráfrases misturados",
+    "domain": "Linguagem clínica",
+    "text": "Foram descritos glaucoma, fraqueza próxima ao tronco e tosse persistente.",
+    "expected_hpo_ids": ["HP:0000501", "HP:0003701", "HP:0034315"],
+    "mentions": [
+      {"text": "glaucoma", "start": 16, "end": 24, "hpo_id": "HP:0000501", "detectable": true},
+      {"text": "fraqueza próxima ao tronco", "start": 26, "end": 52, "hpo_id": "HP:0003701", "detectable": false},
+      {"text": "tosse persistente", "start": 55, "end": 72, "hpo_id": "HP:0034315", "detectable": false}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  },
+  {
+    "id": "caso-10",
+    "title": "Cardiorrespiratório e facial",
+    "domain": "Multissistêmico",
+    "text": "No cenário sintético constam cardiomiopatia não compactada, apneia do sono e hipotonia facial.",
+    "expected_hpo_ids": ["HP:0012817", "HP:0010535", "HP:0000297"],
+    "mentions": [
+      {"text": "cardiomiopatia não compactada", "start": 29, "end": 58, "hpo_id": "HP:0012817", "detectable": true},
+      {"text": "apneia do sono", "start": 60, "end": 74, "hpo_id": "HP:0010535", "detectable": true},
+      {"text": "hipotonia facial", "start": 77, "end": 93, "hpo_id": "HP:0000297", "detectable": true}
+    ],
+    "purpose": "Revisão de evidências em descrição totalmente sintética."
+  }
+]

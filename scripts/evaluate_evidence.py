@@ -18,7 +18,7 @@ def main() -> None:
     records = load_snapshot(ROOT / "data/processed/hpo_ptbr.csv")
     metadata = load_metadata(ROOT / "data/processed/metadata.json")
     cases = json.loads(
-        (ROOT / "data/demo/synthetic_descriptions.json").read_text(encoding="utf-8")
+        (ROOT / "data/demo/synthetic_review_cases.json").read_text(encoding="utf-8")
     )
     extractor = EvidenceExtractor(
         FuzzyMapper(records, str(metadata["data_version"]))

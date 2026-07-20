@@ -2,6 +2,8 @@
 
 Data da medição: 2026-07-17.
 
+Este documento preserva o benchmark histórico dos cinco casos originais. A interface atual usa o conjunto ampliado `data/demo/synthetic_review_cases.json`; os resultados funcionais correspondentes estão em `data/results/evidence_evaluation_report.md`.
+
 ## Objetivo
 
 Reduzir a latência da prova de conceito sem alterar o método científico: fuzzy WRatio, limiar `0.92`, desempate determinístico por HPO ID e candidatos provenientes do snapshot oficial.

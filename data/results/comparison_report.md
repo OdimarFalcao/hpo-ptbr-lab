@@ -42,8 +42,8 @@ Execução única. Estes resultados não devem ser reutilizados para ajuste.
 
 ## Sanity check da descrição sintética
 
-- Casos: 5; menções detectáveis: 8; falha conhecida: 1.
-- Recall de trecho exato: 100,00%; HPO Acc@1: 100,00%; IDs inválidos: 0,00%.
+- Casos: 10; menções detectáveis: 25; falha conhecida: 5.
+- Recall de trecho exato: 96,00%; HPO Acc@1: 96,00%; IDs inválidos: 0,00%.
 - Escopo: verificação funcional construída no desenvolvimento; não é benchmark, holdout ou evidência clínica.
 
 ## Separação obrigatória
