@@ -1,0 +1,41 @@
+experiment,dataset_role,method,stratum,n,accuracy_at_1,accuracy_at_5,mrr_at_20,latency_mean_ms,invalid_id_rate,tuning_allowed,claim_scope
+Experimento 0,desenvolvimento exploratório,bm25,ALL,30,0.6,0.6333,0.6184,2.927,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,exact,ALL,30,0.5667,0.5667,0.5667,0.213,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,fuzzy,ALL,30,0.6667,0.6667,0.669,46.982,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,bm25,clinical_paraphrase,10,0.0,0.1,0.0553,4.827,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,exact,clinical_paraphrase,10,0.0,0.0,0.0,0.189,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,fuzzy,clinical_paraphrase,10,0.0,0.0,0.0071,50.425,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,bm25,official_label,10,1.0,1.0,1.0,1.93,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,exact,official_label,10,1.0,1.0,1.0,0.255,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,fuzzy,official_label,10,1.0,1.0,1.0,44.63,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,bm25,orthographic_variation,10,0.8,0.8,0.8,2.023,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,exact,orthographic_variation,10,0.7,0.7,0.7,0.194,0.0,True,baseline exploratório
+Experimento 0,desenvolvimento exploratório,fuzzy,orthographic_variation,10,1.0,1.0,1.0,45.89,0.0,True,baseline exploratório
+Experimento 1,desenvolvimento exploratório,hybrid,ALL,30,0.6667,0.7333,0.6922,67.018,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,semantic,ALL,30,0.4,0.6,0.4772,54.035,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,hybrid,clinical_paraphrase,10,0.0,0.2,0.0767,159.51,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,semantic,clinical_paraphrase,10,0.1,0.2,0.1283,60.753,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,hybrid,official_label,10,1.0,1.0,1.0,0.474,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,semantic,official_label,10,1.0,1.0,1.0,43.038,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,hybrid,orthographic_variation,10,1.0,1.0,1.0,41.068,0.0,True,comparação exploratória
+Experimento 1,desenvolvimento exploratório,semantic,orthographic_variation,10,0.1,0.6,0.3033,58.312,0.0,True,comparação exploratória
+Experimento 1,holdout congelado,bm25,ALL,30,0.5667,0.6333,0.5986,9.375,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,exact,ALL,30,0.4667,0.4667,0.4667,0.833,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,fuzzy,ALL,30,0.6667,0.6667,0.6667,150.948,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,hybrid,ALL,30,0.6,0.7333,0.6511,123.932,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,semantic,ALL,30,0.4667,0.5667,0.5127,79.244,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,bm25,clinical_paraphrase,10,0.1,0.1,0.1125,14.114,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,exact,clinical_paraphrase,10,0.0,0.0,0.0,0.804,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,fuzzy,clinical_paraphrase,10,0.0,0.0,0.0,146.56,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,hybrid,clinical_paraphrase,10,0.0,0.2,0.0533,229.597,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,semantic,clinical_paraphrase,10,0.1,0.1,0.1125,108.419,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,bm25,official_label,10,1.0,1.0,1.0,6.906,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,exact,official_label,10,1.0,1.0,1.0,0.907,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,fuzzy,official_label,10,1.0,1.0,1.0,177.621,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,hybrid,official_label,10,1.0,1.0,1.0,0.828,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,semantic,official_label,10,1.0,1.0,1.0,62.673,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,bm25,orthographic_variation,10,0.6,0.8,0.6833,7.105,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,exact,orthographic_variation,10,0.4,0.4,0.4,0.788,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,fuzzy,orthographic_variation,10,1.0,1.0,1.0,128.661,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,hybrid,orthographic_variation,10,0.8,1.0,0.9,141.37,0.0,False,avaliação única da sprint
+Experimento 1,holdout congelado,semantic,orthographic_variation,10,0.3,0.6,0.4256,66.64,0.0,False,avaliação única da sprint

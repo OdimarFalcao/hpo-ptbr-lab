@@ -23,6 +23,8 @@ python -m venv .venv
 python -m pip install -r requirements-dev.txt
 ```
 
+`requirements.txt` contém apenas o necessário para o dashboard. `requirements-semantic.txt` isola o modelo offline e é incluído por `requirements-dev.txt`.
+
 ## Reproduzir os dados
 
 Baixe os dois arquivos oficiais para `data/raw/`:
@@ -77,6 +79,12 @@ No holdout congelado, o híbrido obteve Accuracy@1 geral de 60,00%, Accuracy@5 g
 
 A análise completa está em `data/results/experiment1_report.md`.
 
+A consolidação automática que separa Experimento 0, desenvolvimento do Experimento 1, holdout congelado e sanity check sintético fica em `data/results/comparison_report.md`. Para regenerar:
+
+```powershell
+python scripts/build_comparison_report.py
+```
+
 ## Prova de conceito com evidência textual
 
 A página `Descrição sintética` recebe um texto inventado, identifica janelas lexicais compatíveis com rótulos portugueses e apresenta candidatos HPO válidos com offsets e alternativas. O resultado pode ser exportado em JSON estruturado. Os cinco exemplos versionados ficam em `data/demo/synthetic_descriptions.json`.
@@ -99,6 +107,12 @@ python scripts/evaluate_evidence.py
 
 ```powershell
 streamlit run streamlit_app.py
+```
+
+Antes de publicar o dashboard:
+
+```powershell
+python scripts/check_dashboard_readiness.py
 ```
 
 ## Testar
