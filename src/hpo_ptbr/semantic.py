@@ -74,7 +74,11 @@ class SemanticMapper(BaseMapper):
         return self._ordered(scored)
 
 
-def load_default_encoder() -> TextEncoder:
+def load_default_encoder(*, local_files_only: bool = True) -> TextEncoder:
     from sentence_transformers import SentenceTransformer
 
-    return SentenceTransformer(DEFAULT_MODEL_NAME, revision=DEFAULT_MODEL_REVISION)
+    return SentenceTransformer(
+        DEFAULT_MODEL_NAME,
+        revision=DEFAULT_MODEL_REVISION,
+        local_files_only=local_files_only,
+    )

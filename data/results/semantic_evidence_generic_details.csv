@@ -1,0 +1,31 @@
+case_id,mention_text,start,end,target_hpo_id,detectable,span_detected,target_rank,top_hpo_ids,detector_score,latency_ms
+caso-01,fraqueza muscular proximal,41,67,HP:0003701,True,True,1,"[""HP:0003701"", ""HP:0003427"", ""HP:0009073"", ""HP:0009063"", ""HP:0003323""]",0.991985,325.143
+caso-01,ptose,69,74,HP:0000508,True,True,1,"[""HP:0000508"", ""HP:0033091"", ""HP:0000024"", ""HP:0010307"", ""HP:0030249""]",0.897282,325.143
+caso-01,nistagmo,77,85,HP:0000639,True,True,1,"[""HP:0000639"", ""HP:0000360"", ""HP:0010606"", ""HP:0025024"", ""HP:0000017""]",0.980233,325.143
+caso-02,proteinúria,30,41,HP:0000093,True,True,1,"[""HP:0000093"", ""HP:0012597"", ""HP:0012596"", ""HP:0012595"", ""HP:0003126""]",0.996942,393.716
+caso-02,hematúria microscópica,43,65,HP:0002907,True,True,1,"[""HP:0002907"", ""HP:0012587"", ""HP:0007420"", ""HP:0007872"", ""HP:0007461""]",0.894526,393.716
+caso-02,dispneia aos esforços,68,89,HP:0002875,True,True,1,"[""HP:0002875"", ""HP:0007665"", ""HP:0003679"", ""HP:0000491"", ""HP:0033991""]",0.955713,393.716
+caso-03,cifose,30,36,HP:0002808,True,True,1,"[""HP:0002808"", ""HP:0003131"", ""HP:0032397"", ""HP:0004619"", ""HP:0003153""]",0.978206,306.172
+caso-03,sindactilia cutânea,38,57,HP:0012725,True,False,,[],,306.172
+caso-03,polidactilia,60,72,HP:0010442,True,True,1,"[""HP:0010442"", ""HP:0010689"", ""HP:0031003"", ""HP:0012725"", ""HP:0002919""]",0.962976,306.172
+caso-04,arritmia ventricular,28,48,HP:0004308,True,True,1,"[""HP:0004308"", ""HP:0034040"", ""HP:0006683"", ""HP:0030843"", ""HP:0030872""]",0.957801,269.681
+caso-04,miopia,50,56,HP:0000545,True,True,1,"[""HP:0000545"", ""HP:0003198"", ""HP:0030708"", ""HP:0030762"", ""HP:0003756""]",0.936978,269.681
+caso-04,estrabismo,59,69,HP:0000486,True,False,,[],,269.681
+caso-05,ataxia progressiva da marcha,18,46,HP:0007240,True,True,1,"[""HP:0007240"", ""HP:0007153"", ""HP:0010521"", ""HP:0003781"", ""HP:0006248""]",0.972051,501.154
+caso-05,tremor postural do membro superior,48,82,HP:0007351,True,True,1,"[""HP:0007351"", ""HP:0033054"", ""HP:0010530"", ""HP:0007350"", ""HP:0006938""]",0.987385,501.154
+caso-05,fraqueza muscular no membro inferior,85,121,HP:0007340,True,True,1,"[""HP:0007340"", ""HP:0009053"", ""HP:0003484"", ""HP:0003690"", ""HP:0003701""]",0.996668,501.154
+caso-06,surdez unilateral,25,42,HP:0009900,True,True,1,"[""HP:0009900"", ""HP:0007687"", ""HP:0012833"", ""HP:0009590"", ""HP:0006230""]",0.953664,300.09
+caso-06,ictiose,44,51,HP:0008064,True,True,1,"[""HP:0008064"", ""HP:0004401"", ""HP:0003153"", ""HP:0030249"", ""HP:0007503""]",0.990027,300.09
+caso-06,constipação crônica,54,73,HP:0012450,True,True,1,"[""HP:0012450"", ""HP:0012451"", ""HP:0012468"", ""HP:0004385"", ""HP:0007041""]",0.895863,300.09
+caso-07,proteinuria,20,31,HP:0000093,True,True,1,"[""HP:0000093"", ""HP:0012595"", ""HP:0012597"", ""HP:0012596"", ""HP:0012593""]",0.881194,189.238
+caso-07,estrabizmo,33,43,HP:0000486,True,False,,[],,189.238
+caso-07,nistágmo,46,54,HP:0000639,True,True,,"[""HP:0032564"", ""HP:0000360"", ""HP:0012835"", ""HP:0025024"", ""HP:0020083""]",0.933882,189.238
+caso-08,pálpebra caída,31,45,HP:0000508,True,False,,[],,422.063
+caso-08,olhos desalinhados,47,65,HP:0000486,True,False,,[],,422.063
+caso-08,perda de audição de um lado,68,95,HP:0009900,True,False,,[],,422.063
+caso-09,glaucoma,16,24,HP:0000501,True,True,1,"[""HP:0000501"", ""HP:0008007"", ""HP:0008041"", ""HP:0007854"", ""HP:0009734""]",0.958059,353.688
+caso-09,fraqueza próxima ao tronco,26,52,HP:0003701,True,False,,[],,353.688
+caso-09,tosse persistente,55,72,HP:0034315,True,False,,[],,353.688
+caso-10,cardiomiopatia não compactada,29,58,HP:0012817,True,True,1,"[""HP:0012817"", ""HP:0012816"", ""HP:0030843"", ""HP:0012818"", ""HP:0009805""]",0.982995,362.99
+caso-10,apneia do sono,60,74,HP:0010535,True,False,,[],,362.99
+caso-10,hipotonia facial,77,93,HP:0000297,True,False,,[],,362.99

@@ -103,6 +103,18 @@ Os dez cenários possuem 30 menções com offsets e alvos HPO explícitos para u
 python scripts/evaluate_evidence.py
 ```
 
+### Experimento 2: detecção semântica de trechos
+
+O próximo experimento troca a detecção exclusivamente lexical por janelas codificadas em lote e recuperação por similaridade semântica. O executor suporta o encoder genérico anterior e o `cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR`, especializado em *biomedical entity linking*. Modelo, revisão, limiar e uso exclusivo do desenvolvimento são registrados nos metadados; o holdout congelado não é lido.
+
+```powershell
+python scripts/run_semantic_evidence_experiment.py --encoder sapbert --threshold 0.8
+```
+
+O modelo é carregado apenas do cache local. O método permanece offline e fora do dashboard até demonstrar ganho mensurável em paráfrases sem aumento inaceitável de falsos positivos.
+
+O baseline de detecção com o encoder genérico obteve recall exato de 66,67% (20/30), precisão de 43,48% (20/46), HPO Accuracy@1 de 63,33% e não recuperou nenhuma das cinco paráfrases críticas. O resultado negativo e o protocolo do SapBERT estão em `data/results/semantic_evidence_experiment_report.md`.
+
 ## Executar
 
 ```powershell

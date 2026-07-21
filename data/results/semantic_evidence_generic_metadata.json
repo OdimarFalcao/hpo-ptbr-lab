@@ -1,0 +1,13 @@
+{
+  "experiment": "semantic-evidence-development-1",
+  "generated_at": "2026-07-21T18:21:50.401038+00:00",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "encoder": "generic",
+  "detection_threshold": 0.8,
+  "max_span_tokens": 6,
+  "development_cases": 10,
+  "target_mentions": 30,
+  "holdout_used": false
+}

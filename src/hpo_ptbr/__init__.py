@@ -2,6 +2,7 @@
 
 from .data import HpoRecord, load_metadata, load_snapshot
 from .evidence import EvidenceExtractor, EvidenceSpan, TextMappingResult
+from .semantic_evidence import SemanticEvidenceExtractor
 from .evaluation import evaluate_cases
 from .hybrid import HybridMapper
 from .rankers import Bm25Mapper, ExactMapper, FuzzyMapper
@@ -12,6 +13,7 @@ __all__ = [
     "ExactMapper",
     "EvidenceExtractor",
     "EvidenceSpan",
+    "SemanticEvidenceExtractor",
     "FuzzyMapper",
     "HpoRecord",
     "HybridMapper",
