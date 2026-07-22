@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 from hpo_ptbr.data import HpoRecord
-from hpo_ptbr.semantic import SemanticMapper
+from hpo_ptbr.semantic import BilingualSemanticMapper, SemanticMapper
 from hpo_ptbr.semantic_evidence import SemanticEvidenceExtractor
 
 
@@ -102,3 +102,29 @@ def test_semantic_evidence_breaks_candidate_ties_by_hpo_id() -> None:
         "HP:0000001",
         "HP:0000002",
     ]
+
+
+class BilingualFakeEncoder(FakeEncoder):
+    vectors = FakeEncoder.vectors | {
+        "Ptosis": [0.0, 1.0, 0.0],
+        "pálpebra caída": [0.0, 1.0, 0.0],
+        "Tosse crônica": [0.0, 0.0, 1.0],
+        "Chronic cough": [0.0, 0.0, 1.0],
+    }
+
+
+def test_bilingual_mapper_uses_best_portuguese_or_english_label() -> None:
+    records = [
+        HpoRecord("HP:0000508", "Ptosis", "Ptose"),
+        HpoRecord("HP:0034315", "Chronic cough", "Tosse crônica"),
+    ]
+    mapper = BilingualSemanticMapper(
+        records,
+        "test-version",
+        BilingualFakeEncoder(),
+    )
+
+    result = mapper.map("pálpebra caída", top_k=1)
+
+    assert result.method == "semantic_bilingual"
+    assert result.candidates[0].hpo_id == "HP:0000508"

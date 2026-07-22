@@ -22,6 +22,7 @@ from hpo_ptbr.sapbert import (
     SapBertEncoder,
 )
 from hpo_ptbr.semantic import (
+    BilingualSemanticMapper,
     DEFAULT_MODEL_NAME,
     DEFAULT_MODEL_REVISION,
     SemanticMapper,
@@ -102,7 +103,12 @@ def main() -> None:
     )
     parser.add_argument(
         "--encoder",
-        choices=("generic", "sapbert", "hybrid-sapbert"),
+        choices=(
+            "generic",
+            "sapbert",
+            "hybrid-sapbert",
+            "bilingual-sapbert",
+        ),
         default="sapbert",
     )
     parser.add_argument("--threshold", type=float, default=0.8)
@@ -113,7 +119,7 @@ def main() -> None:
     cases = json.loads(
         (ROOT / "data/demo/synthetic_review_cases.json").read_text(encoding="utf-8")
     )
-    if args.encoder in {"sapbert", "hybrid-sapbert"}:
+    if args.encoder in {"sapbert", "hybrid-sapbert", "bilingual-sapbert"}:
         encoder = SapBertEncoder(local_files_only=True)
         model_name = DEFAULT_SAPBERT_MODEL_NAME
         model_revision = DEFAULT_SAPBERT_MODEL_REVISION
@@ -122,7 +128,12 @@ def main() -> None:
         model_name = DEFAULT_MODEL_NAME
         model_revision = DEFAULT_MODEL_REVISION
 
-    mapper = SemanticMapper(records, str(metadata["data_version"]), encoder)
+    mapper_class = (
+        BilingualSemanticMapper
+        if args.encoder == "bilingual-sapbert"
+        else SemanticMapper
+    )
+    mapper = mapper_class(records, str(metadata["data_version"]), encoder)
     semantic_extractor = SemanticEvidenceExtractor(
         mapper,
         detection_threshold=args.threshold,
@@ -160,13 +171,22 @@ def main() -> None:
         "model_revision": model_revision,
         "model_sha256": (
             DEFAULT_SAPBERT_MODEL_SHA256
-            if args.encoder in {"sapbert", "hybrid-sapbert"}
+            if args.encoder in {
+                "sapbert",
+                "hybrid-sapbert",
+                "bilingual-sapbert",
+            }
             else None
         ),
         "encoder": args.encoder,
         "detection_threshold": args.threshold,
         "max_span_tokens": semantic_extractor.max_span_tokens,
         "detector": extractor.detector_name,
+        "corpus_fields": (
+            ["label_pt", "label_en"]
+            if args.encoder == "bilingual-sapbert"
+            else ["label_pt"]
+        ),
         "development_cases": len(cases),
         "target_mentions": sum(len(case["mentions"]) for case in cases),
         "holdout_used": False,

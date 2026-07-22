@@ -55,6 +55,23 @@ O híbrido preservou a variação “nistágmo” recuperada pelo lexical e acre
 
 O resultado supera cada detector isolado no desenvolvimento, mas resolve apenas uma das cinco paráfrases críticas e adiciona dependência de 1,11 GB com latência média superior a dois segundos. A decisão permanece: não integrar ao dashboard. O próximo experimento deve avaliar um índice SapBERT bilíngue com rótulos HPO em português e inglês, mantendo o mesmo conjunto de desenvolvimento e sem reutilizar o holdout.
 
+## Índice SapBERT bilíngue PT+EN
+
+Para cada HPO ID, foram codificados separadamente `label_pt` e `label_en`; o score do conceito foi o maior entre os dois rótulos. O modelo, revisão, limiar e casos permaneceram idênticos.
+
+| Métrica | Resultado |
+|---|---:|
+| Recall de trecho exato | 83,33% (25/30) |
+| Precisão dos trechos previstos | 96,15% (25/26) |
+| HPO Accuracy@1 | 83,33% (25/30) |
+| HPO Accuracy@5 | 83,33% (25/30) |
+| Taxa de HPO ID inválido | 0,00% |
+| Latência média | 1.371,089 ms |
+
+O índice bilíngue reproduziu os mesmos acertos e erros do índice somente em português: recuperou “perda de audição de um lado”, mas não recuperou as outras quatro paráfrases críticas e também perdeu “nistágmo”. O único excedente continuou sendo “tosse” → `HP:0012735`. Adicionar apenas o rótulo inglês não trouxe ganho; essa variante permanece fora do dashboard.
+
+O próximo teste de recuperação deve utilizar sinônimos oficiais do snapshot HPO como aliases adicionais. Isso amplia a superfície lexical com uma fonte pública e versionada, sem inventar equivalências portuguesas e sem tocar no holdout.
+
 - Artigo do SapBERT: <https://arxiv.org/abs/2010.11784>.
 - Extensão multilíngue: <https://arxiv.org/abs/2105.14398>.
 - Modelo fixado: <https://huggingface.co/cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR>.
@@ -69,3 +86,5 @@ python scripts/run_semantic_evidence_experiment.py --encoder sapbert --threshold
 Os detalhes por alvo, todas as previsões e os metadados ficam em `data/results/semantic_evidence_sapbert_details.csv`, `data/results/semantic_evidence_sapbert_predictions.csv` e `data/results/semantic_evidence_sapbert_metadata.json`.
 
 Os artefatos do híbrido ficam em `data/results/semantic_evidence_hybrid_sapbert_details.csv`, `data/results/semantic_evidence_hybrid_sapbert_predictions.csv`, `data/results/semantic_evidence_hybrid_sapbert_summary.json` e `data/results/semantic_evidence_hybrid_sapbert_metadata.json`.
+
+Os artefatos do índice bilíngue ficam em `data/results/semantic_evidence_bilingual_sapbert_details.csv`, `data/results/semantic_evidence_bilingual_sapbert_predictions.csv`, `data/results/semantic_evidence_bilingual_sapbert_summary.json` e `data/results/semantic_evidence_bilingual_sapbert_metadata.json`.

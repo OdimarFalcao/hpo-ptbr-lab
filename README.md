@@ -115,6 +115,8 @@ O modelo é carregado apenas do cache local. O método permanece offline e fora 
 
 O baseline de detecção com o encoder genérico obteve recall exato de 66,67% (20/30), precisão de 43,48% (20/46), HPO Accuracy@1 de 63,33% e não recuperou nenhuma das cinco paráfrases críticas. O SapBERT elevou essas métricas para 83,33%, 96,15% e 83,33%, respectivamente. A fusão lexical + SapBERT chegou a 86,67% de recall, 92,86% de precisão e 86,67% de HPO Accuracy@1, mas ainda recuperou somente uma das cinco paráfrases críticas. Ambos permanecem fora do dashboard. Resultados e análise de erros em `data/results/semantic_evidence_experiment_report.md`.
 
+Um índice SapBERT bilíngue com `label_pt` e `label_en` reproduziu exatamente as métricas e os erros do índice somente em português. A hipótese não trouxe ganho e também permanece offline.
+
 ## Executar
 
 ```powershell

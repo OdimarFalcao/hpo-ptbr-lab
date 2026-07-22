@@ -1,0 +1,14 @@
+{
+  "n_cases": 10,
+  "n_gold_mentions": 30,
+  "n_detectable_mentions": 30,
+  "n_known_miss_mentions": 0,
+  "exact_span_recall": 0.8333,
+  "predicted_span_precision": 0.9615,
+  "hpo_accuracy_at_1": 0.8333,
+  "hpo_accuracy_at_5": 0.8333,
+  "known_miss_reproduction_rate": 0.0,
+  "invalid_id_rate": 0.0,
+  "latency_mean_ms": 1371.089,
+  "latency_median_ms": 1297.392
+}

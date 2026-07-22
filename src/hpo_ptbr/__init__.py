@@ -7,10 +7,11 @@ from .evaluation import evaluate_cases
 from .hybrid import HybridMapper
 from .hybrid_evidence import HybridEvidenceExtractor
 from .rankers import Bm25Mapper, ExactMapper, FuzzyMapper
-from .semantic import SemanticMapper
+from .semantic import BilingualSemanticMapper, SemanticMapper
 
 __all__ = [
     "Bm25Mapper",
+    "BilingualSemanticMapper",
     "ExactMapper",
     "EvidenceExtractor",
     "EvidenceSpan",

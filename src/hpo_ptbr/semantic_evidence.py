@@ -79,7 +79,7 @@ class SemanticEvidenceExtractor:
         expected_shape = (len(windows), self.mapper.corpus_embeddings.shape[1])
         if embeddings.shape != expected_shape:
             raise ValueError("O encoder retornou embeddings inválidos para os trechos.")
-        scores = embeddings @ self.mapper.corpus_embeddings.T
+        scores = self.mapper.score_embeddings(embeddings)
         detected = self._score_windows(windows, scores)
         selected = self._remove_overlaps(detected)[:max_spans]
         spans = tuple(

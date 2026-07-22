@@ -66,12 +66,39 @@ class SemanticMapper(BaseMapper):
         )
         if query_embeddings.shape != (1, self.corpus_embeddings.shape[1]):
             raise ValueError("O encoder retornou um embedding inválido para a consulta.")
-        scores = self.corpus_embeddings @ query_embeddings[0]
+        scores = self.score_embeddings(query_embeddings)[0]
         scored = [
             (record, float(score))
             for record, score in zip(self.records, scores, strict=True)
         ]
         return self._ordered(scored)
+
+    def score_embeddings(self, query_embeddings: np.ndarray) -> np.ndarray:
+        return query_embeddings @ self.corpus_embeddings.T
+
+
+class BilingualSemanticMapper(SemanticMapper):
+    method = "semantic_bilingual"
+
+    def __init__(
+        self,
+        records: list[HpoRecord],
+        data_version: str,
+        encoder: TextEncoder,
+    ) -> None:
+        BaseMapper.__init__(self, records, data_version)
+        self.encoder = encoder
+        self.corpus_embeddings = self._encode_documents(
+            [record.label_pt for record in records]
+        )
+        self.english_embeddings = self._encode_documents(
+            [record.label_en for record in records]
+        )
+
+    def score_embeddings(self, query_embeddings: np.ndarray) -> np.ndarray:
+        portuguese_scores = query_embeddings @ self.corpus_embeddings.T
+        english_scores = query_embeddings @ self.english_embeddings.T
+        return np.maximum(portuguese_scores, english_scores)
 
 
 def load_default_encoder(*, local_files_only: bool = True) -> TextEncoder:
