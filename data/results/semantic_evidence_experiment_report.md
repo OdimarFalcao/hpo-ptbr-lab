@@ -38,6 +38,23 @@ O SapBERT recuperou corretamente “perda de audição de um lado” como `HP:00
 
 Em relação ao encoder genérico, houve ganho de 16,66 pontos percentuais no recall exato, 52,67 pontos na precisão e 20 pontos em HPO Accuracy@1. Entretanto, apenas uma das cinco paráfrases críticas foi resolvida, com aumento da latência média e peso local de 1,11 GB. A decisão é manter o SapBERT fora do dashboard e avaliar uma combinação lexical-semântica no desenvolvimento antes de qualquer integração.
 
+## Híbrido lexical + SapBERT
+
+A fusão usa união determinística por offsets: duplicatas preservam a previsão lexical e conflitos sobrepostos preservam o trecho mais longo. Scores lexicais e semânticos não são somados porque não são calibrados na mesma escala.
+
+| Métrica | Resultado |
+|---|---:|
+| Recall de trecho exato | 86,67% (26/30) |
+| Precisão dos trechos previstos | 92,86% (26/28) |
+| HPO Accuracy@1 | 86,67% (26/30) |
+| HPO Accuracy@5 | 86,67% (26/30) |
+| Taxa de HPO ID inválido | 0,00% |
+| Latência média | 2.042,533 ms |
+
+O híbrido preservou a variação “nistágmo” recuperada pelo lexical e acrescentou duas contribuições semânticas corretas: “estrabizmo” → `HP:0000486` e “perda de audição de um lado” → `HP:0009900`. Permaneceram sem correspondência “pálpebra caída”, “olhos desalinhados”, “fraqueza próxima ao tronco” e “tosse persistente”. Os dois excedentes foram “próxima” → `HP:0012840` e “tosse” → `HP:0012735`, ambos subtrechos de paráfrases maiores.
+
+O resultado supera cada detector isolado no desenvolvimento, mas resolve apenas uma das cinco paráfrases críticas e adiciona dependência de 1,11 GB com latência média superior a dois segundos. A decisão permanece: não integrar ao dashboard. O próximo experimento deve avaliar um índice SapBERT bilíngue com rótulos HPO em português e inglês, mantendo o mesmo conjunto de desenvolvimento e sem reutilizar o holdout.
+
 - Artigo do SapBERT: <https://arxiv.org/abs/2010.11784>.
 - Extensão multilíngue: <https://arxiv.org/abs/2105.14398>.
 - Modelo fixado: <https://huggingface.co/cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR>.
@@ -50,3 +67,5 @@ python scripts/run_semantic_evidence_experiment.py --encoder sapbert --threshold
 ```
 
 Os detalhes por alvo, todas as previsões e os metadados ficam em `data/results/semantic_evidence_sapbert_details.csv`, `data/results/semantic_evidence_sapbert_predictions.csv` e `data/results/semantic_evidence_sapbert_metadata.json`.
+
+Os artefatos do híbrido ficam em `data/results/semantic_evidence_hybrid_sapbert_details.csv`, `data/results/semantic_evidence_hybrid_sapbert_predictions.csv`, `data/results/semantic_evidence_hybrid_sapbert_summary.json` e `data/results/semantic_evidence_hybrid_sapbert_metadata.json`.

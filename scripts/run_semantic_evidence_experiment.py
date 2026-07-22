@@ -12,6 +12,9 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from hpo_ptbr.data import load_metadata, load_snapshot
 from hpo_ptbr.evidence_evaluation import evaluate_evidence_cases
+from hpo_ptbr.evidence import EvidenceExtractor
+from hpo_ptbr.hybrid_evidence import HybridEvidenceExtractor
+from hpo_ptbr.rankers import FuzzyMapper
 from hpo_ptbr.sapbert import (
     DEFAULT_SAPBERT_MODEL_NAME,
     DEFAULT_SAPBERT_MODEL_REVISION,
@@ -99,7 +102,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--encoder",
-        choices=("generic", "sapbert"),
+        choices=("generic", "sapbert", "hybrid-sapbert"),
         default="sapbert",
     )
     parser.add_argument("--threshold", type=float, default=0.8)
@@ -110,7 +113,7 @@ def main() -> None:
     cases = json.loads(
         (ROOT / "data/demo/synthetic_review_cases.json").read_text(encoding="utf-8")
     )
-    if args.encoder == "sapbert":
+    if args.encoder in {"sapbert", "hybrid-sapbert"}:
         encoder = SapBertEncoder(local_files_only=True)
         model_name = DEFAULT_SAPBERT_MODEL_NAME
         model_revision = DEFAULT_SAPBERT_MODEL_REVISION
@@ -120,17 +123,26 @@ def main() -> None:
         model_revision = DEFAULT_MODEL_REVISION
 
     mapper = SemanticMapper(records, str(metadata["data_version"]), encoder)
-    extractor = SemanticEvidenceExtractor(
+    semantic_extractor = SemanticEvidenceExtractor(
         mapper,
         detection_threshold=args.threshold,
     )
+    if args.encoder == "hybrid-sapbert":
+        extractor = HybridEvidenceExtractor(
+            EvidenceExtractor(
+                FuzzyMapper(records, str(metadata["data_version"]))
+            ),
+            semantic_extractor,
+        )
+    else:
+        extractor = semantic_extractor
     details, summary = evaluate_evidence_cases(
         extractor,
         all_mentions_are_targets(cases),
     )
 
     results_dir = ROOT / "data/results"
-    prefix = f"semantic_evidence_{args.encoder}"
+    prefix = f"semantic_evidence_{args.encoder.replace('-', '_')}"
     write_details_csv(results_dir / f"{prefix}_details.csv", details)
     write_rows(
         results_dir / f"{prefix}_predictions.csv",
@@ -147,11 +159,14 @@ def main() -> None:
         "model_name": model_name,
         "model_revision": model_revision,
         "model_sha256": (
-            DEFAULT_SAPBERT_MODEL_SHA256 if args.encoder == "sapbert" else None
+            DEFAULT_SAPBERT_MODEL_SHA256
+            if args.encoder in {"sapbert", "hybrid-sapbert"}
+            else None
         ),
         "encoder": args.encoder,
         "detection_threshold": args.threshold,
-        "max_span_tokens": extractor.max_span_tokens,
+        "max_span_tokens": semantic_extractor.max_span_tokens,
+        "detector": extractor.detector_name,
         "development_cases": len(cases),
         "target_mentions": sum(len(case["mentions"]) for case in cases),
         "holdout_used": False,

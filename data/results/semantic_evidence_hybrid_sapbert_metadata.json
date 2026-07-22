@@ -1,0 +1,15 @@
+{
+  "experiment": "semantic-evidence-development-1",
+  "generated_at": "2026-07-22T12:18:23.661480+00:00",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "model_name": "cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR",
+  "model_revision": "5731ee8d59538ce6557641b97ed5c83f4237dd06",
+  "model_sha256": "a5102c2c09ac7fd04b685251bd467cf29f9d883c1fd97d5c09268b9e216ea243",
+  "encoder": "hybrid-sapbert",
+  "detection_threshold": 0.8,
+  "max_span_tokens": 6,
+  "detector": "lexical_semantic_union",
+  "development_cases": 10,
+  "target_mentions": 30,
+  "holdout_used": false
+}

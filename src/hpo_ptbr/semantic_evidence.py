@@ -89,6 +89,7 @@ class SemanticEvidenceExtractor:
                 end=window.end,
                 detector_score=round(window.score, 6),
                 candidates=self._candidates(scores[window.row_index], top_k),
+                source="semantic",
             )
             for window in sorted(selected, key=lambda item: (item.start, item.end))
         )

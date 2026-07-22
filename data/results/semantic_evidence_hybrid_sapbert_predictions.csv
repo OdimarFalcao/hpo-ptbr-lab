@@ -1,0 +1,29 @@
+case_id,span_text,start,end,detector_score,top_hpo_id,top_label_pt,matches_gold_offsets,target_hpo_id,top_candidate_is_target
+caso-01,fraqueza muscular proximal,41,67,1.0,HP:0003701,Fraqueza muscular proximal,True,HP:0003701,True
+caso-01,ptose,69,74,1.0,HP:0000508,Ptose,True,HP:0000508,True
+caso-01,nistagmo,77,85,1.0,HP:0000639,Nistagmo,True,HP:0000639,True
+caso-02,proteinúria,30,41,1.0,HP:0000093,Proteinúria,True,HP:0000093,True
+caso-02,hematúria microscópica,43,65,1.0,HP:0002907,Hematúria microscópica,True,HP:0002907,True
+caso-02,dispneia aos esforços,68,89,1.0,HP:0002875,Dispneia aos esforços,True,HP:0002875,True
+caso-03,cifose,30,36,1.0,HP:0002808,Cifose,True,HP:0002808,True
+caso-03,sindactilia cutânea,38,57,1.0,HP:0012725,Sindactilia cutânea,True,HP:0012725,True
+caso-03,polidactilia,60,72,1.0,HP:0010442,Polidactilia,True,HP:0010442,True
+caso-04,arritmia ventricular,28,48,1.0,HP:0004308,Arritmia ventricular,True,HP:0004308,True
+caso-04,miopia,50,56,1.0,HP:0000545,Miopia,True,HP:0000545,True
+caso-04,estrabismo,59,69,1.0,HP:0000486,Estrabismo,True,HP:0000486,True
+caso-05,ataxia progressiva da marcha,18,46,1.0,HP:0007240,Ataxia progressiva da marcha,True,HP:0007240,True
+caso-05,tremor postural do membro superior,48,82,1.0,HP:0007351,Tremor postural do membro superior,True,HP:0007351,True
+caso-05,fraqueza muscular no membro inferior,85,121,1.0,HP:0007340,Fraqueza muscular no membro inferior,True,HP:0007340,True
+caso-06,surdez unilateral,25,42,1.0,HP:0009900,Surdez unilateral,True,HP:0009900,True
+caso-06,ictiose,44,51,1.0,HP:0008064,Ictiose,True,HP:0008064,True
+caso-06,constipação crônica,54,73,1.0,HP:0012450,Constipação crônica,True,HP:0012450,True
+caso-07,proteinuria,20,31,1.0,HP:0000093,Proteinúria,True,HP:0000093,True
+caso-07,estrabizmo,33,43,0.811738,HP:0000486,Estrabismo,True,HP:0000486,True
+caso-07,nistágmo,46,54,1.0,HP:0000639,Nistagmo,True,HP:0000639,True
+caso-08,perda de audição de um lado,68,95,0.842577,HP:0009900,Surdez unilateral,True,HP:0009900,True
+caso-09,glaucoma,16,24,1.0,HP:0000501,Glaucoma,True,HP:0000501,True
+caso-09,próxima,35,42,0.933333,HP:0012840,Proximal,False,,False
+caso-09,tosse,55,60,1.0,HP:0012735,Tosse,False,,False
+caso-10,cardiomiopatia não compactada,29,58,1.0,HP:0012817,Cardiomiopatia não compactada,True,HP:0012817,True
+caso-10,apneia do sono,60,74,1.0,HP:0010535,Apneia do sono,True,HP:0010535,True
+caso-10,hipotonia facial,77,93,1.0,HP:0000297,Hipotonia facial,True,HP:0000297,True

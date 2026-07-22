@@ -20,6 +20,7 @@ class EvidenceSpan:
     end: int
     detector_score: float
     candidates: tuple[Candidate, ...]
+    source: str = "lexical"
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -27,6 +28,7 @@ class EvidenceSpan:
             "start": self.start,
             "end": self.end,
             "detector_score": self.detector_score,
+            "source": self.source,
             "candidates": [candidate.to_dict() for candidate in self.candidates],
         }
 
@@ -118,6 +120,7 @@ class EvidenceExtractor:
                 end=span.end,
                 detector_score=round(span.score, 6),
                 candidates=self.mapper.map(span.text, top_k=top_k).candidates,
+                source="lexical",
             )
             for span in sorted(selected, key=lambda item: (item.start, item.end))
         )
