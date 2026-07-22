@@ -113,7 +113,7 @@ python scripts/run_semantic_evidence_experiment.py --encoder sapbert --threshold
 
 O modelo é carregado apenas do cache local. O método permanece offline e fora do dashboard até demonstrar ganho mensurável em paráfrases sem aumento inaceitável de falsos positivos.
 
-O baseline de detecção com o encoder genérico obteve recall exato de 66,67% (20/30), precisão de 43,48% (20/46), HPO Accuracy@1 de 63,33% e não recuperou nenhuma das cinco paráfrases críticas. O resultado negativo e o protocolo do SapBERT estão em `data/results/semantic_evidence_experiment_report.md`.
+O baseline de detecção com o encoder genérico obteve recall exato de 66,67% (20/30), precisão de 43,48% (20/46), HPO Accuracy@1 de 63,33% e não recuperou nenhuma das cinco paráfrases críticas. O SapBERT elevou essas métricas para 83,33%, 96,15% e 83,33%, respectivamente, mas recuperou somente uma das cinco paráfrases críticas. Por isso, também permanece fora do dashboard. Resultados e análise de erros em `data/results/semantic_evidence_experiment_report.md`.
 
 ## Executar
 
