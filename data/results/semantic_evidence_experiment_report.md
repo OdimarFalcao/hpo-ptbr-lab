@@ -72,6 +72,23 @@ O índice bilíngue reproduziu os mesmos acertos e erros do índice somente em p
 
 O próximo teste de recuperação deve utilizar sinônimos oficiais do snapshot HPO como aliases adicionais. Isso amplia a superfície lexical com uma fonte pública e versionada, sem inventar equivalências portuguesas e sem tocar no holdout.
 
+## Índice SapBERT com aliases oficiais HPO
+
+Foram extraídos 8.921 sinônimos ingleses com predicado `hasExactSynonym` do mesmo snapshot HPO, após excluir duplicatas, rótulos idênticos e tipos marcados como obsoletos ou requisitos alélicos. Os aliases cobrem 4.085 dos 7.158 conceitos traduzidos (57,07%). Para cada HPO ID, o score foi o maior entre o rótulo português e seus aliases. Modelo, revisão, limiar e desenvolvimento permaneceram fixos; o holdout não foi lido.
+
+| Métrica | Resultado |
+|---|---:|
+| Recall de trecho exato | 86,67% (26/30) |
+| Precisão dos trechos previstos | 96,30% (26/27) |
+| HPO Accuracy@1 | 83,33% (25/30) |
+| HPO Accuracy@5 | 86,67% (26/30) |
+| Taxa de HPO ID inválido | 0,00% |
+| Latência média | 1.410,710 ms |
+
+Em relação ao SapBERT somente com rótulos portugueses, o índice detectou “olhos desalinhados” e colocou o alvo `HP:0000486` na segunda posição, elevando recall de trecho e Accuracy@5 em 3,34 pontos percentuais. Não houve ganho em Accuracy@1. Permaneceram sem detecção “pálpebra caída”, “fraqueza próxima ao tronco”, “tosse persistente” e a variação “nistágmo”; o único excedente continuou sendo “tosse” → `HP:0012735`.
+
+O resultado mostra que aliases oficiais ampliam a superfície de recuperação, mas o ganho foi insuficiente para a utilidade pretendida e inferior ao híbrido lexical + SapBERT em Accuracy@1. A variante permanece offline e fora do dashboard. O próximo incremento técnico deve abandonar novas combinações de índice e concentrar-se na segmentação contextual e na apresentação de alternativas ao profissional, preservando os erros como evidência experimental.
+
 - Artigo do SapBERT: <https://arxiv.org/abs/2010.11784>.
 - Extensão multilíngue: <https://arxiv.org/abs/2105.14398>.
 - Modelo fixado: <https://huggingface.co/cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR>.
@@ -81,6 +98,8 @@ O próximo teste de recuperação deve utilizar sinônimos oficiais do snapshot 
 ```powershell
 python scripts/run_semantic_evidence_experiment.py --encoder generic --threshold 0.8
 python scripts/run_semantic_evidence_experiment.py --encoder sapbert --threshold 0.8
+python scripts/build_aliases.py
+python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
 ```
 
 Os detalhes por alvo, todas as previsões e os metadados ficam em `data/results/semantic_evidence_sapbert_details.csv`, `data/results/semantic_evidence_sapbert_predictions.csv` e `data/results/semantic_evidence_sapbert_metadata.json`.
@@ -88,3 +107,5 @@ Os detalhes por alvo, todas as previsões e os metadados ficam em `data/results/
 Os artefatos do híbrido ficam em `data/results/semantic_evidence_hybrid_sapbert_details.csv`, `data/results/semantic_evidence_hybrid_sapbert_predictions.csv`, `data/results/semantic_evidence_hybrid_sapbert_summary.json` e `data/results/semantic_evidence_hybrid_sapbert_metadata.json`.
 
 Os artefatos do índice bilíngue ficam em `data/results/semantic_evidence_bilingual_sapbert_details.csv`, `data/results/semantic_evidence_bilingual_sapbert_predictions.csv`, `data/results/semantic_evidence_bilingual_sapbert_summary.json` e `data/results/semantic_evidence_bilingual_sapbert_metadata.json`.
+
+Os aliases versionados ficam em `data/processed/hpo_exact_synonyms_en.csv` e `data/processed/hpo_exact_synonyms_en_metadata.json`. Os artefatos do índice com aliases ficam em `data/results/semantic_evidence_alias_sapbert_details.csv`, `data/results/semantic_evidence_alias_sapbert_predictions.csv`, `data/results/semantic_evidence_alias_sapbert_summary.json` e `data/results/semantic_evidence_alias_sapbert_metadata.json`.

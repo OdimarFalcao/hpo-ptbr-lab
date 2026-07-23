@@ -3,8 +3,13 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
+from hpo_ptbr.aliases import HpoAlias
 from hpo_ptbr.data import HpoRecord
-from hpo_ptbr.semantic import BilingualSemanticMapper, SemanticMapper
+from hpo_ptbr.semantic import (
+    AliasSemanticMapper,
+    BilingualSemanticMapper,
+    SemanticMapper,
+)
 from hpo_ptbr.semantic_evidence import SemanticEvidenceExtractor
 
 
@@ -128,3 +133,37 @@ def test_bilingual_mapper_uses_best_portuguese_or_english_label() -> None:
 
     assert result.method == "semantic_bilingual"
     assert result.candidates[0].hpo_id == "HP:0000508"
+
+
+class AliasFakeEncoder(FakeEncoder):
+    vectors = FakeEncoder.vectors | {
+        "Ptose": [0.0, 1.0, 0.0],
+        "Tosse crônica": [0.0, 0.0, 1.0],
+        "Drooping upper eyelid": [1.0, 0.0, 0.0],
+        "Eyelid droop": [0.9, 0.1, 0.0],
+        "pálpebra caída": [1.0, 0.0, 0.0],
+    }
+
+
+def test_alias_mapper_uses_best_alias_per_concept() -> None:
+    records = [
+        HpoRecord("HP:0000508", "Ptosis", "Ptose"),
+        HpoRecord("HP:0034315", "Chronic cough", "Tosse crônica"),
+    ]
+    aliases = [
+        HpoAlias("HP:0000508", "Drooping upper eyelid", "layperson"),
+        HpoAlias("HP:0000508", "Eyelid droop", "unspecified"),
+        HpoAlias("HP:9999999", "Unknown alias", "unspecified"),
+    ]
+    mapper = AliasSemanticMapper(
+        records,
+        "test-version",
+        AliasFakeEncoder(),
+        aliases,
+    )
+
+    result = mapper.map("pálpebra caída", top_k=1)
+
+    assert result.method == "semantic_alias"
+    assert result.candidates[0].hpo_id == "HP:0000508"
+    assert mapper.alias_record_indices.tolist() == [0, 0]

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from hpo_ptbr.data import load_metadata, load_snapshot
+from hpo_ptbr.aliases import load_aliases
 from hpo_ptbr.evidence_evaluation import evaluate_evidence_cases
 from hpo_ptbr.evidence import EvidenceExtractor
 from hpo_ptbr.hybrid_evidence import HybridEvidenceExtractor
@@ -22,6 +23,7 @@ from hpo_ptbr.sapbert import (
     SapBertEncoder,
 )
 from hpo_ptbr.semantic import (
+    AliasSemanticMapper,
     BilingualSemanticMapper,
     DEFAULT_MODEL_NAME,
     DEFAULT_MODEL_REVISION,
@@ -108,6 +110,7 @@ def main() -> None:
             "sapbert",
             "hybrid-sapbert",
             "bilingual-sapbert",
+            "alias-sapbert",
         ),
         default="sapbert",
     )
@@ -119,7 +122,12 @@ def main() -> None:
     cases = json.loads(
         (ROOT / "data/demo/synthetic_review_cases.json").read_text(encoding="utf-8")
     )
-    if args.encoder in {"sapbert", "hybrid-sapbert", "bilingual-sapbert"}:
+    if args.encoder in {
+        "sapbert",
+        "hybrid-sapbert",
+        "bilingual-sapbert",
+        "alias-sapbert",
+    }:
         encoder = SapBertEncoder(local_files_only=True)
         model_name = DEFAULT_SAPBERT_MODEL_NAME
         model_revision = DEFAULT_SAPBERT_MODEL_REVISION
@@ -128,12 +136,28 @@ def main() -> None:
         model_name = DEFAULT_MODEL_NAME
         model_revision = DEFAULT_MODEL_REVISION
 
-    mapper_class = (
-        BilingualSemanticMapper
-        if args.encoder == "bilingual-sapbert"
-        else SemanticMapper
-    )
-    mapper = mapper_class(records, str(metadata["data_version"]), encoder)
+    alias_metadata = None
+    if args.encoder == "alias-sapbert":
+        aliases = load_aliases(
+            ROOT / "data/processed/hpo_exact_synonyms_en.csv"
+        )
+        alias_metadata = load_metadata(
+            ROOT / "data/processed/hpo_exact_synonyms_en_metadata.json"
+        )
+        mapper = AliasSemanticMapper(
+            records,
+            str(metadata["data_version"]),
+            encoder,
+            aliases,
+        )
+    elif args.encoder == "bilingual-sapbert":
+        mapper = BilingualSemanticMapper(
+            records,
+            str(metadata["data_version"]),
+            encoder,
+        )
+    else:
+        mapper = SemanticMapper(records, str(metadata["data_version"]), encoder)
     semantic_extractor = SemanticEvidenceExtractor(
         mapper,
         detection_threshold=args.threshold,
@@ -175,6 +199,7 @@ def main() -> None:
                 "sapbert",
                 "hybrid-sapbert",
                 "bilingual-sapbert",
+                "alias-sapbert",
             }
             else None
         ),
@@ -182,10 +207,21 @@ def main() -> None:
         "detection_threshold": args.threshold,
         "max_span_tokens": semantic_extractor.max_span_tokens,
         "detector": extractor.detector_name,
-        "corpus_fields": (
-            ["label_pt", "label_en"]
-            if args.encoder == "bilingual-sapbert"
-            else ["label_pt"]
+        "corpus_fields": {
+            "bilingual-sapbert": ["label_pt", "label_en"],
+            "alias-sapbert": ["label_pt", "hpo_exact_synonym_en"],
+        }.get(args.encoder, ["label_pt"]),
+        "alias_source": (
+            {
+                "path": "data/processed/hpo_exact_synonyms_en.csv",
+                "source_sha256": alias_metadata["source_sha256"],
+                "dataset_sha256": alias_metadata["dataset_sha256"],
+                "predicate": alias_metadata["predicate"],
+                "aliases": alias_metadata["aliases"],
+                "concepts_with_aliases": alias_metadata["concepts_with_aliases"],
+            }
+            if alias_metadata
+            else None
         ),
         "development_cases": len(cases),
         "target_mentions": sum(len(case["mentions"]) for case in cases),

@@ -117,6 +117,13 @@ O baseline de detecção com o encoder genérico obteve recall exato de 66,67% (
 
 Um índice SapBERT bilíngue com `label_pt` e `label_en` reproduziu exatamente as métricas e os erros do índice somente em português. A hipótese não trouxe ganho e também permanece offline.
 
+O índice com aliases usa 8.921 sinônimos ingleses exatos do próprio snapshot HPO, cobrindo 4.085 dos 7.158 conceitos traduzidos. No desenvolvimento, obteve recall de trecho de 86,67%, precisão de 96,30%, HPO Accuracy@1 de 83,33% e Accuracy@5 de 86,67%. Ele recuperou “olhos desalinhados” no Top-5, mas não no Top-1, e não resolveu as demais paráfrases críticas. O resultado permanece offline e não altera o dashboard.
+
+```powershell
+python scripts/build_aliases.py
+python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
+```
+
 ## Executar
 
 ```powershell

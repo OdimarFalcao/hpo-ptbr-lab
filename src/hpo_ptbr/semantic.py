@@ -4,6 +4,7 @@ from typing import Protocol
 
 import numpy as np
 
+from .aliases import HpoAlias
 from .data import HpoRecord
 from .rankers import BaseMapper
 
@@ -99,6 +100,45 @@ class BilingualSemanticMapper(SemanticMapper):
         portuguese_scores = query_embeddings @ self.corpus_embeddings.T
         english_scores = query_embeddings @ self.english_embeddings.T
         return np.maximum(portuguese_scores, english_scores)
+
+
+class AliasSemanticMapper(SemanticMapper):
+    method = "semantic_alias"
+
+    def __init__(
+        self,
+        records: list[HpoRecord],
+        data_version: str,
+        encoder: TextEncoder,
+        aliases: list[HpoAlias],
+    ) -> None:
+        BaseMapper.__init__(self, records, data_version)
+        self.encoder = encoder
+        self.corpus_embeddings = self._encode_documents(
+            [record.label_pt for record in records]
+        )
+        record_indices = {record.hpo_id: index for index, record in enumerate(records)}
+        valid_aliases = [
+            alias for alias in aliases if alias.hpo_id in record_indices
+        ]
+        self.aliases = tuple(valid_aliases)
+        self.alias_record_indices = np.asarray(
+            [record_indices[alias.hpo_id] for alias in valid_aliases],
+            dtype=np.int64,
+        )
+        self.alias_embeddings = (
+            self._encode_documents([alias.alias_en for alias in valid_aliases])
+            if valid_aliases
+            else np.empty((0, self.corpus_embeddings.shape[1]), dtype=np.float32)
+        )
+
+    def score_embeddings(self, query_embeddings: np.ndarray) -> np.ndarray:
+        scores = query_embeddings @ self.corpus_embeddings.T
+        if not self.aliases:
+            return scores
+        alias_scores = query_embeddings @ self.alias_embeddings.T
+        np.maximum.at(scores.T, self.alias_record_indices, alias_scores.T)
+        return scores
 
 
 def load_default_encoder(*, local_files_only: bool = True) -> TextEncoder:
