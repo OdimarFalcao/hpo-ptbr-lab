@@ -121,6 +121,5 @@ def test_versioned_alias_dataset_matches_metadata_and_snapshot() -> None:
         "concepts_with_aliases"
     ]
     assert {row["hpo_id"] for row in aliases} <= translated_ids
-    assert hashlib.sha256(alias_path.read_bytes()).hexdigest() == metadata[
-        "dataset_sha256"
-    ]
+    normalized_content = alias_path.read_text(encoding="utf-8").encode("utf-8")
+    assert hashlib.sha256(normalized_content).hexdigest() == metadata["dataset_sha256"]

@@ -18,12 +18,9 @@ from hpo_ptbr.aliases import (
 from hpo_ptbr.data import load_metadata, load_snapshot
 
 
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def normalized_text_sha256(path: Path) -> str:
+    content = path.read_text(encoding="utf-8")
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
 
 def main() -> None:
@@ -61,7 +58,7 @@ def main() -> None:
         "concepts_with_aliases": len({alias.hpo_id for alias in aliases}),
         "aliases": len(aliases),
         "aliases_by_type": dict(sorted(aliases_by_type.items())),
-        "dataset_sha256": sha256(output_path),
+        "dataset_sha256": normalized_text_sha256(output_path),
     }
     metadata_path.write_text(
         json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
