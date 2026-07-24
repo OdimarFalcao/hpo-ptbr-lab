@@ -121,6 +121,8 @@ O índice com aliases usa 8.921 sinônimos ingleses exatos do próprio snapshot 
 
 Uma ablação posterior impediu que janelas semânticas atravessassem vírgulas, ponto e vírgula, dois-pontos, pontos ou quebras de linha. O número de janelas caiu de 491 para 356 (−27,49%), mas acertos, erros e candidatos permaneceram iguais, enquanto a latência média observada subiu para 1.781,133 ms. A segmentação por pontuação também permanece offline.
 
+O próximo experimento separa detecção de menções e linking HPO. O protocolo pré-registra um modelo NER português, decodificação BIOES, métricas exclusivas de offsets e critérios para avançar, sem baixar o modelo, ler o holdout ou alterar o dashboard nesta etapa. Consulte `docs/mention_detection_protocol.md`.
+
 ```powershell
 python scripts/build_aliases.py
 python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
