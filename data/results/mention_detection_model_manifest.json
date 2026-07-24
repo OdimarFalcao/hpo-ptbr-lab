@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-07-24T12:07:30.309952+00:00",
+  "model_name": "HUMADEX/portugese_medical_ner",
+  "model_revision": "51368a80d5b81aa211199aa1988574869197f288",
+  "files": [
+    {
+      "path": "config.json",
+      "size_bytes": 1241,
+      "sha256": "fbd5f0d5952807702459abaf91d4835d5c7ae5c1b7ad9ad69c3f9b1c6e988b21"
+    },
+    {
+      "path": "model.safetensors",
+      "size_bytes": 430946236,
+      "sha256": "4769703ed392083116fa2fbbf012095f8fccfbdf264880494e11e0be06dd82e0"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "size_bytes": 125,
+      "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "size_bytes": 367,
+      "sha256": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+    },
+    {
+      "path": "vocab.txt",
+      "size_bytes": 213450,
+      "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02"
+    }
+  ]
+}

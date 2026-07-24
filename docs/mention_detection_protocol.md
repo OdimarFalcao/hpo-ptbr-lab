@@ -61,3 +61,9 @@ O detector poderá seguir para um experimento separado de linking somente se, no
 - produzir zero previsões com offsets inválidos.
 
 Cumprir esse critério não promove o método ao dashboard, não demonstra validade clínica e não autoriza execução no holdout. Se falhar, o resultado negativo será registrado sem ajuste de limiar no mesmo conjunto.
+
+## Estado da execução
+
+O protocolo foi executado uma vez no desenvolvimento. O candidato obteve F1 exato de 0,00%, F1 relaxado de 11,27%, recall exato de 0,00% nas cinco paráfrases críticas e zero offsets inválidos. O critério para avançar foi reprovado. Não houve linking HPO, execução no holdout ou integração ao dashboard.
+
+O erro dominante foi fragmentação em subpalavras marcadas como entidades isoladas. A configuração permanece congelada como resultado negativo; qualquer regra posterior de junção exigirá novo protocolo.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
 
@@ -10,6 +11,10 @@ from hpo_ptbr.mention_detection import (
 from hpo_ptbr.mention_evaluation import (
     MentionPrediction,
     evaluate_mention_predictions,
+)
+from hpo_ptbr.mention_ner import (
+    DEFAULT_MENTION_MODEL_NAME,
+    DEFAULT_MENTION_MODEL_REVISION,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -110,6 +115,11 @@ def test_mention_detection_protocol_is_frozen_on_development() -> None:
     assert protocol["execution"]["holdout_execution"] is False
     assert len(protocol["candidate_model"]["revision"]) == 40
     assert protocol["candidate_model"]["accepted_entity_groups"] == ["PROBLEM"]
+    assert protocol["candidate_model"]["name"] == DEFAULT_MENTION_MODEL_NAME
+    assert (
+        protocol["candidate_model"]["revision"]
+        == DEFAULT_MENTION_MODEL_REVISION
+    )
 
 
 def test_bioes_decoder_preserves_offsets_and_ignores_other_groups() -> None:
@@ -146,3 +156,38 @@ def test_bioes_decoder_repairs_inside_tag_without_begin() -> None:
     assert len(mentions) == 1
     assert mentions[0].text == "Tosse persistente"
     assert mentions[0].score == 0.7
+
+
+def test_versioned_mention_experiment_failed_without_holdout() -> None:
+    summary = json.loads(
+        (
+            ROOT / "data/results/mention_detection_ner_summary.json"
+        ).read_text(encoding="utf-8")
+    )
+    metadata = json.loads(
+        (
+            ROOT / "data/results/mention_detection_ner_metadata.json"
+        ).read_text(encoding="utf-8")
+    )
+    manifest = json.loads(
+        (
+            ROOT / "data/results/mention_detection_model_manifest.json"
+        ).read_text(encoding="utf-8")
+    )
+    with (
+        ROOT / "data/results/mention_detection_ner_predictions.csv"
+    ).open(encoding="utf-8", newline="") as handle:
+        predictions = list(csv.DictReader(handle))
+
+    assert summary["n_predictions"] == len(predictions) == 112
+    assert summary["exact_span_f1"] == 0.0
+    assert summary["critical_paraphrase_recall"] == 0.0
+    assert summary["decision_gate_passed"] is False
+    assert metadata["holdout_used"] is False
+    assert metadata["model_revision"] == DEFAULT_MENTION_MODEL_REVISION
+    assert manifest["model_revision"] == DEFAULT_MENTION_MODEL_REVISION
+    model_weights = next(
+        file for file in manifest["files"] if file["path"] == "model.safetensors"
+    )
+    assert len(model_weights["sha256"]) == 64
+    assert not any(file["path"].endswith(".bin") for file in manifest["files"])

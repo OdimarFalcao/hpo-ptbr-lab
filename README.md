@@ -123,6 +123,8 @@ Uma ablação posterior impediu que janelas semânticas atravessassem vírgulas,
 
 O próximo experimento separa detecção de menções e linking HPO. O protocolo pré-registra um modelo NER português, decodificação BIOES, métricas exclusivas de offsets e critérios para avançar, sem baixar o modelo, ler o holdout ou alterar o dashboard nesta etapa. Consulte `docs/mention_detection_protocol.md`.
 
+O candidato pré-registrado foi executado uma vez no desenvolvimento e reprovado: 112 fragmentos previstos, precisão/recall/F1 exatos de 0,00%, F1 relaxado de 11,27% e nenhuma das cinco paráfrases críticas recuperada exatamente. A fragmentação WordPiece foi preservada como resultado negativo; não houve regra posterior de junção, linking HPO, uso do holdout ou alteração do dashboard. Consulte `data/results/mention_detection_experiment_report.md`.
+
 ```powershell
 python scripts/build_aliases.py
 python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
