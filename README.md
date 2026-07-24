@@ -119,9 +119,12 @@ Um índice SapBERT bilíngue com `label_pt` e `label_en` reproduziu exatamente a
 
 O índice com aliases usa 8.921 sinônimos ingleses exatos do próprio snapshot HPO, cobrindo 4.085 dos 7.158 conceitos traduzidos. No desenvolvimento, obteve recall de trecho de 86,67%, precisão de 96,30%, HPO Accuracy@1 de 83,33% e Accuracy@5 de 86,67%. Ele recuperou “olhos desalinhados” no Top-5, mas não no Top-1, e não resolveu as demais paráfrases críticas. O resultado permanece offline e não altera o dashboard.
 
+Uma ablação posterior impediu que janelas semânticas atravessassem vírgulas, ponto e vírgula, dois-pontos, pontos ou quebras de linha. O número de janelas caiu de 491 para 356 (−27,49%), mas acertos, erros e candidatos permaneceram iguais, enquanto a latência média observada subiu para 1.781,133 ms. A segmentação por pontuação também permanece offline.
+
 ```powershell
 python scripts/build_aliases.py
 python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
+python scripts/run_semantic_evidence_experiment.py --encoder boundary-alias-sapbert --threshold 0.8
 ```
 
 ## Executar

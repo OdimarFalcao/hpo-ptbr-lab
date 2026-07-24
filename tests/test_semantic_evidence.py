@@ -93,6 +93,26 @@ def test_semantic_evidence_validates_configuration() -> None:
         SemanticEvidenceExtractor(mapper, detection_threshold=0.0)
 
 
+def test_semantic_evidence_respects_explicit_text_boundaries() -> None:
+    mapper = _extractor().mapper
+    extractor = SemanticEvidenceExtractor(
+        mapper,
+        max_span_tokens=3,
+        respect_text_boundaries=True,
+    )
+
+    windows = extractor._windows("Ptose, tosse crônica. Glaucoma")
+
+    assert [window[0] for window in windows] == [
+        "Ptose",
+        "tosse",
+        "tosse crônica",
+        "crônica",
+        "Glaucoma",
+    ]
+    assert extractor.detector_name == "semantic_boundary_windows"
+
+
 def test_semantic_evidence_breaks_candidate_ties_by_hpo_id() -> None:
     records = [
         HpoRecord("HP:0000002", "Second", "Ptose"),

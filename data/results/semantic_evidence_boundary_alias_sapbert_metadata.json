@@ -1,0 +1,29 @@
+{
+  "experiment": "semantic-evidence-development-1",
+  "generated_at": "2026-07-24T11:27:03.697125+00:00",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "model_name": "cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR",
+  "model_revision": "5731ee8d59538ce6557641b97ed5c83f4237dd06",
+  "model_sha256": "a5102c2c09ac7fd04b685251bd467cf29f9d883c1fd97d5c09268b9e216ea243",
+  "encoder": "boundary-alias-sapbert",
+  "detection_threshold": 0.8,
+  "max_span_tokens": 6,
+  "detector": "semantic_boundary_windows",
+  "corpus_fields": [
+    "label_pt",
+    "hpo_exact_synonym_en"
+  ],
+  "alias_source": {
+    "path": "data/processed/hpo_exact_synonyms_en.csv",
+    "source_sha256": "3b646565695329aa399e937883c68d5d424d0df5eaab2f22baa0e08d44fdbe87",
+    "dataset_sha256": "35ea91c55cfe0bb47bb4823bf0bf26154adcd2eaec8c9aada90e12a8e4fab3ff",
+    "predicate": "hasExactSynonym",
+    "aliases": 8921,
+    "concepts_with_aliases": 4085
+  },
+  "respect_text_boundaries": true,
+  "candidate_windows": 356,
+  "development_cases": 10,
+  "target_mentions": 30,
+  "holdout_used": false
+}

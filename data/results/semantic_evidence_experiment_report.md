@@ -89,6 +89,22 @@ Em relação ao SapBERT somente com rótulos portugueses, o índice detectou “
 
 O resultado mostra que aliases oficiais ampliam a superfície de recuperação, mas o ganho foi insuficiente para a utilidade pretendida e inferior ao híbrido lexical + SapBERT em Accuracy@1. A variante permanece offline e fora do dashboard. O próximo incremento técnico deve abandonar novas combinações de índice e concentrar-se na segmentação contextual e na apresentação de alternativas ao profissional, preservando os erros como evidência experimental.
 
+## Ablação de fronteiras textuais
+
+A variante `boundary-alias-sapbert` manteve modelo, aliases, limiar e Top-5 do experimento anterior, alterando somente a geração de janelas: nenhum trecho pode atravessar vírgula, ponto e vírgula, dois-pontos, ponto, exclamação, interrogação ou quebra de linha. Não foram introduzidos verbos, regras clínicas ou expressões específicas dos casos sintéticos.
+
+| Métrica | Resultado |
+|---|---:|
+| Janelas candidatas | 356, contra 491 sem fronteiras (−27,49%) |
+| Recall de trecho exato | 86,67% (26/30) |
+| Precisão dos trechos previstos | 96,30% (26/27) |
+| HPO Accuracy@1 | 83,33% (25/30) |
+| HPO Accuracy@5 | 86,67% (26/30) |
+| Taxa de HPO ID inválido | 0,00% |
+| Latência média | 1.781,133 ms |
+
+As previsões, os rankings e os erros foram os mesmos do índice com aliases; houve apenas diferença de `0,000001` no score arredondado de “miopia”, compatível com variação numérica da inferência. A redução determinística de 135 janelas não produziu ganho de qualidade nem de latência nesta execução. Portanto, a hipótese é negativa e a variante não será integrada ao dashboard. Uma evolução real de detecção exigirá um detector de menções separado do ranking terminológico, em vez de novas regras sobre as mesmas janelas.
+
 - Artigo do SapBERT: <https://arxiv.org/abs/2010.11784>.
 - Extensão multilíngue: <https://arxiv.org/abs/2105.14398>.
 - Modelo fixado: <https://huggingface.co/cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR>.
@@ -100,6 +116,7 @@ python scripts/run_semantic_evidence_experiment.py --encoder generic --threshold
 python scripts/run_semantic_evidence_experiment.py --encoder sapbert --threshold 0.8
 python scripts/build_aliases.py
 python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
+python scripts/run_semantic_evidence_experiment.py --encoder boundary-alias-sapbert --threshold 0.8
 ```
 
 Os detalhes por alvo, todas as previsões e os metadados ficam em `data/results/semantic_evidence_sapbert_details.csv`, `data/results/semantic_evidence_sapbert_predictions.csv` e `data/results/semantic_evidence_sapbert_metadata.json`.
@@ -109,3 +126,5 @@ Os artefatos do híbrido ficam em `data/results/semantic_evidence_hybrid_sapbert
 Os artefatos do índice bilíngue ficam em `data/results/semantic_evidence_bilingual_sapbert_details.csv`, `data/results/semantic_evidence_bilingual_sapbert_predictions.csv`, `data/results/semantic_evidence_bilingual_sapbert_summary.json` e `data/results/semantic_evidence_bilingual_sapbert_metadata.json`.
 
 Os aliases versionados ficam em `data/processed/hpo_exact_synonyms_en.csv` e `data/processed/hpo_exact_synonyms_en_metadata.json`. Os artefatos do índice com aliases ficam em `data/results/semantic_evidence_alias_sapbert_details.csv`, `data/results/semantic_evidence_alias_sapbert_predictions.csv`, `data/results/semantic_evidence_alias_sapbert_summary.json` e `data/results/semantic_evidence_alias_sapbert_metadata.json`.
+
+Os artefatos da ablação por fronteiras ficam em `data/results/semantic_evidence_boundary_alias_sapbert_details.csv`, `data/results/semantic_evidence_boundary_alias_sapbert_predictions.csv`, `data/results/semantic_evidence_boundary_alias_sapbert_summary.json` e `data/results/semantic_evidence_boundary_alias_sapbert_metadata.json`.

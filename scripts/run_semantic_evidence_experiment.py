@@ -111,6 +111,7 @@ def main() -> None:
             "hybrid-sapbert",
             "bilingual-sapbert",
             "alias-sapbert",
+            "boundary-alias-sapbert",
         ),
         default="sapbert",
     )
@@ -127,6 +128,7 @@ def main() -> None:
         "hybrid-sapbert",
         "bilingual-sapbert",
         "alias-sapbert",
+        "boundary-alias-sapbert",
     }:
         encoder = SapBertEncoder(local_files_only=True)
         model_name = DEFAULT_SAPBERT_MODEL_NAME
@@ -137,7 +139,7 @@ def main() -> None:
         model_revision = DEFAULT_MODEL_REVISION
 
     alias_metadata = None
-    if args.encoder == "alias-sapbert":
+    if args.encoder in {"alias-sapbert", "boundary-alias-sapbert"}:
         aliases = load_aliases(
             ROOT / "data/processed/hpo_exact_synonyms_en.csv"
         )
@@ -161,6 +163,7 @@ def main() -> None:
     semantic_extractor = SemanticEvidenceExtractor(
         mapper,
         detection_threshold=args.threshold,
+        respect_text_boundaries=args.encoder == "boundary-alias-sapbert",
     )
     if args.encoder == "hybrid-sapbert":
         extractor = HybridEvidenceExtractor(
@@ -200,6 +203,7 @@ def main() -> None:
                 "hybrid-sapbert",
                 "bilingual-sapbert",
                 "alias-sapbert",
+                "boundary-alias-sapbert",
             }
             else None
         ),
@@ -210,6 +214,10 @@ def main() -> None:
         "corpus_fields": {
             "bilingual-sapbert": ["label_pt", "label_en"],
             "alias-sapbert": ["label_pt", "hpo_exact_synonym_en"],
+            "boundary-alias-sapbert": [
+                "label_pt",
+                "hpo_exact_synonym_en",
+            ],
         }.get(args.encoder, ["label_pt"]),
         "alias_source": (
             {
@@ -222,6 +230,11 @@ def main() -> None:
             }
             if alias_metadata
             else None
+        ),
+        "respect_text_boundaries": semantic_extractor.respect_text_boundaries,
+        "candidate_windows": sum(
+            len(semantic_extractor._windows(str(case["text"])))
+            for case in cases
         ),
         "development_cases": len(cases),
         "target_mentions": sum(len(case["mentions"]) for case in cases),

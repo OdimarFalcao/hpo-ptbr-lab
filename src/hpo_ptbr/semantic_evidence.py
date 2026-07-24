@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from time import perf_counter
 
@@ -8,6 +9,8 @@ import numpy as np
 from .evidence import EvidenceSpan, TOKEN_PATTERN, TextMappingResult
 from .models import Candidate
 from .semantic import SemanticMapper
+
+TEXT_BOUNDARY_PATTERN = re.compile(r"[,;:.!?\n]")
 
 
 @dataclass(frozen=True)
@@ -30,6 +33,7 @@ class SemanticEvidenceExtractor:
         *,
         max_span_tokens: int = 6,
         detection_threshold: float = 0.8,
+        respect_text_boundaries: bool = False,
     ) -> None:
         if max_span_tokens < 1 or max_span_tokens > 8:
             raise ValueError("max_span_tokens deve estar entre 1 e 8.")
@@ -38,6 +42,12 @@ class SemanticEvidenceExtractor:
         self.mapper = mapper
         self.max_span_tokens = max_span_tokens
         self.detection_threshold = detection_threshold
+        self.respect_text_boundaries = respect_text_boundaries
+        self.detector_name = (
+            "semantic_boundary_windows"
+            if respect_text_boundaries
+            else "semantic_windows"
+        )
 
     def map_text(
         self,
@@ -109,6 +119,11 @@ class SemanticEvidenceExtractor:
             maximum = min(len(tokens), start_index + self.max_span_tokens)
             for end_index in range(start_index, maximum):
                 end_token = tokens[end_index]
+                if end_index > start_index and self.respect_text_boundaries:
+                    previous_token = tokens[end_index - 1]
+                    separator = text[previous_token.end() : end_token.start()]
+                    if TEXT_BOUNDARY_PATTERN.search(separator):
+                        break
                 span_text = text[start_token.start() : end_token.end()]
                 if len(span_text) >= 3:
                     windows.append(
