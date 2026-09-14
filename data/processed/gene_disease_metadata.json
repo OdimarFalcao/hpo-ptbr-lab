@@ -1,0 +1,40 @@
+{
+  "schema_version": "gene-disease-snapshot-manifest-v1",
+  "generated_at_utc": "2026-09-14T21:00:25.699964+00:00",
+  "source": {
+    "url": "https://github.com/obophenotype/human-phenotype-ontology/releases/download/v2026-06-23/genes_to_disease.txt",
+    "file": "genes_to_disease.txt",
+    "sha256": "a247027ae9944e34545e0a91060243ff6c118681c06379b9721af1ee4f39286a",
+    "declares_hpo_release": false
+  },
+  "counts": {
+    "associations": 15944,
+    "genes": 5524,
+    "diseases": 11030,
+    "by_association_type": {
+      "MENDELIAN": 7075,
+      "POLYGENIC": 581,
+      "UNKNOWN": 8288
+    },
+    "by_source": {
+      "ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/mim2gene_medgen": 7656,
+      "http://www.orphadata.org/data/xml/en_product6.xml": 8288
+    },
+    "by_disease_prefix": {
+      "OMIM": 7656,
+      "ORPHA": 8288
+    },
+    "mendelian_diseases": 6600
+  },
+  "consistency": {
+    "checked_against_hpoa_snapshot": true,
+    "note": "genes_to_disease.txt não declara a release da HPO. A verificação possível é de sobreposição de identificadores de doença com o snapshot de anotações. Sobreposição baixa indica releases divergentes.",
+    "diseases_cited": 11030,
+    "also_present_in_hpoa_snapshot": 9155,
+    "percent_overlap": 83.0
+  },
+  "outputs": {
+    "csv": "data/processed/gene_disease.csv",
+    "csv_sha256": "62a4826515d51c5e83f5dcc7f9f43594b771d4c67ac1f9502073d87986f229ff"
+  }
+}
