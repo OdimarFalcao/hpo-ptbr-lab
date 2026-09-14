@@ -13,3 +13,5 @@ web/node_modules/
 web/dist/
 web/coverage/
 web/*.tsbuildinfo
+# derivado de data/raw/phenotype.hpoa; regenerar com: python scripts/hpoa_cli.py snapshot
+data/processed/hpo_annotations.csv

@@ -1,0 +1,42 @@
+{
+  "schema_version": "hpoa-snapshot-manifest-v1",
+  "generated_at_utc": "2026-09-14T20:52:41.426477+00:00",
+  "source": {
+    "url": "https://github.com/obophenotype/human-phenotype-ontology/releases/download/v2026-06-23/phenotype.hpoa",
+    "file": "phenotype.hpoa",
+    "sha256": "89004f85b253f980ffe84218d2c080665cbf67a57bbb322111d6a2db5eb31dff",
+    "hpoa_version": "2026-06-23",
+    "hpo_release_declared": "2026-06-23",
+    "description": "\"HPO annotations for rare diseases [8574: OMIM; 47: DECIPHER; 4337 ORPHANET]\""
+  },
+  "terminology_snapshot": {
+    "data_version": "hpo-2026-06-23_pt-62f1d254",
+    "hpo_release": "2026-06-23"
+  },
+  "counts": {
+    "annotations": 285598,
+    "diseases": 12956,
+    "hpo_terms": 11645,
+    "by_aspect": {
+      "C": 8542,
+      "H": 131,
+      "I": 9066,
+      "M": 77,
+      "P": 267782
+    },
+    "excluded_qualifier_not": 727,
+    "terms_absent_from_terminology_snapshot": 0
+  },
+  "portuguese_coverage_of_annotated_phenotypes": {
+    "phenotypic_terms_used": 11557,
+    "with_official_pt_label": 4694,
+    "without_pt_label": 6863,
+    "percent_with_pt_label": 40.62,
+    "note": "Cobertura medida sobre os termos que de fato aparecem em anotações de doença, não sobre a ontologia inteira."
+  },
+  "outputs": {
+    "csv": "data/processed/hpo_annotations.csv",
+    "csv_sha256": "08d9a8d355903f9abd909953c927ca96e6814999c66f15316689b017762f7ce3"
+  },
+  "invented_translation": false
+}
