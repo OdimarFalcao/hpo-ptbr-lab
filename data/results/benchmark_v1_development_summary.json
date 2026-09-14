@@ -1,0 +1,482 @@
+{
+  "exact": {
+    "method": "exact",
+    "detector": "fuzzy_windows",
+    "assertion_method": "always_present",
+    "n_cases": 20,
+    "n_gold_mentions": 36,
+    "n_predictions": 27,
+    "exact_span_precision": 0.8519,
+    "exact_span_recall": 0.6389,
+    "exact_span_f1": 0.7302,
+    "relaxed_span_precision": 0.8889,
+    "relaxed_span_recall": 0.6667,
+    "relaxed_span_f1_iou_0_5": 0.7619,
+    "linking_accuracy_at_1": 0.4722,
+    "linking_accuracy_at_5": 0.4722,
+    "linking_mrr_at_20": 0.4722,
+    "assertion_accuracy": 0.6667,
+    "assertion_macro_f1": 0.2,
+    "end_to_end_exact_precision": 0.3704,
+    "end_to_end_exact_recall": 0.2778,
+    "end_to_end_exact_f1": 0.3175,
+    "negative_control_false_positive_rate": 0.0,
+    "invalid_hpo_id_rate": 0.0,
+    "latency_mean_ms": 402.639,
+    "latency_median_ms": 364.305,
+    "by_domain": {
+      "cardiovascular": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "dermatology": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "gastrointestinal": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.25,
+        "linking_accuracy_at_5": 0.25,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "hearing_ent": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.25,
+        "linking_accuracy_at_5": 0.25,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "musculoskeletal": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.25
+      },
+      "neurology": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "ophthalmology": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.25
+      },
+      "renal_urinary": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.25
+      },
+      "respiratory": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      }
+    },
+    "by_surface_form": {
+      "clinical_paraphrase": {
+        "n": 12,
+        "exact_span_recall": 0.0,
+        "linking_accuracy_at_1": 0.0,
+        "linking_accuracy_at_5": 0.0,
+        "assertion_accuracy": 0.6667,
+        "end_to_end_recall": 0.0
+      },
+      "official_label": {
+        "n": 12,
+        "exact_span_recall": 1.0,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.75
+      },
+      "orthographic_variation": {
+        "n": 12,
+        "exact_span_recall": 0.9167,
+        "linking_accuracy_at_1": 0.4167,
+        "linking_accuracy_at_5": 0.4167,
+        "assertion_accuracy": 0.5833,
+        "end_to_end_recall": 0.0833
+      }
+    },
+    "by_assertion": {
+      "absent": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      },
+      "family_history": {
+        "n": 4,
+        "exact_span_recall": 0.0,
+        "linking_accuracy_at_1": 0.0,
+        "linking_accuracy_at_5": 0.0,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      },
+      "present": {
+        "n": 24,
+        "exact_span_recall": 0.6667,
+        "linking_accuracy_at_1": 0.4167,
+        "linking_accuracy_at_5": 0.4167,
+        "assertion_accuracy": 1.0,
+        "end_to_end_recall": 0.4167
+      },
+      "uncertain": {
+        "n": 4,
+        "exact_span_recall": 1.0,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      }
+    }
+  },
+  "fuzzy": {
+    "method": "fuzzy",
+    "detector": "fuzzy_windows",
+    "assertion_method": "always_present",
+    "n_cases": 20,
+    "n_gold_mentions": 36,
+    "n_predictions": 27,
+    "exact_span_precision": 0.8519,
+    "exact_span_recall": 0.6389,
+    "exact_span_f1": 0.7302,
+    "relaxed_span_precision": 0.8889,
+    "relaxed_span_recall": 0.6667,
+    "relaxed_span_f1_iou_0_5": 0.7619,
+    "linking_accuracy_at_1": 0.6667,
+    "linking_accuracy_at_5": 0.6667,
+    "linking_mrr_at_20": 0.6698,
+    "assertion_accuracy": 0.6667,
+    "assertion_macro_f1": 0.2,
+    "end_to_end_exact_precision": 0.5926,
+    "end_to_end_exact_recall": 0.4444,
+    "end_to_end_exact_f1": 0.5079,
+    "negative_control_false_positive_rate": 0.0,
+    "invalid_hpo_id_rate": 0.0,
+    "latency_mean_ms": 618.549,
+    "latency_median_ms": 604.401,
+    "by_domain": {
+      "cardiovascular": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "dermatology": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "gastrointestinal": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "hearing_ent": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "musculoskeletal": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.5
+      },
+      "neurology": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "ophthalmology": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.5
+      },
+      "renal_urinary": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.25
+      },
+      "respiratory": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      }
+    },
+    "by_surface_form": {
+      "clinical_paraphrase": {
+        "n": 12,
+        "exact_span_recall": 0.0,
+        "linking_accuracy_at_1": 0.0,
+        "linking_accuracy_at_5": 0.0,
+        "assertion_accuracy": 0.6667,
+        "end_to_end_recall": 0.0
+      },
+      "official_label": {
+        "n": 12,
+        "exact_span_recall": 1.0,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.75
+      },
+      "orthographic_variation": {
+        "n": 12,
+        "exact_span_recall": 0.9167,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.5833,
+        "end_to_end_recall": 0.5833
+      }
+    },
+    "by_assertion": {
+      "absent": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      },
+      "family_history": {
+        "n": 4,
+        "exact_span_recall": 0.0,
+        "linking_accuracy_at_1": 0.25,
+        "linking_accuracy_at_5": 0.25,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      },
+      "present": {
+        "n": 24,
+        "exact_span_recall": 0.6667,
+        "linking_accuracy_at_1": 0.6667,
+        "linking_accuracy_at_5": 0.6667,
+        "assertion_accuracy": 1.0,
+        "end_to_end_recall": 0.6667
+      },
+      "uncertain": {
+        "n": 4,
+        "exact_span_recall": 1.0,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      }
+    }
+  },
+  "bm25": {
+    "method": "bm25",
+    "detector": "fuzzy_windows",
+    "assertion_method": "always_present",
+    "n_cases": 20,
+    "n_gold_mentions": 36,
+    "n_predictions": 27,
+    "exact_span_precision": 0.8519,
+    "exact_span_recall": 0.6389,
+    "exact_span_f1": 0.7302,
+    "relaxed_span_precision": 0.8889,
+    "relaxed_span_recall": 0.6667,
+    "relaxed_span_f1_iou_0_5": 0.7619,
+    "linking_accuracy_at_1": 0.6389,
+    "linking_accuracy_at_5": 0.6944,
+    "linking_mrr_at_20": 0.6572,
+    "assertion_accuracy": 0.6667,
+    "assertion_macro_f1": 0.2,
+    "end_to_end_exact_precision": 0.5185,
+    "end_to_end_exact_recall": 0.3889,
+    "end_to_end_exact_f1": 0.4444,
+    "negative_control_false_positive_rate": 0.0,
+    "invalid_hpo_id_rate": 0.0,
+    "latency_mean_ms": 511.68,
+    "latency_median_ms": 474.514,
+    "by_domain": {
+      "cardiovascular": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "dermatology": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "gastrointestinal": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "hearing_ent": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.25,
+        "linking_accuracy_at_5": 0.25,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.25
+      },
+      "musculoskeletal": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.5
+      },
+      "neurology": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      },
+      "ophthalmology": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.25
+      },
+      "renal_urinary": {
+        "n": 4,
+        "exact_span_recall": 0.5,
+        "linking_accuracy_at_1": 0.5,
+        "linking_accuracy_at_5": 0.5,
+        "assertion_accuracy": 0.5,
+        "end_to_end_recall": 0.25
+      },
+      "respiratory": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.5
+      }
+    },
+    "by_surface_form": {
+      "clinical_paraphrase": {
+        "n": 12,
+        "exact_span_recall": 0.0,
+        "linking_accuracy_at_1": 0.1667,
+        "linking_accuracy_at_5": 0.3333,
+        "assertion_accuracy": 0.6667,
+        "end_to_end_recall": 0.0
+      },
+      "official_label": {
+        "n": 12,
+        "exact_span_recall": 1.0,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.75,
+        "end_to_end_recall": 0.75
+      },
+      "orthographic_variation": {
+        "n": 12,
+        "exact_span_recall": 0.9167,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 0.75,
+        "assertion_accuracy": 0.5833,
+        "end_to_end_recall": 0.4167
+      }
+    },
+    "by_assertion": {
+      "absent": {
+        "n": 4,
+        "exact_span_recall": 0.75,
+        "linking_accuracy_at_1": 0.75,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      },
+      "family_history": {
+        "n": 4,
+        "exact_span_recall": 0.0,
+        "linking_accuracy_at_1": 0.25,
+        "linking_accuracy_at_5": 0.25,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      },
+      "present": {
+        "n": 24,
+        "exact_span_recall": 0.6667,
+        "linking_accuracy_at_1": 0.625,
+        "linking_accuracy_at_5": 0.6667,
+        "assertion_accuracy": 1.0,
+        "end_to_end_recall": 0.5833
+      },
+      "uncertain": {
+        "n": 4,
+        "exact_span_recall": 1.0,
+        "linking_accuracy_at_1": 1.0,
+        "linking_accuracy_at_5": 1.0,
+        "assertion_accuracy": 0.0,
+        "end_to_end_recall": 0.0
+      }
+    }
+  }
+}

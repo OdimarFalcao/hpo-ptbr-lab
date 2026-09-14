@@ -1,0 +1,578 @@
+{
+  "status": "human_confirmed_for_development_evaluation",
+  "review_date": "2026-08-24",
+  "reviewer": "Codex technical review under Odimar's instruction",
+  "human_clinical_review": false,
+  "rankings_consulted": false,
+  "methods_executed": false,
+  "source": {
+    "snapshot": "hpo-2026-06-23_pt-62f1d254",
+    "hpo_url": "https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/hp.json",
+    "hpo_sha256": "3b646565695329aa399e937883c68d5d424d0df5eaab2f22baa0e08d44fdbe87"
+  },
+  "corrections": [
+    {
+      "case_id": "DEV-DER-02",
+      "hpo_id": "HP:0007513",
+      "before": "pele mais clara de forma difusa",
+      "after": "pigmentação cutânea reduzida de forma generalizada",
+      "reason": "Explicita redução generalizada da pigmentação e evita confusão com palidez."
+    }
+  ],
+  "decisions": [
+    {
+      "case_id": "DEV-NEU-01",
+      "hpo_id": "HP:0003401",
+      "surface_text": "Parestesia",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Paresthesia",
+      "official_definition_en": "Abnormal sensations such as tingling, pricking, or numbness of the skin with no apparent physical cause.",
+      "official_exact_synonyms_en": [
+        "Paresthesias",
+        "Pins and needles feeling",
+        "Tingling"
+      ]
+    },
+    {
+      "case_id": "DEV-NEU-01",
+      "hpo_id": "HP:0004373",
+      "surface_text": "Distonia focal",
+      "surface_form": "official_label",
+      "assertion": "absent",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Focal dystonia",
+      "official_definition_en": "A type of dystonia that is localized to a specific part of the body.",
+      "official_exact_synonyms_en": []
+    },
+    {
+      "case_id": "DEV-NEU-02",
+      "hpo_id": "HP:0006986",
+      "surface_text": "espasticidade membro superior",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Upper limb spasticity",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": [
+        "Spastic upper extremities",
+        "Spastic upper extremity",
+        "Spastic upper limb",
+        "Spastic upper limbs",
+        "Spasticity in upper extremities",
+        "Spasticity in upper extremity",
+        "Spasticity in upper limb",
+        "Spasticity in upper limbs",
+        "Spasticity of upper extremities",
+        "Spasticity of upper extremity",
+        "Spasticity of upper limb",
+        "Spasticity of upper limbs",
+        "Uncontrollable movement in upper arms",
+        "Upper extremities spasticity",
+        "Upper extremity spasticity"
+      ]
+    },
+    {
+      "case_id": "DEV-NEU-02",
+      "hpo_id": "HP:0007034",
+      "surface_text": "reflexos aumentados de forma generalizada",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Mantém o aumento dos reflexos e a distribuição generalizada do conceito.",
+      "official_label_en": "Generalized hyperreflexia",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": [
+        "Generalised hyperreflexia"
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-01",
+      "hpo_id": "HP:0000483",
+      "surface_text": "Astigmatismo",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Astigmatism",
+      "official_definition_en": "A type of refraction error associated with abnormal curvatures on the anterior and/or posterior surface of the cornea.",
+      "official_exact_synonyms_en": [
+        "Abnormal curving of the cornea or lens of the eye",
+        "Astigmatism"
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-01",
+      "hpo_id": "HP:0000540",
+      "surface_text": "Hipermetropia",
+      "surface_form": "official_label",
+      "assertion": "uncertain",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Hypermetropia",
+      "official_definition_en": "An abnormality of refraction characterized by the ability to see objects in the distance clearly, while objects nearby appear blurry.",
+      "official_exact_synonyms_en": [
+        "Farsightedness",
+        "Hyperopia",
+        "Long-sightedness"
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-02",
+      "hpo_id": "HP:0000613",
+      "surface_text": "foto-fobia",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Photophobia",
+      "official_definition_en": "Excessive sensitivity to light with the sensation of discomfort or pain in the eyes due to exposure to bright light.",
+      "official_exact_synonyms_en": [
+        "Extreme sensitivity of the eyes to light",
+        "Light hypersensitivity",
+        "Photodysphoria"
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-02",
+      "hpo_id": "HP:0000541",
+      "surface_text": "retina deslocada",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "absent",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Corresponde ao sinônimo oficial em inglês 'Detached retina'.",
+      "official_label_en": "Retinal detachment",
+      "official_definition_en": "Separation of the inner layers of the retina (neural retina) from the pigment epithelium.",
+      "official_exact_synonyms_en": [
+        "Detached retina",
+        "Retinal detachment"
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-01",
+      "hpo_id": "HP:0003307",
+      "surface_text": "Hiperlordose",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Hyperlordosis",
+      "official_definition_en": "Abnormally increased curvature (anterior concavity) of the lumbar or cervical spine.",
+      "official_exact_synonyms_en": [
+        "Lordosis",
+        "Prominent swayback"
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-01",
+      "hpo_id": "HP:0002944",
+      "surface_text": "Escoliose toracolombar",
+      "surface_form": "official_label",
+      "assertion": "absent",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Thoracolumbar scoliosis",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": [
+        "Scoliosis, thoracolumbar"
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-02",
+      "hpo_id": "HP:0004209",
+      "surface_text": "clinodactilia 5o dedo da mao",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Clinodactyly of the 5th finger",
+      "official_definition_en": "Clinodactyly refers to a bending or curvature of the fifth finger in the radial direction (i.e., towards the 4th finger).",
+      "official_exact_synonyms_en": [
+        "Bilateral fifth digit clinodactyly",
+        "Bilateral fifth finger clinodactyly",
+        "Clinodactyly of fifth digit",
+        "Clinodactyly of the little finger",
+        "Fifth finger clinodactyly",
+        "Permanent curving of the pinkie finger"
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-02",
+      "hpo_id": "HP:0002803",
+      "surface_text": "articulação contraída desde o nascimento",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "family_history",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Preserva a contratura articular e sua presença desde o nascimento.",
+      "official_label_en": "Congenital contracture",
+      "official_definition_en": "One or more flexion contractures (a bent joint that cannot be straightened actively or passively) that are present at birth.",
+      "official_exact_synonyms_en": [
+        "Congenital joint contractures",
+        "congenital contractures"
+      ]
+    },
+    {
+      "case_id": "DEV-CAR-01",
+      "hpo_id": "HP:0006671",
+      "surface_text": "Taquicardia atrial paroxística",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Paroxysmal atrial tachycardia",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": []
+    },
+    {
+      "case_id": "DEV-CAR-01",
+      "hpo_id": "HP:0006695",
+      "surface_text": "defeito septo atrioventricular",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Atrioventricular canal defect",
+      "official_definition_en": "A defect of the atrioventricular septum of the heart.",
+      "official_exact_synonyms_en": [
+        "Atrioventricular septal defect",
+        "Endocardial cushion defect"
+      ]
+    },
+    {
+      "case_id": "DEV-CAR-02",
+      "hpo_id": "HP:0012722",
+      "surface_text": "bloqueio cardiaco",
+      "surface_form": "orthographic_variation",
+      "assertion": "absent",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Heart block",
+      "official_definition_en": "Impaired conduction of cardiac impulse occurring anywhere along the conduction pathway.",
+      "official_exact_synonyms_en": []
+    },
+    {
+      "case_id": "DEV-CAR-02",
+      "hpo_id": "HP:0032553",
+      "surface_text": "pulso de baixa intensidade",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Preserva a redução da amplitude ou força do pulso.",
+      "official_label_en": "Weak pulse",
+      "official_definition_en": "A diminution in the amplitude (strength) of the pulse such that the examiner has difficulty feeling the pulse.",
+      "official_exact_synonyms_en": []
+    },
+    {
+      "case_id": "DEV-RES-01",
+      "hpo_id": "HP:0002789",
+      "surface_text": "Taquipneia",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Tachypnea",
+      "official_definition_en": "Very rapid breathing.",
+      "official_exact_synonyms_en": [
+        "Increased respiratory rate or depth of breathing",
+        "Polypnea"
+      ]
+    },
+    {
+      "case_id": "DEV-RES-01",
+      "hpo_id": "HP:0002791",
+      "surface_text": "hipoventilacao",
+      "surface_form": "orthographic_variation",
+      "assertion": "uncertain",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Hypoventilation",
+      "official_definition_en": "A reduction in the amount of air transported into the pulmonary alveoli by breathing, leading to hypercapnia (increase in the partial pressure of carbon dioxide).",
+      "official_exact_synonyms_en": [
+        "Alveolar hypoventilation",
+        "Slow breathing",
+        "Under breathing"
+      ]
+    },
+    {
+      "case_id": "DEV-RES-02",
+      "hpo_id": "HP:0002837",
+      "surface_text": "bronquite-recorrente",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Recurrent bronchitis",
+      "official_definition_en": "An increased susceptibility to bronchitis as manifested by a history of recurrent bronchitis.",
+      "official_exact_synonyms_en": [
+        "Bronchitis, recurrent"
+      ]
+    },
+    {
+      "case_id": "DEV-RES-02",
+      "hpo_id": "HP:0030829",
+      "surface_text": "ruídos respiratórios fora do padrão",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Expressa um som respiratório anômalo sem especificar um subtipo ausente.",
+      "official_label_en": "Abnormal breath sound",
+      "official_definition_en": "An anomalous (adventitious) sound produced by the breathing process.",
+      "official_exact_synonyms_en": [
+        "Abnormal lung auscultation finding"
+      ]
+    },
+    {
+      "case_id": "DEV-REN-01",
+      "hpo_id": "HP:0000020",
+      "surface_text": "Incontinência urinária",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Urinary incontinence",
+      "official_definition_en": "Loss of the ability to control the urinary bladder leading to involuntary urination.",
+      "official_exact_synonyms_en": [
+        "Bladder incontinence",
+        "Loss of bladder control"
+      ]
+    },
+    {
+      "case_id": "DEV-REN-01",
+      "hpo_id": "HP:0000107",
+      "surface_text": "cisto-renal",
+      "surface_form": "orthographic_variation",
+      "assertion": "uncertain",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Renal cyst",
+      "official_definition_en": "A fluid filled sac in the kidney.",
+      "official_exact_synonyms_en": [
+        "Kidney cyst"
+      ]
+    },
+    {
+      "case_id": "DEV-REN-02",
+      "hpo_id": "HP:0000121",
+      "surface_text": "nefro calcinose",
+      "surface_form": "orthographic_variation",
+      "assertion": "family_history",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Nephrocalcinosis",
+      "official_definition_en": "Nephrocalcinosis is the deposition of calcium salts in renal parenchyma.",
+      "official_exact_synonyms_en": [
+        "Too much calcium deposited in kidneys"
+      ]
+    },
+    {
+      "case_id": "DEV-REN-02",
+      "hpo_id": "HP:0000126",
+      "surface_text": "dilatação do sistema coletor renal",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Expressa a dilatação do sistema coletor renal descrita no conceito.",
+      "official_label_en": "Hydronephrosis",
+      "official_definition_en": "Severe distention of the kidney with dilation of the renal pelvis and calices.",
+      "official_exact_synonyms_en": []
+    },
+    {
+      "case_id": "DEV-DER-01",
+      "hpo_id": "HP:0004554",
+      "surface_text": "Hipertricose generalizada",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Generalized hypertrichosis",
+      "official_definition_en": "Generalized excessive, abnormal hairiness.",
+      "official_exact_synonyms_en": [
+        "Generalised hypertrichosis"
+      ]
+    },
+    {
+      "case_id": "DEV-DER-01",
+      "hpo_id": "HP:0007400",
+      "surface_text": "hiperpigmentacao irregular",
+      "surface_form": "orthographic_variation",
+      "assertion": "uncertain",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Irregular hyperpigmentation",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": []
+    },
+    {
+      "case_id": "DEV-DER-02",
+      "hpo_id": "HP:0007513",
+      "surface_text": "pigmentação cutânea reduzida de forma generalizada",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Explicita redução generalizada da pigmentação e evita confusão com palidez.",
+      "official_label_en": "Generalized hypopigmentation",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": [
+        "Fair skin",
+        "Generalised hypopigmentation",
+        "Pale pigmentation"
+      ]
+    },
+    {
+      "case_id": "DEV-DER-02",
+      "hpo_id": "HP:0007380",
+      "surface_text": "vasos finos visíveis na face",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Expressa pequenos vasos visíveis próximos à superfície da pele da face.",
+      "official_label_en": "Facial telangiectasia",
+      "official_definition_en": "Telangiectases (small dilated blood vessels) located near the surface of the skin of the face.",
+      "official_exact_synonyms_en": [
+        "Facial telangiectatic vessels",
+        "Telangiectasia, facial"
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-01",
+      "hpo_id": "HP:0003270",
+      "surface_text": "Distensão abdominal",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Abdominal distention",
+      "official_definition_en": "Distention of the abdomen.",
+      "official_exact_synonyms_en": [
+        "Abdominal bloating",
+        "Abdominal distension",
+        "Abdominal swelling",
+        "Belly bloating",
+        "Bloating",
+        "Distended abdomen"
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-01",
+      "hpo_id": "HP:0004385",
+      "surface_text": "diarreia prolongda",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Protracted diarrhea",
+      "official_definition_en": "",
+      "official_exact_synonyms_en": [
+        "Protracted diarrhoea"
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-02",
+      "hpo_id": "HP:0004389",
+      "surface_text": "quadro semelhante a obstrução intestinal sem bloqueio mecânico",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "family_history",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Preserva manifestações de obstrução intestinal sem bloqueio mecânico.",
+      "official_label_en": "Intestinal pseudo-obstruction",
+      "official_definition_en": "A functional rather than mechanical obstruction of the intestines, associated with manifestations that resemble those caused by an intestinal obstruction, including distension, abdominal pain, nausea, vomiting, constipation or diarrhea, in an individual in whom a mechanical blockage has been excluded.",
+      "official_exact_synonyms_en": [
+        "Intestinal pseudoobstruction"
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-02",
+      "hpo_id": "HP:0006280",
+      "surface_text": "inflamação persistente do pâncreas",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Equivale ao sinônimo oficial em inglês 'Chronic pancreas inflammation'.",
+      "official_label_en": "Chronic pancreatitis",
+      "official_definition_en": "A chronic form of pancreatitis.",
+      "official_exact_synonyms_en": [
+        "Chronic pancreas inflammation"
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-01",
+      "hpo_id": "HP:0000371",
+      "surface_text": "Otite média aguda",
+      "surface_form": "official_label",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Superfície idêntica ao rótulo português versionado.",
+      "official_label_en": "Acute otitis media",
+      "official_definition_en": "Acute otitis media is a short and generally painful infection of the middle ear.",
+      "official_exact_synonyms_en": [
+        "Acute middle ear infection"
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-01",
+      "hpo_id": "HP:0000421",
+      "surface_text": "epistax",
+      "surface_form": "orthographic_variation",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo.",
+      "official_label_en": "Epistaxis",
+      "official_definition_en": "Epistaxis, or nosebleed, refers to a hemorrhage localized in the nose.",
+      "official_exact_synonyms_en": [
+        "Bloody nose",
+        "Frequent nosebleeds",
+        "Nasal haemorrhage",
+        "Nasal hemorrhage",
+        "Nose bleed",
+        "Nose bleeding",
+        "Nosebleed"
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-02",
+      "hpo_id": "HP:0000458",
+      "surface_text": "perda completa do olfato",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "family_history",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Equivale ao sinônimo oficial em inglês 'Loss of smell'.",
+      "official_label_en": "Anosmia",
+      "official_definition_en": "An inability to perceive odors. This is a general term describing inability to smell arising in any part of the process of smelling from absorption of odorants into the nasal mucous overlying the olfactory epithelium, diffusion to the cilia, binding to olfactory receptor sites, generation of action potentials in olfactory neurons, and perception of a smell.",
+      "official_exact_synonyms_en": [
+        "Loss of smell",
+        "Lost smell"
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-02",
+      "hpo_id": "HP:0004409",
+      "surface_text": "redução do olfato",
+      "surface_form": "clinical_paraphrase",
+      "assertion": "present",
+      "status": "technical_approved_pending_human_confirmation",
+      "rationale_pt": "Preserva a diminuição, sem perda completa, da percepção de odores.",
+      "official_label_en": "Hyposmia",
+      "official_definition_en": "A decreased sensitivity to odorants (that is, a decreased ability to perceive odors).",
+      "official_exact_synonyms_en": [
+        "Decreased smell sensation",
+        "Sense of smell impaired"
+      ]
+    }
+  ],
+  "limitations": [
+    "Technical linguistic and ontology review, not validation by a healthcare professional.",
+    "Human confirmation remains pending before any benchmark execution."
+  ],
+  "human_confirmation": {
+    "confirmed_by": "Odimar",
+    "confirmed_at": "2026-08-24",
+    "confirmation_text": "confirmo o desenvolvimento V1",
+    "scope": "linguistic confirmation and authorization for development-only evaluation",
+    "clinical_validation": false,
+    "holdout_authorized": false
+  }
+}

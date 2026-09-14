@@ -1,0 +1,52 @@
+{
+  "schema_version": "phase2-baseline-freeze-v1",
+  "baseline_id": "phase2-pre-improvement-2026-09-12",
+  "frozen_at_utc": "2026-09-13T00:36:17.038Z",
+  "purpose": "Congelar o comportamento e os artefatos locais antes de qualquer melhoria motivada pela Fase 2.",
+  "repository": {
+    "head_commit": "cd01782e7ca540c1d6040482fc5c3e29f7ef4063",
+    "branch": "main",
+    "working_tree_clean": false,
+    "content_hashes_are_authoritative": true,
+    "note": "A árvore já continha alterações locais da Fase 1 e arquivos não rastreados. Nada foi limpo, revertido ou sobrescrito para produzir este congelamento."
+  },
+  "runtime": {
+    "python": "3.11.9",
+    "rapidfuzz": "3.14.5",
+    "pandas": "2.3.3",
+    "pydantic": "2.13.5"
+  },
+  "pipeline": {
+    "detector": "fuzzy_windows",
+    "detector_max_span_tokens": 5,
+    "detector_threshold": 0.92,
+    "ranker": "fuzzy",
+    "ranker_scorer": "rapidfuzz.fuzz.WRatio",
+    "context_classifier": "portuguese_context_cues_v1",
+    "top_k": 5,
+    "max_spans": 10
+  },
+  "data_snapshot": {
+    "data_version": "hpo-2026-06-23_pt-62f1d254",
+    "hpo_release": "2026-06-23",
+    "translation_commit": "62f1d254f93e47d87e874783019ccd7480400e76",
+    "source_metadata": "data/processed/metadata.json"
+  },
+  "sha256": {
+    "src/hpo_ptbr/evidence.py": "366cd3f692216c118270417ff8a978e97824742d70ec5d0b54b35f758610a193",
+    "src/hpo_ptbr/rankers.py": "505414383744e8b97411c504a45d556f478ade2713bc201cd3e70c8da1535ea4",
+    "src/hpo_ptbr/assertion.py": "3e4ff82eb440d296a751f045491ac2128fa05b9c02fd0469dfa61c742ae82fa6",
+    "src/hpo_ptbr/benchmark.py": "8cd26a2f680ecb2caa6ad748569cc70c076399a232769be33e80bd48b25a4626",
+    "src/hpo_ptbr/benchmark_evaluation.py": "085055d992ed073f1b4163b9b1945502114b66b727d464140dc8b309fd1da04b",
+    "src/hpo_ptbr/normalize.py": "442b316503c2ea72c9dd7ac87babbddc84ddba54d2d67ed5706d5862deeab86f",
+    "data/processed/hpo_ptbr.csv": "05a82409f7120b9339a74d88a0b6736fd788b6b4df1b9a358e658c6a64bbd16c",
+    "data/processed/metadata.json": "d389f4aa472e96adbc174804b37f481d9b1afbc14dbc51a8bad607b44d808adc",
+    "data/processed/hpo_ontology.json.gz": "de19f072d03acd22a043bbb6f193391894d63d4113b8c18818172f5bd25998af"
+  },
+  "interpretation": {
+    "status": "frozen_before_phase2_evaluation_infrastructure",
+    "method_changes_in_phase2_run": false,
+    "unit_tests_are_generalization_evidence": false,
+    "acceptance_thresholds_approved": false
+  }
+}

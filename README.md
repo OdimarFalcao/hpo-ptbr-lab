@@ -1,21 +1,129 @@
 # HPO-PTBR Lab
 
-Protótipo acadêmico para recuperar termos válidos da Human Phenotype Ontology a partir de expressões fenotípicas curtas em português brasileiro.
+Projeto acadêmico de agente especializado em ontologia clínica no Brasil. A bancada atual implementa o módulo inicial de construção e revisão de perfil fenotípico em português; não é o agente completo nem o produto final.
+
+## Visão da pesquisa
+
+O objetivo global é desenvolver um agente de conhecimento especializado em problemas de ontologia clínica no contexto brasileiro. O agente deverá receber descrições clínicas em português, identificar conceitos, reduzir ambiguidades terminológicas, consultar ontologias e apresentar resultados rastreáveis com evidências para revisão profissional.
+
+Fluxo conceitual:
+
+```text
+descrição clínica em português
+→ extração de conceitos e contexto
+→ normalização semântica
+→ mapeamento HPO e consulta a ontologias
+→ evidências e alternativas
+→ apoio à priorização de hipóteses genéticas
+→ revisão humana
+```
+
+O HPO-PTBR Lab implementa e avalia o primeiro núcleo desse agente: `texto PT-BR → menções fenotípicas → HPO válido`. SNOMED CT, OMOP CDM, RAG com literatura, Phenopackets e priorização genética pertencem às fases posteriores e não devem ser apresentados como funcionalidades atuais. O agente será de apoio ao conhecimento e à decisão; não emitirá diagnóstico autônomo.
 
 ## O que entrega
+
+### Visão e planejamento do agente
+
+HPO é infraestrutura semântica, não produto final. A direção global inclui investigação genética assistida com hipóteses priorizadas, evidências e referências, sem diagnóstico autônomo. O planejamento atual está separado dos protocolos experimentais e não altera seus resultados:
+
+- [Visão canônica e origem na reunião de 28/05/2026](docs/AGENTE.md).
+- [Arquitetura alvo e módulos realmente existentes](docs/ARQUITETURA_AGENTE.md).
+- [Roadmap incremental](docs/ROADMAP_AGENTE.md).
+- [Plano de avaliação do agente](docs/AVALIACAO_AGENTE.md).
+- [Fase 2: linguagem clínica natural e avaliação](docs/FASE_2_LINGUAGEM_E_AVALIACAO.md).
+- [Decisões e pendências](docs/DECISOES_AGENTE.md).
+
+### Módulo atual
 
 - Snapshot versionado da HPO `2026-06-23` e da tradução portuguesa.
 - Análise de cobertura dos rótulos em português.
 - Três baselines reproduzíveis: exact match, fuzzy match e BM25.
 - Baseline semântico offline experimental, isolado do dashboard.
 - Piloto técnico com 30 expressões públicas/sintéticas.
-- Dashboard Streamlit com cobertura, mapeador, descrição sintética, resultados e roadmap.
+- Dashboard Streamlit com cobertura, mapeador, bancada de anotação assistida, resultados e roadmap.
+
+### Fase 1 — núcleo do perfil fenotípico
+
+A bancada web implementa a construção e revisão local de um perfil por fenótipo: trecho original, HPO selecionado, contexto, origem automática/manual, método de recuperação, decisão humana, caracterização e pendências. Idade/início, gravidade, evolução, frequência, lateralidade e histórico familiar podem ser registrados; campos vazios continuam explicitamente pendentes. Toda alteração exige nova confirmação antes da exportação.
+
+O detector lexical e os rankers Exact, Fuzzy e BM25 foram preservados. A busca manual amplia a consulta com rótulos e sinônimos oficiais do snapshot HPO e mostra idioma e fonte. O snapshot português atual possui rótulos oficiais, mas não fornece sinônimos portugueses; portanto, resultados ingleses são marcados como tais e termos sem rótulo PT não são apresentados como traduções validadas. Nenhum dataset oficial foi alterado.
+
+### Fase 2 — desenvolvimento técnico implementado
+
+A Fase 2 corrige uma limitação metodológica dos testes antigos: descrições que repetem o rótulo HPO esperado verificam o pipeline, mas favorecem correspondência lexical e não demonstram fluidez clínica. Foram adicionados baseline congelado, [rubrica](docs/FASE_2_RUBRICA_ANOTACAO.md), protocolo, onze casos sintéticos de desenvolvimento sem rótulo literal como pista principal, executor e análise de erros. O resultado foi negativo para extração e ranking de paráfrases e está registrado sem exagero em `data/results/phase2_development_report.md`.
+
+Validação e holdout continuam sem casos no repositório e dependem de autoria independente e revisão clínica. Não foi adicionado modelo, tradução não oficial, prontuário real, telemetria ou gate aprovado.
+
+Para reproduzir somente o desenvolvimento:
+
+```powershell
+python scripts/run_phase2_development.py
+```
 
 ## Limites
 
 Este projeto não realiza diagnóstico, não processa prontuários e não usa dados clínicos reais. SNOMED CT e OMOP fazem parte da arquitetura futura, mas não são simulados nesta versão. Nenhum conteúdo SNOMED é redistribuído.
 
+## Fechamento do V1
+
+Em agosto de 2026 iniciou-se uma sprint de sete dias para fechar o V1 acadêmico. O primeiro incremento é um novo benchmark sintético que separa detecção de menções, linking HPO e contexto da menção. Seus conceitos serão inéditos em relação a todos os conjuntos já avaliados, e o novo holdout só poderá ser executado depois do congelamento do método.
+
+- Sprint: `docs/sprint_v1_7_days.md`
+- Protocolo científico: `docs/benchmark_v1_protocol.md`
+- Especificação executável: `data/protocol/benchmark_v1_protocol.json`
+- Aprendizado aplicado de TI: `docs/learning_by_doing.md`
+
+O desenvolvimento do benchmark possui 20 descrições sintéticas e 36 HPO IDs inéditos, distribuídos igualmente entre nove domínios. Após revisão técnica cega contra o `hp.json` oficial e confirmação humana para uso exploratório, o baseline de desenvolvimento foi executado sem selecionar ou consultar o novo holdout.
+
+O fuzzy obteve F1 ponta a ponta geral de 50,79%. Os três métodos lexicais tiveram 0% de recall de detecção nas 12 paráfrases. A avaliação também mostrou por que accuracy isolada pode enganar: o contexto atingiu 66,67% de accuracy, mas apenas 20,00% de macro-F1, pois o baseline `always_present` errou todas as negações, incertezas e menções familiares.
+
+Para regenerar o desenvolvimento, revisar, confirmar e executar novamente o baseline:
+
+```powershell
+python scripts/prepare_benchmark_v1_development.py
+python scripts/review_benchmark_v1_development.py
+python scripts/confirm_benchmark_v1_development.py
+python scripts/run_benchmark_v1_development.py
+python scripts/run_benchmark_v1_candidates.py
+```
+
+Relatório: `data/results/benchmark_v1_development_report.md`.
+
+### Candidatos V1 no desenvolvimento
+
+Uma matriz pré-registrada separou o efeito do contexto e da detecção semântica. As regras de contexto em português elevaram o macro-F1 de 20,00% para 95,92% e passaram o gate exploratório, com uma falha em 36 menções. Esse valor pode refletir os templates sintéticos já inspecionados e ainda precisa de avaliação em casos inéditos.
+
+O SapBERT com aliases oficiais recuperou exatamente 4/12 paráfrases. A união lexical-semântica elevou o F1 ponta a ponta para 77,14%, contra 50,79% do fuzzy original. Porém, ambos produziram um falso positivo em um dos dois controles negativos (`achados fenotípicos` → `HP:0000118`), taxa de 50%. O componente semântico e o híbrido reprovaram seus gates e permanecem fora do dashboard. Nenhum HPO ID inválido foi retornado e o holdout não foi utilizado.
+
+Duas execuções produziram os mesmos detalhes, previsões, gates, erros, metadados, relatório e métricas depois de remover somente os campos de latência.
+
+- Pré-registro: `data/protocol/benchmark_v1_candidate_protocol.json`
+- Relatório: `data/results/benchmark_v1_candidate_report.md`
+- Análise de erros: `data/results/benchmark_v1_candidate_error_analysis.json`
+
 ## Instalação
+
+### Nova bancada web (React + FastAPI)
+
+Interface principal em português, com revisão explícita, correções manuais, conceitos oficiais e exportação. Streamlit continua disponível como área de pesquisa. As duas interfaces usam o mesmo núcleo científico; a nova interface não melhora por si só as métricas de detecção.
+
+```powershell
+cd C:\dev\hpo-ptbr-lab
+.\.venv\Scripts\python.exe -m pip install -r requirements-web.txt
+cd web
+npm ci
+npm run build
+cd ..
+.\.venv\Scripts\python.exe scripts/run_web.py
+```
+
+Abra `http://127.0.0.1:8000` para a bancada e `http://127.0.0.1:8504` para pesquisa. Mantenha o terminal aberto; **Ctrl+C** encerra apenas os servidores iniciados pelo comando. Se o Streamlit já estiver aberto separadamente, use `--without-research`. Nenhum processo existente é encerrado automaticamente.
+
+Node 22 LTS é recomendado; o build também foi exercitado com Node 18.20.8 neste ambiente. O `package-lock.json` fixa as dependências do frontend. Não é necessário instalar modelos semânticos para usar a bancada. Revisões ficam apenas em memória e no JSON baixado explicitamente. Não inserir prontuários nem dados pessoais.
+
+Detalhes da arquitetura, contratos, privacidade e validação: `docs/web_workbench.md`.
+
+### Streamlit de referência
 
 ```powershell
 python -m venv .venv
@@ -36,6 +144,7 @@ Depois execute:
 
 ```powershell
 python scripts/build_snapshot.py
+python scripts/build_ontology_index.py
 python scripts/run_evaluation.py
 python scripts/run_semantic_evaluation.py
 python scripts/create_notebook.py
@@ -85,9 +194,15 @@ A consolidação automática que separa Experimento 0, desenvolvimento do Experi
 python scripts/build_comparison_report.py
 ```
 
-## Prova de conceito com evidência textual
+## Bancada de anotação assistida
 
-A página `Descrição sintética` recebe um texto inventado, destaca evidências lexicais e organiza candidatos HPO para revisão humana. O usuário pode selecionar um conceito, marcar a decisão como pendente, aceita, alternativa ou descartada e exportar a revisão em JSON. Os dez cenários multissistêmicos ficam em `data/demo/synthetic_review_cases.json`; nenhum de seus IDs pertence ao holdout.
+A página `Anotação assistida` recebe um texto inventado, destaca evidências lexicais e organiza candidatos HPO para revisão humana. O usuário pode incluir uma menção omitida, corrigir limites por sobreposição, descartar falsos positivos, escolher contexto e caracterização, pesquisar outro HPO por rótulo, sinônimo oficial ou ID e exportar o perfil no formato experimental `hpo-ptbr-review-v1`. As alterações ficam somente na sessão e no JSON baixado; não há banco nem persistência de texto.
+
+Cada conceito selecionado apresenta os rótulos oficiais disponíveis, definição, sinônimos, pais, filhos e um caminho determinístico até `HP:0000118`. Esses dados são derivados do mesmo snapshot oficial em `data/processed/hpo_ontology.json.gz`. Referências cruzadas SNOMED CT não são incluídas no índice nem exibidas na aplicação.
+
+Exact, fuzzy e BM25 são comparados separadamente em cada trecho. O SapBERT pode ser carregado explicitamente do cache local para comparar candidatos de um trecho já selecionado; ele não participa da detecção padrão e sua ausência não impede o funcionamento do dashboard. Scores continuam sendo scores de ranking, não confiança calibrada.
+
+Os dez cenários multissistêmicos ficam em `data/demo/synthetic_review_cases.json`; nenhum de seus IDs pertence ao holdout. O fluxo e os conceitos para estudo estão descritos em `docs/workbench_v1.md`.
 
 O detector usa fuzzy match com limiar fixo de `0.92`; o método escolhido pelo usuário apenas ordena os candidatos de cada trecho detectado. `detector_score` e `score` são scores de ranking, não confiança calibrada. Essa prova de conceito pode omitir paráfrases clínicas, não processa prontuários e não altera os resultados do holdout congelado.
 
@@ -125,6 +240,8 @@ O próximo experimento separa detecção de menções e linking HPO. O protocolo
 
 O candidato pré-registrado foi executado uma vez no desenvolvimento e reprovado: 112 fragmentos previstos, precisão/recall/F1 exatos de 0,00%, F1 relaxado de 11,27% e nenhuma das cinco paráfrases críticas recuperada exatamente. A fragmentação WordPiece foi preservada como resultado negativo; não houve regra posterior de junção, linking HPO, uso do holdout ou alteração do dashboard. Consulte `data/results/mention_detection_experiment_report.md`.
 
+Um experimento posterior agregou probabilidades BIOES por grupo, reconstruiu palavras pelo `word_id` do tokenizer e impediu junções através de pontuação. A configuração foi especificada após um dry-run no próprio desenvolvimento e não estima generalização. Ela elevou o F1 exato para 65,57%, com precisão de 64,52%, recall de 66,67% e recuperação de 2/5 paráfrases críticas, mas reprovou os gates. O método permanece offline, sem linking HPO, sem holdout e fora do dashboard. Consulte `data/results/mention_detection_word_aggregation_report.md`.
+
 ```powershell
 python scripts/build_aliases.py
 python scripts/run_semantic_evidence_experiment.py --encoder alias-sapbert --threshold 0.8
@@ -156,6 +273,8 @@ pytest
 As versões, URLs e somas SHA-256 ficam em `data/processed/metadata.json`. O piloto em `data/eval/pilot_cases.csv` é estratificado em rótulos oficiais, variações ortográficas e paráfrases clínicas sintéticas.
 
 ## Roadmap
+
+A referência atual é o [roadmap do agente](docs/ROADMAP_AGENTE.md). O encadeamento abaixo é o esboço histórico de interoperabilidade, não uma dependência obrigatória entre cada etapa nem a arquitetura completa do agente:
 
 `texto clínico PT-BR → SNOMED CT → OMOP CDM → HPO → Phenopacket → priorização genética`
 

@@ -1,0 +1,318 @@
+{
+  "bm25": {
+    "missed_exact_spans_by_surface": {
+      "clinical_paraphrase": 12,
+      "orthographic_variation": 1
+    },
+    "missed_exact_span_examples": [
+      {
+        "case_id": "DEV-NEU-02",
+        "mention_text": "reflexos aumentados de forma generalizada",
+        "target_hpo_id": "HP:0007034",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-OPH-02",
+        "mention_text": "retina deslocada",
+        "target_hpo_id": "HP:0000541",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-MSK-02",
+        "mention_text": "articulação contraída desde o nascimento",
+        "target_hpo_id": "HP:0002803",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-CAR-02",
+        "mention_text": "pulso de baixa intensidade",
+        "target_hpo_id": "HP:0032553",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-RES-02",
+        "mention_text": "ruídos respiratórios fora do padrão",
+        "target_hpo_id": "HP:0030829",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-REN-02",
+        "mention_text": "nefro calcinose",
+        "target_hpo_id": "HP:0000121",
+        "surface_form": "orthographic_variation"
+      },
+      {
+        "case_id": "DEV-REN-02",
+        "mention_text": "dilatação do sistema coletor renal",
+        "target_hpo_id": "HP:0000126",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-DER-02",
+        "mention_text": "pigmentação cutânea reduzida de forma generalizada",
+        "target_hpo_id": "HP:0007513",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-DER-02",
+        "mention_text": "vasos finos visíveis na face",
+        "target_hpo_id": "HP:0007380",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-GAS-02",
+        "mention_text": "quadro semelhante a obstrução intestinal sem bloqueio mecânico",
+        "target_hpo_id": "HP:0004389",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-GAS-02",
+        "mention_text": "inflamação persistente do pâncreas",
+        "target_hpo_id": "HP:0006280",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-ENT-02",
+        "mention_text": "perda completa do olfato",
+        "target_hpo_id": "HP:0000458",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-ENT-02",
+        "mention_text": "redução do olfato",
+        "target_hpo_id": "HP:0004409",
+        "surface_form": "clinical_paraphrase"
+      }
+    ],
+    "gold_span_linking_top_1_errors_by_surface": {
+      "clinical_paraphrase": 10,
+      "orthographic_variation": 3
+    },
+    "gold_span_linking_top_5_errors_by_surface": {
+      "clinical_paraphrase": 8,
+      "orthographic_variation": 3
+    },
+    "assertion_errors_by_gold_class": {
+      "absent": 4,
+      "family_history": 4,
+      "uncertain": 4
+    },
+    "end_to_end_failures_by_surface": {
+      "clinical_paraphrase": 12,
+      "official_label": 3,
+      "orthographic_variation": 7
+    },
+    "spurious_prediction_count": 4,
+    "negative_control_prediction_count": 0
+  },
+  "exact": {
+    "missed_exact_spans_by_surface": {
+      "clinical_paraphrase": 12,
+      "orthographic_variation": 1
+    },
+    "missed_exact_span_examples": [
+      {
+        "case_id": "DEV-NEU-02",
+        "mention_text": "reflexos aumentados de forma generalizada",
+        "target_hpo_id": "HP:0007034",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-OPH-02",
+        "mention_text": "retina deslocada",
+        "target_hpo_id": "HP:0000541",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-MSK-02",
+        "mention_text": "articulação contraída desde o nascimento",
+        "target_hpo_id": "HP:0002803",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-CAR-02",
+        "mention_text": "pulso de baixa intensidade",
+        "target_hpo_id": "HP:0032553",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-RES-02",
+        "mention_text": "ruídos respiratórios fora do padrão",
+        "target_hpo_id": "HP:0030829",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-REN-02",
+        "mention_text": "nefro calcinose",
+        "target_hpo_id": "HP:0000121",
+        "surface_form": "orthographic_variation"
+      },
+      {
+        "case_id": "DEV-REN-02",
+        "mention_text": "dilatação do sistema coletor renal",
+        "target_hpo_id": "HP:0000126",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-DER-02",
+        "mention_text": "pigmentação cutânea reduzida de forma generalizada",
+        "target_hpo_id": "HP:0007513",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-DER-02",
+        "mention_text": "vasos finos visíveis na face",
+        "target_hpo_id": "HP:0007380",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-GAS-02",
+        "mention_text": "quadro semelhante a obstrução intestinal sem bloqueio mecânico",
+        "target_hpo_id": "HP:0004389",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-GAS-02",
+        "mention_text": "inflamação persistente do pâncreas",
+        "target_hpo_id": "HP:0006280",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-ENT-02",
+        "mention_text": "perda completa do olfato",
+        "target_hpo_id": "HP:0000458",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-ENT-02",
+        "mention_text": "redução do olfato",
+        "target_hpo_id": "HP:0004409",
+        "surface_form": "clinical_paraphrase"
+      }
+    ],
+    "gold_span_linking_top_1_errors_by_surface": {
+      "clinical_paraphrase": 12,
+      "orthographic_variation": 7
+    },
+    "gold_span_linking_top_5_errors_by_surface": {
+      "clinical_paraphrase": 12,
+      "orthographic_variation": 7
+    },
+    "assertion_errors_by_gold_class": {
+      "absent": 4,
+      "family_history": 4,
+      "uncertain": 4
+    },
+    "end_to_end_failures_by_surface": {
+      "clinical_paraphrase": 12,
+      "official_label": 3,
+      "orthographic_variation": 11
+    },
+    "spurious_prediction_count": 4,
+    "negative_control_prediction_count": 0
+  },
+  "fuzzy": {
+    "missed_exact_spans_by_surface": {
+      "clinical_paraphrase": 12,
+      "orthographic_variation": 1
+    },
+    "missed_exact_span_examples": [
+      {
+        "case_id": "DEV-NEU-02",
+        "mention_text": "reflexos aumentados de forma generalizada",
+        "target_hpo_id": "HP:0007034",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-OPH-02",
+        "mention_text": "retina deslocada",
+        "target_hpo_id": "HP:0000541",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-MSK-02",
+        "mention_text": "articulação contraída desde o nascimento",
+        "target_hpo_id": "HP:0002803",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-CAR-02",
+        "mention_text": "pulso de baixa intensidade",
+        "target_hpo_id": "HP:0032553",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-RES-02",
+        "mention_text": "ruídos respiratórios fora do padrão",
+        "target_hpo_id": "HP:0030829",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-REN-02",
+        "mention_text": "nefro calcinose",
+        "target_hpo_id": "HP:0000121",
+        "surface_form": "orthographic_variation"
+      },
+      {
+        "case_id": "DEV-REN-02",
+        "mention_text": "dilatação do sistema coletor renal",
+        "target_hpo_id": "HP:0000126",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-DER-02",
+        "mention_text": "pigmentação cutânea reduzida de forma generalizada",
+        "target_hpo_id": "HP:0007513",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-DER-02",
+        "mention_text": "vasos finos visíveis na face",
+        "target_hpo_id": "HP:0007380",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-GAS-02",
+        "mention_text": "quadro semelhante a obstrução intestinal sem bloqueio mecânico",
+        "target_hpo_id": "HP:0004389",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-GAS-02",
+        "mention_text": "inflamação persistente do pâncreas",
+        "target_hpo_id": "HP:0006280",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-ENT-02",
+        "mention_text": "perda completa do olfato",
+        "target_hpo_id": "HP:0000458",
+        "surface_form": "clinical_paraphrase"
+      },
+      {
+        "case_id": "DEV-ENT-02",
+        "mention_text": "redução do olfato",
+        "target_hpo_id": "HP:0004409",
+        "surface_form": "clinical_paraphrase"
+      }
+    ],
+    "gold_span_linking_top_1_errors_by_surface": {
+      "clinical_paraphrase": 12
+    },
+    "gold_span_linking_top_5_errors_by_surface": {
+      "clinical_paraphrase": 12
+    },
+    "assertion_errors_by_gold_class": {
+      "absent": 4,
+      "family_history": 4,
+      "uncertain": 4
+    },
+    "end_to_end_failures_by_surface": {
+      "clinical_paraphrase": 12,
+      "official_label": 3,
+      "orthographic_variation": 5
+    },
+    "spurious_prediction_count": 4,
+    "negative_control_prediction_count": 0
+  }
+}

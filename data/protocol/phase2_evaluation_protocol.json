@@ -1,0 +1,61 @@
+{
+  "schema_version": "phase2-evaluation-protocol-v1",
+  "protocol_id": "hpo-ptbr-phase2-natural-language-v1",
+  "status": "development_only_pending_clinical_validation",
+  "baseline_freeze": "data/protocol/phase2_baseline_freeze.json",
+  "data_policy": {
+    "synthetic_only": true,
+    "real_health_records_allowed": false,
+    "local_processing_only": true,
+    "automatic_text_storage": false,
+    "terminology_snapshot": "hpo-2026-06-23_pt-62f1d254",
+    "synthetic_paraphrases_are_validated_translations": false
+  },
+  "splits": {
+    "development": {
+      "status": "executable",
+      "purpose": "engenharia, inspeção e análise inicial de erros",
+      "dataset": "data/eval/phase2_development.json"
+    },
+    "validation": {
+      "status": "reserved_not_authored",
+      "purpose": "seleção posterior de mudanças, após autoria independente e revisão clínica",
+      "registry": "data/eval/phase2_split_registry.json"
+    },
+    "holdout": {
+      "status": "sealed_not_authored",
+      "purpose": "estimativa final, executável uma única vez após congelamento do método",
+      "registry": "data/eval/phase2_split_registry.json"
+    }
+  },
+  "execution": {
+    "allowed_split": "development",
+    "detected_span_top_k": 5,
+    "gold_span_top_k": 5,
+    "max_spans": 10,
+    "relaxed_span_iou": 0.5,
+    "methods": ["fuzzy"]
+  },
+  "leakage_audit": {
+    "block_exact_case_text": true,
+    "block_exact_mention_text": true,
+    "block_normalized_mention_text": true,
+    "block_morphological_fingerprint": true,
+    "block_template_family_reuse": true,
+    "block_target_hpo_reuse": true,
+    "block_ancestor_or_descendant_distance": 2,
+    "note": "Parâmetros são controles de engenharia deste protocolo, não limiares de aprovação clínica."
+  },
+  "metrics": {
+    "extraction": ["exact_span_precision", "exact_span_recall", "exact_span_f1", "relaxed_span_recall"],
+    "normalization_and_ranking": ["gold_span_accuracy_at_1", "gold_span_accuracy_at_5", "gold_span_mrr_at_5"],
+    "context": ["accuracy", "macro_f1"],
+    "pending_fields": ["pending_field_precision", "pending_field_recall", "characterization_omissions"],
+    "review": ["correction_components_proxy", "human_elapsed_seconds_if_explicitly_supplied"]
+  },
+  "acceptance": {
+    "approved_numeric_thresholds": false,
+    "status": "depends_on_later_clinical_and_methodological_validation",
+    "unit_tests_count_as_generalization_evidence": false
+  }
+}

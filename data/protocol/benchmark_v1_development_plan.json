@@ -1,0 +1,164 @@
+{
+  "benchmark_version": "ptbr-phenotype-benchmark-v1-development",
+  "snapshot": "hpo-2026-06-23_pt-62f1d254",
+  "status": "draft_pending_blind_review",
+  "selection_method": "Fixed manual stratification over eligible Portuguese labels, four unique concepts per domain, without consulting method rankings.",
+  "cases": [
+    {
+      "case_id": "DEV-NEU-01",
+      "domain": "neurology",
+      "mentions": [
+        {"hpo_id": "HP:0003401", "surface_text": "Parestesia", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0004373", "surface_text": "Distonia focal", "surface_form": "official_label", "assertion": "absent"}
+      ]
+    },
+    {
+      "case_id": "DEV-NEU-02",
+      "domain": "neurology",
+      "mentions": [
+        {"hpo_id": "HP:0006986", "surface_text": "espasticidade membro superior", "surface_form": "orthographic_variation", "assertion": "present"},
+        {"hpo_id": "HP:0007034", "surface_text": "reflexos aumentados de forma generalizada", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-01",
+      "domain": "ophthalmology",
+      "mentions": [
+        {"hpo_id": "HP:0000483", "surface_text": "Astigmatismo", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0000540", "surface_text": "Hipermetropia", "surface_form": "official_label", "assertion": "uncertain"}
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-02",
+      "domain": "ophthalmology",
+      "mentions": [
+        {"hpo_id": "HP:0000613", "surface_text": "foto-fobia", "surface_form": "orthographic_variation", "assertion": "present"},
+        {"hpo_id": "HP:0000541", "surface_text": "retina deslocada", "surface_form": "clinical_paraphrase", "assertion": "absent"}
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-01",
+      "domain": "musculoskeletal",
+      "mentions": [
+        {"hpo_id": "HP:0003307", "surface_text": "Hiperlordose", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0002944", "surface_text": "Escoliose toracolombar", "surface_form": "official_label", "assertion": "absent"}
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-02",
+      "domain": "musculoskeletal",
+      "mentions": [
+        {"hpo_id": "HP:0004209", "surface_text": "clinodactilia 5o dedo da mao", "surface_form": "orthographic_variation", "assertion": "present"},
+        {"hpo_id": "HP:0002803", "surface_text": "articulação contraída desde o nascimento", "surface_form": "clinical_paraphrase", "assertion": "family_history"}
+      ]
+    },
+    {
+      "case_id": "DEV-CAR-01",
+      "domain": "cardiovascular",
+      "mentions": [
+        {"hpo_id": "HP:0006671", "surface_text": "Taquicardia atrial paroxística", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0006695", "surface_text": "defeito septo atrioventricular", "surface_form": "orthographic_variation", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-CAR-02",
+      "domain": "cardiovascular",
+      "mentions": [
+        {"hpo_id": "HP:0012722", "surface_text": "bloqueio cardiaco", "surface_form": "orthographic_variation", "assertion": "absent"},
+        {"hpo_id": "HP:0032553", "surface_text": "pulso de baixa intensidade", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-RES-01",
+      "domain": "respiratory",
+      "mentions": [
+        {"hpo_id": "HP:0002789", "surface_text": "Taquipneia", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0002791", "surface_text": "hipoventilacao", "surface_form": "orthographic_variation", "assertion": "uncertain"}
+      ]
+    },
+    {
+      "case_id": "DEV-RES-02",
+      "domain": "respiratory",
+      "mentions": [
+        {"hpo_id": "HP:0002837", "surface_text": "bronquite-recorrente", "surface_form": "orthographic_variation", "assertion": "present"},
+        {"hpo_id": "HP:0030829", "surface_text": "ruídos respiratórios fora do padrão", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-REN-01",
+      "domain": "renal_urinary",
+      "mentions": [
+        {"hpo_id": "HP:0000020", "surface_text": "Incontinência urinária", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0000107", "surface_text": "cisto-renal", "surface_form": "orthographic_variation", "assertion": "uncertain"}
+      ]
+    },
+    {
+      "case_id": "DEV-REN-02",
+      "domain": "renal_urinary",
+      "mentions": [
+        {"hpo_id": "HP:0000121", "surface_text": "nefro calcinose", "surface_form": "orthographic_variation", "assertion": "family_history"},
+        {"hpo_id": "HP:0000126", "surface_text": "dilatação do sistema coletor renal", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-DER-01",
+      "domain": "dermatology",
+      "mentions": [
+        {"hpo_id": "HP:0004554", "surface_text": "Hipertricose generalizada", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0007400", "surface_text": "hiperpigmentacao irregular", "surface_form": "orthographic_variation", "assertion": "uncertain"}
+      ]
+    },
+    {
+      "case_id": "DEV-DER-02",
+      "domain": "dermatology",
+      "mentions": [
+        {"hpo_id": "HP:0007513", "surface_text": "pele mais clara de forma difusa", "surface_form": "clinical_paraphrase", "assertion": "present"},
+        {"hpo_id": "HP:0007380", "surface_text": "vasos finos visíveis na face", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-01",
+      "domain": "gastrointestinal",
+      "mentions": [
+        {"hpo_id": "HP:0003270", "surface_text": "Distensão abdominal", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0004385", "surface_text": "diarreia prolongda", "surface_form": "orthographic_variation", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-02",
+      "domain": "gastrointestinal",
+      "mentions": [
+        {"hpo_id": "HP:0004389", "surface_text": "quadro semelhante a obstrução intestinal sem bloqueio mecânico", "surface_form": "clinical_paraphrase", "assertion": "family_history"},
+        {"hpo_id": "HP:0006280", "surface_text": "inflamação persistente do pâncreas", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-01",
+      "domain": "hearing_ent",
+      "mentions": [
+        {"hpo_id": "HP:0000371", "surface_text": "Otite média aguda", "surface_form": "official_label", "assertion": "present"},
+        {"hpo_id": "HP:0000421", "surface_text": "epistax", "surface_form": "orthographic_variation", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-02",
+      "domain": "hearing_ent",
+      "mentions": [
+        {"hpo_id": "HP:0000458", "surface_text": "perda completa do olfato", "surface_form": "clinical_paraphrase", "assertion": "family_history"},
+        {"hpo_id": "HP:0004409", "surface_text": "redução do olfato", "surface_form": "clinical_paraphrase", "assertion": "present"}
+      ]
+    },
+    {
+      "case_id": "DEV-CTRL-01",
+      "domain": "general",
+      "case_type": "negative_control",
+      "text": "Descrição sintética de acompanhamento sem achados fenotípicos registrados."
+    },
+    {
+      "case_id": "DEV-CTRL-02",
+      "domain": "general",
+      "case_type": "negative_control",
+      "text": "Registro artificial destinado ao teste de falso positivo, sem sinais clínicos descritos."
+    }
+  ]
+}

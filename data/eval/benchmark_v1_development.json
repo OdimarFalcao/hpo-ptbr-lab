@@ -1,0 +1,618 @@
+{
+  "benchmark_version": "ptbr-phenotype-benchmark-v1-development",
+  "snapshot": "hpo-2026-06-23_pt-62f1d254",
+  "status": "human_confirmed_for_development_evaluation",
+  "selection_method": "Fixed manual stratification over eligible Portuguese labels, four unique concepts per domain, without consulting method rankings.",
+  "cases": [
+    {
+      "case_id": "DEV-NEU-01",
+      "split": "development",
+      "domain": "neurology",
+      "case_type": "phenotype",
+      "text": "A avaliação documenta Parestesia. Não há evidência de Distonia focal.",
+      "mentions": [
+        {
+          "text": "Parestesia",
+          "start": 22,
+          "end": 32,
+          "hpo_id": "HP:0003401",
+          "label_pt": "Parestesia",
+          "label_en": "Paresthesia",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "Distonia focal",
+          "start": 54,
+          "end": 68,
+          "hpo_id": "HP:0004373",
+          "label_pt": "Distonia focal",
+          "label_en": "Focal dystonia",
+          "assertion": "absent",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-NEU-02",
+      "split": "development",
+      "domain": "neurology",
+      "case_type": "phenotype",
+      "text": "A descrição inclui espasticidade membro superior. O texto sintético descreve reflexos aumentados de forma generalizada.",
+      "mentions": [
+        {
+          "text": "espasticidade membro superior",
+          "start": 19,
+          "end": 48,
+          "hpo_id": "HP:0006986",
+          "label_pt": "Espasticidade do membro superior",
+          "label_en": "Upper limb spasticity",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        },
+        {
+          "text": "reflexos aumentados de forma generalizada",
+          "start": 77,
+          "end": 118,
+          "hpo_id": "HP:0007034",
+          "label_pt": "Hiperreflexia generalizada",
+          "label_en": "Generalized hyperreflexia",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Mantém o aumento dos reflexos e a distribuição generalizada do conceito."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-01",
+      "split": "development",
+      "domain": "ophthalmology",
+      "case_type": "phenotype",
+      "text": "O registro menciona Astigmatismo. Ainda se investiga Hipermetropia.",
+      "mentions": [
+        {
+          "text": "Astigmatismo",
+          "start": 20,
+          "end": 32,
+          "hpo_id": "HP:0000483",
+          "label_pt": "Astigmatismo",
+          "label_en": "Astigmatism",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "Hipermetropia",
+          "start": 53,
+          "end": 66,
+          "hpo_id": "HP:0000540",
+          "label_pt": "Hipermetropia",
+          "label_en": "Hypermetropia",
+          "assertion": "uncertain",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-OPH-02",
+      "split": "development",
+      "domain": "ophthalmology",
+      "case_type": "phenotype",
+      "text": "A avaliação documenta foto-fobia. Não há evidência de retina deslocada.",
+      "mentions": [
+        {
+          "text": "foto-fobia",
+          "start": 22,
+          "end": 32,
+          "hpo_id": "HP:0000613",
+          "label_pt": "Fotofobia",
+          "label_en": "Photophobia",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        },
+        {
+          "text": "retina deslocada",
+          "start": 54,
+          "end": 70,
+          "hpo_id": "HP:0000541",
+          "label_pt": "Descolamento de retina",
+          "label_en": "Retinal detachment",
+          "assertion": "absent",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Corresponde ao sinônimo oficial em inglês 'Detached retina'."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-01",
+      "split": "development",
+      "domain": "musculoskeletal",
+      "case_type": "phenotype",
+      "text": "O registro contém Hiperlordose. Não foram encontrados sinais de Escoliose toracolombar.",
+      "mentions": [
+        {
+          "text": "Hiperlordose",
+          "start": 18,
+          "end": 30,
+          "hpo_id": "HP:0003307",
+          "label_pt": "Hiperlordose",
+          "label_en": "Hyperlordosis",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "Escoliose toracolombar",
+          "start": 64,
+          "end": 86,
+          "hpo_id": "HP:0002944",
+          "label_pt": "Escoliose toracolombar",
+          "label_en": "Thoracolumbar scoliosis",
+          "assertion": "absent",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-MSK-02",
+      "split": "development",
+      "domain": "musculoskeletal",
+      "case_type": "phenotype",
+      "text": "A anotação apresenta clinodactilia 5o dedo da mao. Há histórico familiar de articulação contraída desde o nascimento.",
+      "mentions": [
+        {
+          "text": "clinodactilia 5o dedo da mao",
+          "start": 21,
+          "end": 49,
+          "hpo_id": "HP:0004209",
+          "label_pt": "Clinodactilia do 5º dedo da mão",
+          "label_en": "Clinodactyly of the 5th finger",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        },
+        {
+          "text": "articulação contraída desde o nascimento",
+          "start": 76,
+          "end": 116,
+          "hpo_id": "HP:0002803",
+          "label_pt": "Contratura congênita",
+          "label_en": "Congenital contracture",
+          "assertion": "family_history",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Preserva a contratura articular e sua presença desde o nascimento."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-CAR-01",
+      "split": "development",
+      "domain": "cardiovascular",
+      "case_type": "phenotype",
+      "text": "A avaliação documenta Taquicardia atrial paroxística. A descrição inclui defeito septo atrioventricular.",
+      "mentions": [
+        {
+          "text": "Taquicardia atrial paroxística",
+          "start": 22,
+          "end": 52,
+          "hpo_id": "HP:0006671",
+          "label_pt": "Taquicardia atrial paroxística",
+          "label_en": "Paroxysmal atrial tachycardia",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "defeito septo atrioventricular",
+          "start": 73,
+          "end": 103,
+          "hpo_id": "HP:0006695",
+          "label_pt": "Defeito do septo atrioventricular",
+          "label_en": "Atrioventricular canal defect",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-CAR-02",
+      "split": "development",
+      "domain": "cardiovascular",
+      "case_type": "phenotype",
+      "text": "O registro nega bloqueio cardiaco. O texto sintético descreve pulso de baixa intensidade.",
+      "mentions": [
+        {
+          "text": "bloqueio cardiaco",
+          "start": 16,
+          "end": 33,
+          "hpo_id": "HP:0012722",
+          "label_pt": "Bloqueio cardíaco",
+          "label_en": "Heart block",
+          "assertion": "absent",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        },
+        {
+          "text": "pulso de baixa intensidade",
+          "start": 62,
+          "end": 88,
+          "hpo_id": "HP:0032553",
+          "label_pt": "Pulso fraco",
+          "label_en": "Weak pulse",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Preserva a redução da amplitude ou força do pulso."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-RES-01",
+      "split": "development",
+      "domain": "respiratory",
+      "case_type": "phenotype",
+      "text": "O texto sintético descreve Taquipneia. O registro mantém hipoventilacao como possibilidade.",
+      "mentions": [
+        {
+          "text": "Taquipneia",
+          "start": 27,
+          "end": 37,
+          "hpo_id": "HP:0002789",
+          "label_pt": "Taquipneia",
+          "label_en": "Tachypnea",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "hipoventilacao",
+          "start": 57,
+          "end": 71,
+          "hpo_id": "HP:0002791",
+          "label_pt": "Hipoventilação",
+          "label_en": "Hypoventilation",
+          "assertion": "uncertain",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-RES-02",
+      "split": "development",
+      "domain": "respiratory",
+      "case_type": "phenotype",
+      "text": "O registro contém bronquite-recorrente. A anotação apresenta ruídos respiratórios fora do padrão.",
+      "mentions": [
+        {
+          "text": "bronquite-recorrente",
+          "start": 18,
+          "end": 38,
+          "hpo_id": "HP:0002837",
+          "label_pt": "Bronquite recorrente",
+          "label_en": "Recurrent bronchitis",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        },
+        {
+          "text": "ruídos respiratórios fora do padrão",
+          "start": 61,
+          "end": 96,
+          "hpo_id": "HP:0030829",
+          "label_pt": "Sons respiratórios anormais",
+          "label_en": "Abnormal breath sound",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Expressa um som respiratório anômalo sem especificar um subtipo ausente."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-REN-01",
+      "split": "development",
+      "domain": "renal_urinary",
+      "case_type": "phenotype",
+      "text": "O registro contém Incontinência urinária. A avaliação levanta suspeita de cisto-renal.",
+      "mentions": [
+        {
+          "text": "Incontinência urinária",
+          "start": 18,
+          "end": 40,
+          "hpo_id": "HP:0000020",
+          "label_pt": "Incontinência urinária",
+          "label_en": "Urinary incontinence",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "cisto-renal",
+          "start": 74,
+          "end": 85,
+          "hpo_id": "HP:0000107",
+          "label_pt": "Cisto renal",
+          "label_en": "Renal cyst",
+          "assertion": "uncertain",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-REN-02",
+      "split": "development",
+      "domain": "renal_urinary",
+      "case_type": "phenotype",
+      "text": "A família relata ocorrência de nefro calcinose. O registro menciona dilatação do sistema coletor renal.",
+      "mentions": [
+        {
+          "text": "nefro calcinose",
+          "start": 31,
+          "end": 46,
+          "hpo_id": "HP:0000121",
+          "label_pt": "Nefrocalcinose",
+          "label_en": "Nephrocalcinosis",
+          "assertion": "family_history",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        },
+        {
+          "text": "dilatação do sistema coletor renal",
+          "start": 68,
+          "end": 102,
+          "hpo_id": "HP:0000126",
+          "label_pt": "Hidronefrose",
+          "label_en": "Hydronephrosis",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Expressa a dilatação do sistema coletor renal descrita no conceito."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-DER-01",
+      "split": "development",
+      "domain": "dermatology",
+      "case_type": "phenotype",
+      "text": "O registro menciona Hipertricose generalizada. Ainda se investiga hiperpigmentacao irregular.",
+      "mentions": [
+        {
+          "text": "Hipertricose generalizada",
+          "start": 20,
+          "end": 45,
+          "hpo_id": "HP:0004554",
+          "label_pt": "Hipertricose generalizada",
+          "label_en": "Generalized hypertrichosis",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "hiperpigmentacao irregular",
+          "start": 66,
+          "end": 92,
+          "hpo_id": "HP:0007400",
+          "label_pt": "Hiperpigmentação irregular",
+          "label_en": "Irregular hyperpigmentation",
+          "assertion": "uncertain",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-DER-02",
+      "split": "development",
+      "domain": "dermatology",
+      "case_type": "phenotype",
+      "text": "A avaliação documenta pigmentação cutânea reduzida de forma generalizada. A descrição inclui vasos finos visíveis na face.",
+      "mentions": [
+        {
+          "text": "pigmentação cutânea reduzida de forma generalizada",
+          "start": 22,
+          "end": 72,
+          "hpo_id": "HP:0007513",
+          "label_pt": "Hipopigmentação generalizada",
+          "label_en": "Generalized hypopigmentation",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Explicita redução generalizada da pigmentação e evita confusão com palidez."
+        },
+        {
+          "text": "vasos finos visíveis na face",
+          "start": 93,
+          "end": 121,
+          "hpo_id": "HP:0007380",
+          "label_pt": "Telangiectasia facial",
+          "label_en": "Facial telangiectasia",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Expressa pequenos vasos visíveis próximos à superfície da pele da face."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-01",
+      "split": "development",
+      "domain": "gastrointestinal",
+      "case_type": "phenotype",
+      "text": "O registro menciona Distensão abdominal. A avaliação documenta diarreia prolongda.",
+      "mentions": [
+        {
+          "text": "Distensão abdominal",
+          "start": 20,
+          "end": 39,
+          "hpo_id": "HP:0003270",
+          "label_pt": "Distensão abdominal",
+          "label_en": "Abdominal distention",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "diarreia prolongda",
+          "start": 63,
+          "end": 81,
+          "hpo_id": "HP:0004385",
+          "label_pt": "Diarreia prolongada",
+          "label_en": "Protracted diarrhea",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-GAS-02",
+      "split": "development",
+      "domain": "gastrointestinal",
+      "case_type": "phenotype",
+      "text": "O histórico familiar registra quadro semelhante a obstrução intestinal sem bloqueio mecânico. A descrição inclui inflamação persistente do pâncreas.",
+      "mentions": [
+        {
+          "text": "quadro semelhante a obstrução intestinal sem bloqueio mecânico",
+          "start": 30,
+          "end": 92,
+          "hpo_id": "HP:0004389",
+          "label_pt": "Pseudo-obstrução intestinal",
+          "label_en": "Intestinal pseudo-obstruction",
+          "assertion": "family_history",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Preserva manifestações de obstrução intestinal sem bloqueio mecânico."
+        },
+        {
+          "text": "inflamação persistente do pâncreas",
+          "start": 113,
+          "end": 147,
+          "hpo_id": "HP:0006280",
+          "label_pt": "Pancreatite crônica",
+          "label_en": "Chronic pancreatitis",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Equivale ao sinônimo oficial em inglês 'Chronic pancreas inflammation'."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-01",
+      "split": "development",
+      "domain": "hearing_ent",
+      "case_type": "phenotype",
+      "text": "O registro menciona Otite média aguda. A avaliação documenta epistax.",
+      "mentions": [
+        {
+          "text": "Otite média aguda",
+          "start": 20,
+          "end": 37,
+          "hpo_id": "HP:0000371",
+          "label_pt": "Otite média aguda",
+          "label_en": "Acute otitis media",
+          "assertion": "present",
+          "surface_form": "official_label",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Superfície idêntica ao rótulo português versionado."
+        },
+        {
+          "text": "epistax",
+          "start": 61,
+          "end": 68,
+          "hpo_id": "HP:0000421",
+          "label_pt": "Epistaxe",
+          "label_en": "Epistaxis",
+          "assertion": "present",
+          "surface_form": "orthographic_variation",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Variação controlada de acento, separador, deleção ou abreviação, sem alterar o conceito-alvo."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-ENT-02",
+      "split": "development",
+      "domain": "hearing_ent",
+      "case_type": "phenotype",
+      "text": "O histórico familiar registra perda completa do olfato. A descrição inclui redução do olfato.",
+      "mentions": [
+        {
+          "text": "perda completa do olfato",
+          "start": 30,
+          "end": 54,
+          "hpo_id": "HP:0000458",
+          "label_pt": "Anosmia",
+          "label_en": "Anosmia",
+          "assertion": "family_history",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Equivale ao sinônimo oficial em inglês 'Loss of smell'."
+        },
+        {
+          "text": "redução do olfato",
+          "start": 75,
+          "end": 92,
+          "hpo_id": "HP:0004409",
+          "label_pt": "Hiposmia",
+          "label_en": "Hyposmia",
+          "assertion": "present",
+          "surface_form": "clinical_paraphrase",
+          "review_status": "human_confirmed_for_development_evaluation",
+          "review_notes": "Preserva a diminuição, sem perda completa, da percepção de odores."
+        }
+      ]
+    },
+    {
+      "case_id": "DEV-CTRL-01",
+      "split": "development",
+      "domain": "general",
+      "case_type": "negative_control",
+      "text": "Descrição sintética de acompanhamento sem achados fenotípicos registrados.",
+      "mentions": []
+    },
+    {
+      "case_id": "DEV-CTRL-02",
+      "split": "development",
+      "domain": "general",
+      "case_type": "negative_control",
+      "text": "Registro artificial destinado ao teste de falso positivo, sem sinais clínicos descritos.",
+      "mentions": []
+    }
+  ]
+}

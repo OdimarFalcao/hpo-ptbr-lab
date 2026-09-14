@@ -1,4 +1,5 @@
 -r requirements.txt
+-r requirements-web.txt
 -r requirements-semantic.txt
 pytest>=8,<9
 nbformat>=5,<6

@@ -1,0 +1,56 @@
+{
+  "protocol_version": "mention-detection-word-aggregation-development-1",
+  "status": "specified_after_exploratory_dry_run",
+  "scope": {
+    "dataset": "data/demo/synthetic_review_cases.json",
+    "development_cases": 10,
+    "gold_mentions": 30,
+    "critical_paraphrases": 5,
+    "holdout_used": false,
+    "data_policy": "public_and_synthetic_only"
+  },
+  "candidate_model": {
+    "name": "HUMADEX/portugese_medical_ner",
+    "revision": "51368a80d5b81aa211199aa1988574869197f288",
+    "accepted_entity_groups": ["PROBLEM"],
+    "aggregation": {
+      "token_group_score": "sum BIOES probabilities within each entity group",
+      "word_group_score": "arithmetic mean across subwords sharing tokenizer word_id",
+      "word_label": "highest group score with O winning exact ties",
+      "punctuation": "discard punctuation-only words and never join across punctuation",
+      "mention_span": "join adjacent PROBLEM words separated only by whitespace or hyphen"
+    },
+    "confidence_threshold": null
+  },
+  "evaluation": {
+    "primary_metric": "exact_span_f1",
+    "secondary_metrics": [
+      "exact_span_precision",
+      "exact_span_recall",
+      "relaxed_span_f1_iou_0_5",
+      "critical_paraphrase_recall",
+      "invalid_prediction_rate",
+      "latency_mean_ms"
+    ],
+    "linking_metrics_excluded": true,
+    "hpo_ranking_excluded": true
+  },
+  "decision_gate": {
+    "exact_span_recall_min": 0.9,
+    "exact_span_precision_min": 0.85,
+    "critical_paraphrase_recall_min": 0.8,
+    "invalid_predictions_max": 0,
+    "dashboard_promotion": false
+  },
+  "execution": {
+    "development_only": true,
+    "model_files_must_match_existing_manifest": true,
+    "local_files_only": true,
+    "holdout_execution": false
+  },
+  "limitations": [
+    "The aggregation was designed after inspecting an exploratory dry-run on this development set.",
+    "Results are development evidence and cannot estimate generalization.",
+    "No clinical use, diagnosis, HPO linking, or dashboard promotion is permitted."
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "protocol_version": "ptbr-phenotype-benchmark-v1",
+  "status": "preregistered_design",
+  "snapshot": "hpo-2026-06-23_pt-62f1d254",
+  "scope": {
+    "data_policy": "public_and_synthetic_only",
+    "clinical_validation": false,
+    "diagnostic_use": false,
+    "case_count": 30,
+    "mention_count": 54,
+    "unique_hpo_ids": 54,
+    "negative_control_count": 3,
+    "splits": {
+      "development": 20,
+      "holdout": 10
+    },
+    "mentions_by_split": {
+      "development": 36,
+      "holdout": 18
+    },
+    "minimum_domains": 9
+  },
+  "historical_exclusions": [
+    "data/eval/pilot_cases.csv",
+    "data/eval/holdout_cases.csv",
+    "data/demo/synthetic_review_cases.json"
+  ],
+  "domains": [
+    "neurology",
+    "ophthalmology",
+    "musculoskeletal",
+    "cardiovascular",
+    "respiratory",
+    "renal_urinary",
+    "dermatology",
+    "gastrointestinal",
+    "hearing_ent"
+  ],
+  "annotation": {
+    "offset_convention": "zero_based_half_open",
+    "assertion_counts": {
+      "present": 36,
+      "absent": 6,
+      "uncertain": 6,
+      "family_history": 6
+    },
+    "surface_form_counts": {
+      "official_label": 18,
+      "orthographic_variation": 18,
+      "clinical_paraphrase": 18
+    },
+    "concepts_must_be_unique": true,
+    "concept_disjoint_splits": true,
+    "overlapping_spans_allowed": false
+  },
+  "targets": {
+    "development": {
+      "scope": {
+        "case_count": 20,
+        "mention_count": 36,
+        "negative_control_count": 2,
+        "splits": {
+          "development": 20
+        },
+        "mentions_by_split": {
+          "development": 36
+        },
+        "minimum_domains": 9
+      },
+      "annotation": {
+        "assertion_counts": {
+          "present": 24,
+          "absent": 4,
+          "uncertain": 4,
+          "family_history": 4
+        },
+        "surface_form_counts": {
+          "official_label": 12,
+          "orthographic_variation": 12,
+          "clinical_paraphrase": 12
+        },
+        "domain_mention_counts": {
+          "neurology": 4,
+          "ophthalmology": 4,
+          "musculoskeletal": 4,
+          "cardiovascular": 4,
+          "respiratory": 4,
+          "renal_urinary": 4,
+          "dermatology": 4,
+          "gastrointestinal": 4,
+          "hearing_ent": 4
+        }
+      }
+    },
+    "holdout": {
+      "scope": {
+        "case_count": 10,
+        "mention_count": 18,
+        "negative_control_count": 1,
+        "splits": {
+          "holdout": 10
+        },
+        "mentions_by_split": {
+          "holdout": 18
+        },
+        "minimum_domains": 9
+      },
+      "annotation": {
+        "assertion_counts": {
+          "present": 12,
+          "absent": 2,
+          "uncertain": 2,
+          "family_history": 2
+        },
+        "surface_form_counts": {
+          "official_label": 6,
+          "orthographic_variation": 6,
+          "clinical_paraphrase": 6
+        },
+        "domain_mention_counts": {
+          "neurology": 2,
+          "ophthalmology": 2,
+          "musculoskeletal": 2,
+          "cardiovascular": 2,
+          "respiratory": 2,
+          "renal_urinary": 2,
+          "dermatology": 2,
+          "gastrointestinal": 2,
+          "hearing_ent": 2
+        }
+      }
+    }
+  },
+  "evaluation": {
+    "primary_metric": "end_to_end_exact_f1",
+    "secondary_metrics": [
+      "exact_span_precision",
+      "exact_span_recall",
+      "exact_span_f1",
+      "relaxed_span_f1_iou_0_5",
+      "linking_accuracy_at_1",
+      "linking_accuracy_at_5",
+      "linking_mrr_at_20",
+      "assertion_macro_f1",
+      "negative_control_false_positive_rate",
+      "invalid_hpo_id_rate",
+      "latency_mean_ms"
+    ],
+    "stratify_by": [
+      "split",
+      "domain",
+      "assertion",
+      "surface_form"
+    ]
+  },
+  "decision_gate": {
+    "paraphrase_end_to_end_f1_must_exceed_lexical": true,
+    "official_label_regression_max_cases": 1,
+    "negative_control_false_positives_must_not_increase": true,
+    "invalid_hpo_ids_max": 0,
+    "deterministic_repetition_required": true,
+    "dashboard_promotion": false
+  },
+  "freeze": {
+    "holdout_runs": 1,
+    "method_commit_required": true,
+    "manifest_sha256_required": true,
+    "review_without_rankings": true,
+    "old_holdout_reuse": false
+  },
+  "limitations": [
+    "Exploratory synthetic benchmark for V1, not clinical validation.",
+    "No healthcare-professional annotation is available in this sprint.",
+    "The dataset does not represent prevalence or real clinical documentation.",
+    "SNOMED CT, OMOP and genetic prioritization are outside this evaluation."
+  ]
+}

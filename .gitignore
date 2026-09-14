@@ -3,6 +3,13 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .streamlit/secrets.toml
+.streamlit/*.log
 data/raw/*
 !data/raw/.gitkeep
 notebooks/.ipynb_checkpoints/
+output/
+tmp/
+web/node_modules/
+web/dist/
+web/coverage/
+web/*.tsbuildinfo

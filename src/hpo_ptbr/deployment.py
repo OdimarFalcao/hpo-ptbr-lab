@@ -6,6 +6,7 @@ DASHBOARD_REQUIRED_FILES = (
     "streamlit_app.py",
     "requirements.txt",
     "data/processed/hpo_ptbr.csv",
+    "data/processed/hpo_ontology.json.gz",
     "data/processed/metadata.json",
     "data/processed/untranslated_terms.csv",
     "data/results/evaluation_summary.csv",

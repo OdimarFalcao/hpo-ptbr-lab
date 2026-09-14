@@ -1,0 +1,35 @@
+{
+  "schema_version": "phase2-split-registry-v1",
+  "protocol_id": "hpo-ptbr-phase2-natural-language-v1",
+  "development": {
+    "status": "authored_technical_gold_pending_clinical_review",
+    "dataset": "data/eval/phase2_development.json",
+    "scenario_families": [
+      "curso_temporal_e_lateralidade",
+      "limitação_funcional_leiga",
+      "incerteza_em_exame",
+      "histórico_familiar",
+      "perda_de_marco_adquirido",
+      "negação_em_alimentação",
+      "abreviação_e_erro_ortográfico",
+      "evolução_funcional",
+      "descrição_geométrica",
+      "controle_sem_fenótipo"
+    ]
+  },
+  "validation": {
+    "status": "reserved_not_authored",
+    "authoring_rule": "Autoria independente da pessoa que alterar o método após o desenvolvimento.",
+    "planned_strata": ["linguagem_leiga", "linguagem_técnica", "negação", "incerteza", "histórico_familiar", "temporalidade", "abreviação", "erro_de_escrita", "irrelevante"],
+    "target_concepts": [],
+    "texts": []
+  },
+  "holdout": {
+    "status": "sealed_not_authored",
+    "authoring_rule": "Definição por responsável independente, revisão clínica e guarda sem acesso durante desenvolvimento/validação.",
+    "planned_strata": ["mistura_de_registros", "paráfrases_não_vistas", "contextos_compostos", "controles_difíceis"],
+    "target_concepts": [],
+    "texts": []
+  },
+  "leakage_policy": "Nenhum texto, menção, impressão morfológica, família de template, HPO alvo ou conceito a até duas arestas de ancestralidade pode cruzar conjuntos."
+}
