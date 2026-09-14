@@ -1,0 +1,36 @@
+{
+  "schema_version": "official-term-index-manifest-v1",
+  "data_version": "hpo-2026-06-23_pt-62f1d254",
+  "scope_root": "HP:0000118",
+  "scope_root_included": false,
+  "phenotype_concepts": 19119,
+  "concepts_with_official_label_pt": 6980,
+  "concepts_without_official_label_pt": 12139,
+  "terms": 49218,
+  "terms_by_field": {
+    "official_exact_synonym_en": 23119,
+    "official_label_en": 19119,
+    "official_label_pt": 6980
+  },
+  "terms_by_language": {
+    "en": 42238,
+    "pt-BR": 6980
+  },
+  "sources": {
+    "hpo": {
+      "url": "https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/hp.json",
+      "sha256": "3b646565695329aa399e937883c68d5d424d0df5eaab2f22baa0e08d44fdbe87",
+      "version": "2026-06-23"
+    },
+    "hpo_pt": {
+      "url": "https://raw.githubusercontent.com/obophenotype/hpo-translations/main/babelon/hp-pt.babelon.tsv",
+      "sha256": "31f642ef8f6951287d9386d3b3454990504143520161ef4615c1c5c0ed85ebd0",
+      "version": "62f1d254f93e47d87e874783019ccd7480400e76"
+    }
+  },
+  "derived_at_runtime_from_versioned_ontology": true,
+  "official_dataset_modified": false,
+  "builder": "src/hpo_ptbr/official_term_index.py",
+  "builder_sha256": "361b42af863f14ae5b91032114898f3cf98d0fb1e0b46381c2b56fcc5496f25d",
+  "ontology_sha256": "de19f072d03acd22a043bbb6f193391894d63d4113b8c18818172f5bd25998af"
+}
