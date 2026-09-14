@@ -27,7 +27,11 @@ def reviewed_payload(client, text="ptose e nistagmo"):
 
 
 def test_health_examples_and_no_gold_labels(client):
-    assert client.get("/api/health").json()["active_terms"] == 19836
+    health = client.get("/api/health").json()
+    assert health["active_terms"] == 19836
+    assert health["automatic_phenotype_terms"] == 19119
+    assert health["ranked_phenotype_terms_pt"] == 6980
+    assert health["automatic_scope_root"] == "HP:0000118"
     examples = client.get("/api/examples").json()
     assert len(examples) == 10
     assert set(examples[0]) == {"id", "title", "domain", "text"}
@@ -74,6 +78,25 @@ def test_concept_hierarchy_and_search(client):
     assert client.get("/api/concepts/HP:9999999").status_code == 404
     assert client.post("/api/search", json={"query": "HP:0000508"}).json()[0]["hpo_id"] == "HP:0000508"
     assert client.post("/api/search", json={"query": "HP:9999999"}).json() == []
+    assert client.get("/api/concepts/HP:0003674").status_code == 200
+    assert client.post("/api/search", json={"query": "HP:0003674"}).json() == []
+
+
+def test_automatic_pipeline_only_ranks_phenotypic_abnormalities(client):
+    _, ontology, mappers = resources()
+
+    assert all(
+        ontology.is_phenotypic_abnormality(record.hpo_id)
+        for mapper in mappers.values()
+        for record in mapper.records
+    )
+    response = client.post(
+        "/api/analyze",
+        json={"text": "A criança começou a andar aos dois anos."},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["spans"] == []
 
 
 def test_semantic_failure_preserves_lexical(client, monkeypatch):

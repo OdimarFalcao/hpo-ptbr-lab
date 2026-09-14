@@ -39,6 +39,7 @@ class OntologyIndex:
         self.concepts = concepts
         self.data_version = data_version
         self.root_hpo_id = root_hpo_id
+        self._phenotypic_abnormality_ids: frozenset[str] | None = None
 
     def get(self, hpo_id: str) -> HpoConcept | None:
         return self.concepts.get(hpo_id)
@@ -47,6 +48,29 @@ class OntologyIndex:
         concept = self.get(hpo_id)
         if concept is None:
             raise ValueError(f"HPO ID inexistente no snapshot: {hpo_id}")
+        return concept
+
+    @property
+    def phenotypic_abnormality_ids(self) -> frozenset[str]:
+        """Descendentes da raiz fenotípica, sem incluir a própria raiz."""
+        if self._phenotypic_abnormality_ids is None:
+            self._phenotypic_abnormality_ids = frozenset(
+                hpo_id
+                for hpo_id in self.concepts
+                if hpo_id != self.root_hpo_id
+                and self.root_hpo_id in self.path_to_root(hpo_id)[1:]
+            )
+        return self._phenotypic_abnormality_ids
+
+    def is_phenotypic_abnormality(self, hpo_id: str) -> bool:
+        return hpo_id in self.phenotypic_abnormality_ids
+
+    def require_phenotypic_abnormality(self, hpo_id: str) -> HpoConcept:
+        concept = self.require(hpo_id)
+        if not self.is_phenotypic_abnormality(hpo_id):
+            raise ValueError(
+                f"HPO ID fora da árvore de anormalidades fenotípicas: {hpo_id}"
+            )
         return concept
 
     def path_to_root(self, hpo_id: str) -> tuple[str, ...]:

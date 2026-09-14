@@ -101,7 +101,7 @@ def search_candidates(
     direct_id = cleaned_query.upper()
     if re.fullmatch(r"HP:\d{7}", direct_id):
         concept = ontology.get(direct_id)
-        if concept is None:
+        if concept is None or not ontology.is_phenotypic_abnormality(direct_id):
             return []
         return [
             {
@@ -134,11 +134,14 @@ def search_candidates(
             "label_pt_status": "official",
         }
         for candidate in result.candidates
+        if ontology.is_phenotypic_abnormality(candidate.hpo_id)
     ]
     translated_ids = {str(candidate["hpo_id"]) for candidate in translated}
     normalized_query = normalize_text(cleaned_query)
     official_terms: list[tuple[float, str, str, str, str]] = []
     for concept in ontology.concepts.values():
+        if not ontology.is_phenotypic_abnormality(concept.hpo_id):
+            continue
         terms = [(concept.label_en, "label_en", "clinical")]
         terms.extend(
             (synonym.text, "synonym_en", synonym.audience)
@@ -286,7 +289,9 @@ def build_workbench_export(
         if decision == "include":
             if not selected_hpo_id:
                 raise ValueError("Anotação incluída sem HPO selecionado.")
-            concept = ontology.require(str(selected_hpo_id))
+            concept = ontology.require_phenotypic_abnormality(
+                str(selected_hpo_id)
+            )
             selected = {
                 "hpo_id": concept.hpo_id,
                 "label_pt": concept.label_pt,

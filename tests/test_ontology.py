@@ -52,6 +52,22 @@ def test_loads_relations_and_deterministic_path(tmp_path):
     assert index.require("HP:0000118").child_ids == ("HP:0000508",)
     assert index.path_to_root("HP:0000508") == ("HP:0000508", "HP:0000118")
     assert ptosis.synonyms[0].audience == "layperson"
+    assert index.phenotypic_abnormality_ids == frozenset({"HP:0000508"})
+    assert index.is_phenotypic_abnormality("HP:0000508") is True
+    assert index.is_phenotypic_abnormality("HP:0000118") is False
+
+
+def test_rejects_root_as_final_phenotypic_abnormality(tmp_path):
+    path = tmp_path / "ontology.json.gz"
+    _write_index(path)
+    index = load_ontology_index(path)
+
+    try:
+        index.require_phenotypic_abnormality("HP:0000118")
+    except ValueError as error:
+        assert "fora da árvore" in str(error)
+    else:
+        raise AssertionError("A raiz fenotípica não deve ser anotação final")
 
 
 def test_rejects_unknown_hpo_id(tmp_path):
@@ -72,6 +88,7 @@ def test_versioned_index_contains_only_valid_internal_relations():
     index = load_ontology_index(path)
 
     assert len(index.concepts) == 19836
+    assert len(index.phenotypic_abnormality_ids) == 19119
     assert index.data_version == "hpo-2026-06-23_pt-62f1d254"
     assert all(
         related_id in index.concepts

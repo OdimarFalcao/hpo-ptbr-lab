@@ -145,11 +145,44 @@ def test_manual_search_accepts_valid_id_and_rejects_unknown_id():
 
     direct = search_candidates("hp:0000508", mappers["Fuzzy"], ontology)
     missing = search_candidates("HP:9999999", mappers["Fuzzy"], ontology)
+    root = search_candidates("HP:0000118", mappers["Fuzzy"], ontology)
 
     assert direct[0]["hpo_id"] == "HP:0000508"
     assert direct[0]["method"] == "hpo_id_lookup"
     assert direct[0]["score"] is None
     assert missing == []
+    assert root == []
+
+
+def test_export_rejects_concept_outside_phenotypic_abnormality_tree():
+    mappers, ontology = _resources()
+    text = "Anormalidade fenotípica"
+    span = build_annotation_span(
+        text,
+        0,
+        len(text),
+        source="manual",
+        mappers=mappers,
+        classifier=PortugueseContextCueClassifier(),
+    )
+    review = span | {
+        "decision": "include",
+        "assertion": "present",
+        "selected_hpo_id": "HP:0000118",
+        "human_modified": False,
+    }
+
+    try:
+        build_workbench_export(
+            text=text,
+            data_version="test",
+            reviews=[review],
+            ontology=ontology,
+        )
+    except ValueError as error:
+        assert "fora da árvore" in str(error)
+    else:
+        raise AssertionError("A raiz não deve ser exportada como fenótipo")
 
 
 def test_manual_search_adds_only_traceable_official_ontology_terms():

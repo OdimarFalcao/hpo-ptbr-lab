@@ -114,12 +114,18 @@ class ExportRequest(Contract):
 
 @lru_cache(maxsize=1)
 def resources():
-    records = load_snapshot(ROOT / "data/processed/hpo_ptbr.csv")
     metadata = load_metadata(ROOT / "data/processed/metadata.json")
     ontology = load_ontology_index(ROOT / "data/processed/hpo_ontology.json.gz")
     version = str(metadata["data_version"])
     if ontology.data_version != version:
         raise ValueError("Snapshot e índice incompatíveis.")
+    records = [
+        record
+        for record in load_snapshot(ROOT / "data/processed/hpo_ptbr.csv")
+        if ontology.is_phenotypic_abnormality(record.hpo_id)
+    ]
+    if not records:
+        raise ValueError("Snapshot sem anormalidades fenotípicas traduzidas.")
     mappers = {"Exact": ExactMapper(records, version), "Fuzzy": FuzzyMapper(records, version), "BM25": Bm25Mapper(records, version)}
     return metadata, ontology, mappers
 
@@ -171,7 +177,15 @@ async def value_error(request, error):
 @app.get("/api/health")
 def health():
     metadata, ontology, _ = resources()
-    return {"status": "ok", "data_version": ontology.data_version, "active_terms": len(ontology.concepts), "translated_labels_pt": metadata["translated_labels_pt"]}
+    return {
+        "status": "ok",
+        "data_version": ontology.data_version,
+        "active_terms": len(ontology.concepts),
+        "translated_labels_pt": metadata["translated_labels_pt"],
+        "automatic_phenotype_terms": len(ontology.phenotypic_abnormality_ids),
+        "ranked_phenotype_terms_pt": len(resources()[2]["Fuzzy"].records),
+        "automatic_scope_root": ontology.root_hpo_id,
+    }
 
 
 @app.get("/api/examples")
@@ -236,12 +250,12 @@ def export(payload: ExportRequest):
             for candidate in candidates
         }
         if review.selected_hpo_id:
-            ontology.require(review.selected_hpo_id)
+            ontology.require_phenotypic_abnormality(review.selected_hpo_id)
         if review.decision == "include" and review.selected_hpo_id not in ranked_ids:
             raise ValueError("Conceito incluído sem método de recuperação registrado.")
         for candidates in review.rankings.values():
             for candidate in candidates:
-                ontology.require(candidate.hpo_id)
+                ontology.require_phenotypic_abnormality(candidate.hpo_id)
     terminology_provenance = {
         "data_version": payload.data_version,
         "hpo_release": metadata["hpo_release"],
