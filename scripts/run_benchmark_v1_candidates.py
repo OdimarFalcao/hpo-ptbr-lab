@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from hpo_ptbr.hashing import content_sha256
 from hpo_ptbr.aliases import load_aliases
 from hpo_ptbr.assertion import PortugueseContextCueClassifier
 from hpo_ptbr.benchmark_evaluation import evaluate_benchmark_method
@@ -27,7 +28,7 @@ RESULTS_DIR = ROOT / "data/results"
 
 
 def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return content_sha256(path)
 
 
 def _write_csv(path: Path, rows: list[dict[str, object]]) -> None:

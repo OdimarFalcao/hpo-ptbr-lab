@@ -5,9 +5,9 @@
   "base_commit": "cd01782e7ca540c1d6040482fc5c3e29f7ef4063",
   "working_tree_was_dirty": true,
   "dataset": "data/eval/benchmark_v1_development.json",
-  "dataset_sha256": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+  "dataset_sha256": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7",
   "baseline_summary": "data/results/benchmark_v1_development_summary.json",
-  "baseline_summary_sha256": "5511b12540a105d1fa8b4dceeb4ca10414bdd43a11712213ea56bff6dff5f729",
+  "baseline_summary_sha256": "def13d22fa2f0f62dd3cca80995fdf59c51927cd42b3914b7534c472ba7e8de1",
   "snapshot": "hpo-2026-06-23_pt-62f1d254",
   "holdout_used": false,
   "assertion_candidate": {
@@ -54,7 +54,7 @@
       "hpo_exact_synonym_en"
     ],
     "alias_dataset": "data/processed/hpo_exact_synonyms_en.csv",
-    "alias_dataset_sha256": "62a291eb1698af8810d8e4370152f6134a4f287d46839fe973aab65a0dc4f680",
+    "alias_dataset_sha256": "35ea91c55cfe0bb47bb4823bf0bf26154adcd2eaec8c9aada90e12a8e4fab3ff",
     "detection_threshold": 0.8,
     "max_span_tokens": 6,
     "respect_text_boundaries": true,

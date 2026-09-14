@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from hpo_ptbr.hashing import content_sha256
 from hpo_ptbr.benchmark import validate_benchmark, validate_benchmark_targets
 from hpo_ptbr.data import load_snapshot
 from hpo_ptbr.evaluation import load_cases
@@ -240,8 +241,8 @@ def main() -> None:
             "data/demo/synthetic_review_cases.json",
         ],
         **summary,
-        "dataset_sha256": hashlib.sha256(OUTPUT_PATH.read_bytes()).hexdigest(),
-        "review_sha256": hashlib.sha256(REVIEW_PATH.read_bytes()).hexdigest(),
+        "dataset_sha256": content_sha256(OUTPUT_PATH),
+        "review_sha256": content_sha256(REVIEW_PATH),
     }
     MANIFEST_PATH.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",

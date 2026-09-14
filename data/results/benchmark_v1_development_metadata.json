@@ -2,9 +2,9 @@
   "status": "development_baseline_executed",
   "evaluated_at": "2026-08-24",
   "dataset": "data/eval/benchmark_v1_development.json",
-  "dataset_sha256": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+  "dataset_sha256": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7",
   "protocol": "data/protocol/benchmark_v1_development_baseline.json",
-  "protocol_sha256": "f98205f0208fc6a90ceb9740a40e3c13d43f78c0fc57b13ee432f82e178aefbd",
+  "protocol_sha256": "62bca852ca229fe09b2dfeab77ebbfa2bc5998e5bc8e30574e7ce7b67130b2ce",
   "snapshot": "hpo-2026-06-23_pt-62f1d254",
   "methods": [
     "exact",

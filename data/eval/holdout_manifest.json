@@ -34,7 +34,7 @@
     "HP:0030326",
     "HP:0030491"
   ],
-  "sha256": "60429c577f88fe5d99fec7f674edfd922f47d1da05306b4e0fecb1503d805f5e",
+  "sha256": "10b400e312a74332eaab11fa392cfb09d65d53578a719d3df86fd36e9d9386ac",
   "review_file": "holdout_review.csv",
   "rejections": []
 }

@@ -3,9 +3,13 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from hpo_ptbr.hashing import content_sha256
 DATASET_PATH = ROOT / "data/eval/benchmark_v1_development.json"
 REVIEW_PATH = ROOT / "data/eval/benchmark_v1_development_review.csv"
 REVIEW_LOG_PATH = ROOT / "data/eval/benchmark_v1_development_review_log.json"
@@ -16,7 +20,7 @@ EXPECTED_TECHNICAL_STATUS = "technical_review_complete_pending_human_confirmatio
 
 
 def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return content_sha256(path)
 
 
 def main() -> None:

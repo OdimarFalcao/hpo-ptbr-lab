@@ -6,7 +6,7 @@
   "protocol": "data/protocol/phase2_evaluation_protocol.json",
   "protocol_sha256": "cf6a04b3506794a639a10b074699370136f3bfbc2d9328f2d5824b1dae6a011d",
   "baseline": "data/protocol/phase2_baseline_freeze.json",
-  "baseline_sha256": "ae21d5c4721dd3f94a5502ba73e28b1f81ba2bb25f873ce3c529931c666f24b7",
+  "baseline_sha256": "247bc4e38608da998c0ab6dc367d5b5c462226e03acf94eea1c3f1b2d84ff399",
   "baseline_id": "phase2-pre-improvement-2026-09-12",
   "split": "development",
   "validation_used": false,

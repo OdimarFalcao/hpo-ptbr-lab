@@ -1,5 +1,7 @@
 import csv
 import hashlib
+
+from hpo_ptbr.hashing import content_sha256
 import json
 from pathlib import Path
 
@@ -56,10 +58,10 @@ def test_development_manifest_hashes_and_review_form_are_consistent():
             encoding="utf-8"
         )
     )
-    assert manifest["dataset_sha256"] == hashlib.sha256(dataset_path.read_bytes()).hexdigest()
-    assert manifest["review_sha256"] == hashlib.sha256(review_path.read_bytes()).hexdigest()
+    assert manifest["dataset_sha256"] == content_sha256(dataset_path)
+    assert manifest["review_sha256"] == content_sha256(review_path)
     review_log_path = ROOT / manifest["review_log"]
-    assert manifest["review_log_sha256"] == hashlib.sha256(review_log_path.read_bytes()).hexdigest()
+    assert manifest["review_log_sha256"] == content_sha256(review_log_path)
     with review_path.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
     assert len(rows) == 38

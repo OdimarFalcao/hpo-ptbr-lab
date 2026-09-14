@@ -10,6 +10,8 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 
+from .hashing import content_sha256
+
 from .data import HpoRecord
 from .evaluation import load_cases
 from .normalize import normalize_text
@@ -328,7 +330,7 @@ def freeze_holdout(
         writer = csv.DictWriter(handle, fieldnames=list(cases[0]))
         writer.writeheader()
         writer.writerows(cases)
-    checksum = hashlib.sha256(output.read_bytes()).hexdigest()
+    checksum = content_sha256(output)
     rejections: list[dict[str, str]] = []
     if rejections_path and Path(rejections_path).exists():
         with Path(rejections_path).open(encoding="utf-8", newline="") as handle:

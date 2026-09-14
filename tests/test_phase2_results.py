@@ -1,4 +1,6 @@
 import hashlib
+
+from hpo_ptbr.hashing import content_sha256
 import json
 from pathlib import Path
 
@@ -13,7 +15,7 @@ def _json(relative_path: str) -> dict[str, object]:
 
 
 def _sha256(relative_path: str) -> str:
-    return hashlib.sha256((ROOT / relative_path).read_bytes()).hexdigest()
+    return content_sha256(ROOT / relative_path)
 
 
 def test_phase2_baseline_freeze_still_matches_pipeline_and_snapshot():
@@ -59,3 +61,51 @@ def test_future_splits_are_reserved_without_exposed_content():
     assert registry["validation"]["texts"] == []
     assert registry["holdout"]["status"] == "sealed_not_authored"
     assert registry["holdout"]["texts"] == []
+
+
+def test_iteration2_offline_index_has_traceable_full_phenotype_scope():
+    manifest = _json("data/results/phase2_iteration2_term_index_manifest.json")
+    metadata = _json("data/processed/metadata.json")
+
+    assert manifest["phenotype_concepts"] == 19119
+    assert manifest["concepts_with_official_label_pt"] == 6980
+    assert manifest["concepts_without_official_label_pt"] == 12139
+    assert manifest["terms"] == 49218
+    assert manifest["scope_root_included"] is False
+    assert manifest["official_dataset_modified"] is False
+    assert manifest["sources"]["hpo"]["sha256"] == metadata["sources"]["hpo"]["sha256"]
+    assert manifest["sources"]["hpo_pt"]["version"] == metadata["translation_commit"]
+
+
+def test_iteration2_result_rejects_integration_and_does_not_use_future_splits():
+    summary = _json("data/results/phase2_iteration2_offline_summary.json")
+    details = _json("data/results/phase2_iteration2_offline_details.json")
+    errors = _json("data/results/phase2_iteration2_offline_error_analysis.json")
+    sapbert = next(
+        method
+        for method in summary["methods"]
+        if method["method"] == "official_terms_sapbert"
+    )
+
+    assert summary["protocol_sha256"] == _sha256(summary["protocol"])
+    assert summary["dataset_sha256"] == _sha256(summary["dataset"])
+    assert summary["validation_used"] is False
+    assert summary["holdout_used"] is False
+    assert summary["decision"]["status"] == "do_not_integrate"
+    assert summary["decision"]["application_changed"] is False
+    assert sapbert["overall"]["targets_retrieved_at_5"] == 1
+    assert sapbert["by_label_pt_status"]["unavailable"]["targets_retrieved_at_5"] == 0
+    assert errors["counts"]["target_not_retrieved_at_5"] == 8
+    assert errors["counts"]["portuguese_coverage_unresolved"] == 4
+    assert errors["clinical_adjudication"] is False
+    assert all(
+        candidate["human_review_required"] is True
+        for row in details
+        for candidate in row["candidates"]
+    )
+    assert all(
+        candidate["label_pt"] == ""
+        for row in details
+        for candidate in row["candidates"]
+        if candidate["label_pt_status"] == "unavailable"
+    )

@@ -1,4 +1,6 @@
 import hashlib
+
+from hpo_ptbr.hashing import content_sha256
 import json
 from pathlib import Path
 
@@ -13,9 +15,7 @@ def _load_json(path: str):
 def test_development_results_follow_preregistered_dataset_and_exclude_holdout():
     protocol = _load_json("data/protocol/benchmark_v1_development_baseline.json")
     metadata = _load_json("data/results/benchmark_v1_development_metadata.json")
-    dataset_bytes = (ROOT / metadata["dataset"]).read_bytes()
-
-    assert hashlib.sha256(dataset_bytes).hexdigest() == protocol["dataset_sha256"]
+    assert content_sha256(ROOT / metadata["dataset"]) == protocol["dataset_sha256"]
     assert metadata["holdout_used"] is False
     assert metadata["methods"] == ["exact", "fuzzy", "bm25"]
 

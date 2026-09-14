@@ -1,0 +1,159 @@
+{
+  "schema_version": "hash-normalization-amendment-v1",
+  "amendment_id": "crlf-to-lf-content-hash-2026-09-14",
+  "registered_at_utc": "2026-09-14T20:28:56.409646+00:00",
+  "motivo": "Os hashes de congelamento eram calculados sobre os bytes crus do arquivo. Artefatos gerados em Windows nascem com CRLF (csv.DictWriter usa \\r\\n por padrao; Path.write_text traduz \\n para os.linesep), enquanto o git os armazena e devolve com LF. O mesmo conteudo produzia digests diferentes conforme a plataforma e a verificacao so passava na maquina que gerou os arquivos, falhando em qualquer clone e no CI (ubuntu-latest).",
+  "o_que_mudou": "Somente o valor gravado do hash. Nenhum conteudo de dataset, protocolo ou resultado foi alterado.",
+  "o_que_nao_mudou": [
+    "conteudo dos datasets de desenvolvimento, validacao e holdout",
+    "protocolos pre-registrados",
+    "resultados, metricas e decisoes ja publicadas",
+    "hashes de fontes externas (hp.json, hp-pt.babelon.tsv, pesos de modelo), que continuam sendo atestados byte a byte"
+  ],
+  "regra_nova": "Artefatos internos usam hpo_ptbr.hashing.content_sha256 (CRLF normalizado para LF). Fontes externas usam raw_sha256.",
+  "verificacao": "Em 2026-09-14, com esta emenda aplicada, a suite completa passa em Linux; os valores anteriores ficam preservados abaixo para auditoria.",
+  "entradas": [
+    {
+      "arquivo": "data/eval/benchmark_v1_development_manifest.json",
+      "campo": "dataset_sha256",
+      "alvo": [
+        "data/eval/benchmark_v1_development.json"
+      ],
+      "sha256_anterior_crlf": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+      "sha256_vigente_lf": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7"
+    },
+    {
+      "arquivo": "data/eval/benchmark_v1_development_manifest.json",
+      "campo": "review_log_sha256",
+      "alvo": [
+        "data/eval/benchmark_v1_development_review_log.json"
+      ],
+      "sha256_anterior_crlf": "f221ec54f3a0436bd8b3bd863701295045f467d1c40d56e68c3abbbf195ab83b",
+      "sha256_vigente_lf": "d74ed019e86289262d3fd63ce2d985fd087c37d9f725208973f7d3c5c426a964"
+    },
+    {
+      "arquivo": "data/eval/holdout_manifest.json",
+      "campo": "sha256",
+      "alvo": [
+        "data/eval/holdout_cases.csv"
+      ],
+      "sha256_anterior_crlf": "60429c577f88fe5d99fec7f674edfd922f47d1da05306b4e0fecb1503d805f5e",
+      "sha256_vigente_lf": "10b400e312a74332eaab11fa392cfb09d65d53578a719d3df86fd36e9d9386ac"
+    },
+    {
+      "arquivo": "data/protocol/benchmark_v1_candidate_protocol.json",
+      "campo": "dataset_sha256",
+      "alvo": [
+        "data/eval/benchmark_v1_development.json"
+      ],
+      "sha256_anterior_crlf": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+      "sha256_vigente_lf": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7"
+    },
+    {
+      "arquivo": "data/protocol/benchmark_v1_candidate_protocol.json",
+      "campo": "baseline_summary_sha256",
+      "alvo": [
+        "data/results/benchmark_v1_development_summary.json"
+      ],
+      "sha256_anterior_crlf": "5511b12540a105d1fa8b4dceeb4ca10414bdd43a11712213ea56bff6dff5f729",
+      "sha256_vigente_lf": "def13d22fa2f0f62dd3cca80995fdf59c51927cd42b3914b7534c472ba7e8de1"
+    },
+    {
+      "arquivo": "data/protocol/benchmark_v1_candidate_protocol.json",
+      "campo": "semantic_candidate.alias_dataset_sha256",
+      "alvo": [
+        "data/processed/hpo_exact_synonyms_en.csv"
+      ],
+      "sha256_anterior_crlf": "62a291eb1698af8810d8e4370152f6134a4f287d46839fe973aab65a0dc4f680",
+      "sha256_vigente_lf": "35ea91c55cfe0bb47bb4823bf0bf26154adcd2eaec8c9aada90e12a8e4fab3ff"
+    },
+    {
+      "arquivo": "data/protocol/benchmark_v1_development_baseline.json",
+      "campo": "dataset_sha256",
+      "alvo": [
+        "data/eval/benchmark_v1_development.json"
+      ],
+      "sha256_anterior_crlf": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+      "sha256_vigente_lf": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7"
+    },
+    {
+      "arquivo": "data/protocol/phase2_baseline_freeze.json",
+      "campo": "sha256.data/processed/hpo_ptbr.csv",
+      "alvo": [
+        "data/processed/hpo_ptbr.csv"
+      ],
+      "sha256_anterior_crlf": "05a82409f7120b9339a74d88a0b6736fd788b6b4df1b9a358e658c6a64bbd16c",
+      "sha256_vigente_lf": "8c708aea957f017e0fe7da8ff08b5479139bad6fcdffd5586297d92580dad2b0"
+    },
+    {
+      "arquivo": "data/protocol/phase2_baseline_freeze.json",
+      "campo": "sha256.data/processed/metadata.json",
+      "alvo": [
+        "data/processed/coverage_summary.json",
+        "data/processed/metadata.json"
+      ],
+      "sha256_anterior_crlf": "d389f4aa472e96adbc174804b37f481d9b1afbc14dbc51a8bad607b44d808adc",
+      "sha256_vigente_lf": "69bbd9ca17e5d90c9e6a692bc870c0075cdfe2e4c46efec3ac700aed737d85b8"
+    },
+    {
+      "arquivo": "data/results/benchmark_v1_candidate_metadata.json",
+      "campo": "dataset_sha256",
+      "alvo": [
+        "data/eval/benchmark_v1_development.json"
+      ],
+      "sha256_anterior_crlf": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+      "sha256_vigente_lf": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7"
+    },
+    {
+      "arquivo": "data/results/benchmark_v1_candidate_metadata.json",
+      "campo": "baseline_summary_sha256",
+      "alvo": [
+        "data/results/benchmark_v1_development_summary.json"
+      ],
+      "sha256_anterior_crlf": "5511b12540a105d1fa8b4dceeb4ca10414bdd43a11712213ea56bff6dff5f729",
+      "sha256_vigente_lf": "def13d22fa2f0f62dd3cca80995fdf59c51927cd42b3914b7534c472ba7e8de1"
+    },
+    {
+      "arquivo": "data/results/benchmark_v1_development_metadata.json",
+      "campo": "dataset_sha256",
+      "alvo": [
+        "data/eval/benchmark_v1_development.json"
+      ],
+      "sha256_anterior_crlf": "5dce9e74da759982913a11c88482daefd6643a79d5cbdb8988103a9f1b3550eb",
+      "sha256_vigente_lf": "94795a6931bf23c320073f1f81ae31343370cf0ff776b51cab7417d6b8cc48c7"
+    },
+    {
+      "arquivo": "data/results/holdout_experiment1_metadata.json",
+      "campo": "holdout_manifest.sha256",
+      "alvo": [
+        "data/eval/holdout_cases.csv"
+      ],
+      "sha256_anterior_crlf": "60429c577f88fe5d99fec7f674edfd922f47d1da05306b4e0fecb1503d805f5e",
+      "sha256_vigente_lf": "10b400e312a74332eaab11fa392cfb09d65d53578a719d3df86fd36e9d9386ac"
+    }
+  ],
+  "entradas_em_cascata": [
+    {
+      "arquivo": "data/results/benchmark_v1_candidate_metadata.json",
+      "campo": "protocol_sha256",
+      "alvo": "data/protocol/benchmark_v1_candidate_protocol.json",
+      "sha256_anterior": "ddf32d48abd8ec0597e332133671d236d86c32046e382c76d0d08c9b997a9274",
+      "sha256_vigente_lf": "b111e00f7b95f04b04de551f2b4957bc8580f019b94bb5572ae7999af5de3a3d"
+    },
+    {
+      "arquivo": "data/results/benchmark_v1_development_metadata.json",
+      "campo": "protocol_sha256",
+      "alvo": "data/protocol/benchmark_v1_development_baseline.json",
+      "sha256_anterior": "f98205f0208fc6a90ceb9740a40e3c13d43f78c0fc57b13ee432f82e178aefbd",
+      "sha256_vigente_lf": "62bca852ca229fe09b2dfeab77ebbfa2bc5998e5bc8e30574e7ce7b67130b2ce"
+    },
+    {
+      "arquivo": "data/results/phase2_development_metadata.json",
+      "campo": "baseline_sha256",
+      "alvo": "data/protocol/phase2_baseline_freeze.json",
+      "sha256_anterior": "ae21d5c4721dd3f94a5502ba73e28b1f81ba2bb25f873ce3c529931c666f24b7",
+      "sha256_vigente_lf": "247bc4e38608da998c0ab6dc367d5b5c462226e03acf94eea1c3f1b2d84ff399"
+    }
+  ],
+  "nota_cascata": "Atualizar os hashes gravados alterou o conteudo dos proprios arquivos de protocolo e manifesto. Os metadados de execucao que atestavam 'rodei contra o protocolo versao X' passaram a apontar para o hash da versao emendada. Nenhum parametro, criterio, metrica ou decisao foi alterado."
+}

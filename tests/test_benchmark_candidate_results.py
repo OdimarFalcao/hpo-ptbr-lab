@@ -1,4 +1,4 @@
-import hashlib
+from hpo_ptbr.hashing import content_sha256
 import json
 from pathlib import Path
 
@@ -14,13 +14,9 @@ def test_candidate_execution_uses_preregistered_development_only():
     protocol = _load("data/protocol/benchmark_v1_candidate_protocol.json")
     metadata = _load("data/results/benchmark_v1_candidate_metadata.json")
 
-    dataset_hash = hashlib.sha256(
-        (ROOT / protocol["dataset"]).read_bytes()
-    ).hexdigest()
+    dataset_hash = content_sha256(ROOT / protocol["dataset"])
     assert dataset_hash == protocol["dataset_sha256"]
-    assert metadata["protocol_sha256"] == hashlib.sha256(
-        (ROOT / metadata["protocol"]).read_bytes()
-    ).hexdigest()
+    assert metadata["protocol_sha256"] == content_sha256(ROOT / metadata["protocol"])
     assert protocol["holdout_used"] is False
     assert metadata["holdout_used"] is False
 

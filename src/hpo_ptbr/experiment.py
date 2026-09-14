@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from .hashing import content_sha256
+
 
 def result_fingerprint(
     details: list[dict[str, object]],
@@ -74,7 +76,7 @@ def verify_frozen_holdout(cases_path: str | Path, manifest_path: str | Path) -> 
     manifest = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
     if manifest.get("status") != "frozen":
         raise ValueError("O manifesto do holdout não está congelado.")
-    checksum = hashlib.sha256(cases.read_bytes()).hexdigest()
+    checksum = content_sha256(cases)
     if checksum != manifest.get("sha256"):
         raise ValueError("O checksum do holdout difere do manifesto.")
     return manifest

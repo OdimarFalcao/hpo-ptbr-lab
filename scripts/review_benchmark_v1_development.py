@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from hpo_ptbr.hashing import content_sha256
 from hpo_ptbr.benchmark import validate_benchmark, validate_benchmark_targets
 from hpo_ptbr.data import load_metadata, load_snapshot
 from hpo_ptbr.evaluation import load_cases
@@ -60,7 +61,7 @@ REVIEW_COLUMNS = (
 
 
 def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return content_sha256(path)
 
 
 def _historical_hpo_ids() -> set[str]:

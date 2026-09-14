@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from huggingface_hub import snapshot_download
 
+from hpo_ptbr.hashing import content_sha256
 from hpo_ptbr.mention_evaluation import evaluate_mention_predictions
 from hpo_ptbr.mention_ner import (
     DEFAULT_MENTION_MODEL_NAME,
@@ -24,7 +25,7 @@ from hpo_ptbr.mention_ner import (
 
 
 def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return content_sha256(path)
 
 
 def main() -> None:
