@@ -95,6 +95,21 @@ def _nivel(contagem: dict[str, int]) -> str:
     return "sem_variante_patogenica"
 
 
+def snv_positions_on_panel(
+    variants: tuple[PathogenicVariant, ...], panel: PanelIndex
+) -> set[tuple[str, int]]:
+    """Posições das SNV patogênicas que o painel ensaia.
+
+    É o conjunto cujos alelos precisam ser lidos do `.snp`; ler só esses
+    evita carregar os alelos de 1,2 milhão de posições.
+    """
+    return {
+        (v.chromosome, v.position)
+        for v in variants
+        if v.is_snv and panel.is_assayed(v.chromosome, v.position)
+    }
+
+
 def assess_targets(
     hpoa_index: HpoaIndex,
     gene_index: GeneDiseaseIndex,

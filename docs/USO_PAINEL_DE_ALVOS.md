@@ -1,25 +1,26 @@
 # Uso — painel de alvos fenotípicos
 
-Guia operacional da CLI `scripts/hpo_panel_cli.py`. Tudo aqui roda sobre
-dados versionados locais: **nenhum comando baixa nada da rede**.
+Guia operacional da CLI `hpo-painel`. Tudo aqui roda sobre dados versionados
+locais: **nenhum comando baixa nada da rede**.
 
-Esta é a frente de "painel de alvos" do repositório. A outra frente — a
-bancada de anotação e ranqueamento — tem entradas próprias e depende de
-`rapidfuzz`, `rank_bm25` e modelos semânticos, que o painel não usa.
+Os exemplos usam `python scripts\hpo_panel_cli.py`, que funciona sem
+instalar. Com o projeto instalado (`pip install -e .[dev]`), troque por
+`hpo-painel`: `hpo-painel coverage ...` é o mesmo que
+`python scripts\hpo_panel_cli.py coverage ...`.
 
 ---
 
 ## 0. Pré-requisitos
 
-O painel precisa apenas da biblioteca padrão do Python (3.11+). Se algum
-comando falhar com `ModuleNotFoundError`, confirme qual interpretador está
-em uso:
+O painel precisa apenas da biblioteca padrão do Python (3.11+), sem
+nenhuma dependência. Se algum comando falhar, confirme qual interpretador
+está em uso:
 
 ```
 python -c "import sys; print(sys.version, sys.prefix)"
 ```
 
-Três arquivos brutos precisam existir em `data/raw/`, todos da **mesma
+Os arquivos brutos precisam existir em `data/raw/`, todos da **mesma
 release da HPO** (em uso: `2026-06-23`):
 
 | arquivo | o que é | origem |
@@ -27,6 +28,7 @@ release da HPO** (em uso: `2026-06-23`):
 | `phenotype.hpoa` | doença apresenta fenótipo | release da HPO |
 | `genes_to_disease.txt` | gene associado a doença, e de que tipo | release da HPO |
 | `v66.p1_1240K.aadr.patch.PUB.snp` | posições genotipadas do painel AADR | Harvard Dataverse |
+| `variant_summary.txt.gz` | variantes do ClinVar | NCBI (ver seção 6) |
 
 ---
 
@@ -168,7 +170,7 @@ verificação é o que impede isso.
 Baixe **pelo navegador ou PowerShell** (a ferramenta não baixa nada):
 
 ```
-Invoke-WebRequest https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz -OutFile data\raw\variant_summary.txt.gz
+curl.exe -L -C - -o data\raw\variant_summary.txt.gz https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
 python scripts\hpo_panel_cli.py clinvar --build GRCh37
 ```
 
@@ -184,6 +186,17 @@ obrigatório e precisa ser o do painel — o AADR 1240K é GRCh37.
    `Pathogenic/Likely pathogenic`. `Conflicting classifications` sai e é
    **contado à parte**;
 4. descarta posição ausente (o ClinVar marca com `-1`).
+
+**Origem não declarada.** Muitos laboratórios enviam variantes sem declarar a
+origem (`unknown`, `not provided`). Por padrão elas ficam fora, e o manifesto
+conta quantas patogênicas saíram por isso. Para incluí-las:
+
+```
+python scripts\hpo_panel_cli.py clinvar --build GRCh37 --incluir-origem-desconhecida
+```
+
+No ClinVar de setembro de 2026 isso acrescenta 38.942 patogênicas e não muda
+o conjunto de doenças alcançadas pelo 1240K.
 
 Traduz `Orphanet:100` para `ORPHA:100`, senão nenhuma variante do Orphanet
 casaria com as doenças da HPO.
@@ -229,7 +242,9 @@ doenças com qualquer gene associado (inclui o Orphanet).
 
 **Saída:** `data\processed\target_coverage.csv` (uma linha por doença, com
 nível, contagens e IDs das variantes casadas) e
-`target_coverage_metadata.json`, com o funil.
+`target_coverage_metadata.json`, com o funil. Se o ClinVar foi ingerido com
+`--incluir-origem-desconhecida`, os arquivos levam o sufixo
+`_origem_ampliada` e não sobrescrevem os do recorte conservador.
 
 Isto mede se a pergunta **pode ser feita**, não se alguém carrega a variante.
 

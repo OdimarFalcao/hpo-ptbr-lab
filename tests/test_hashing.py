@@ -3,13 +3,13 @@
 Até 2026-09-14 os hashes eram calculados sobre os bytes crus. Artefatos
 gerados em Windows nascem com CRLF e o git os devolve com LF, então a
 verificação de congelamento só passava na máquina que gerou os arquivos.
-Ver `data/protocol/hash_normalization_amendment.json`.
+A emenda que regravou os hashes da época está preservada na etiqueta
+`frente-a-final`, em `data/protocol/hash_normalization_amendment.json`.
 """
 
 from __future__ import annotations
 
 import hashlib
-import json
 from pathlib import Path
 
 import pytest
@@ -66,8 +66,8 @@ def test_binary_files_are_not_normalized(tmp_path: Path) -> None:
     [
         "data/processed/hpo_ptbr.csv",
         "data/processed/metadata.json",
-        "data/eval/phase2_development.json",
-        "data/protocol/phase2_baseline_freeze.json",
+        "data/processed/gene_disease.csv",
+        "data/processed/target_coverage.csv",
     ],
 )
 def test_repository_artifacts_hash_identically_in_both_conventions(
@@ -81,19 +81,3 @@ def test_repository_artifacts_hash_identically_in_both_conventions(
     crlf.write_bytes(base.replace(b"\n", b"\r\n"))
 
     assert content_sha256(lf) == content_sha256(crlf) == content_sha256(origem)
-
-
-def test_amendment_records_every_rewritten_hash() -> None:
-    """A emenda precisa preservar o valor anterior de cada hash regravado."""
-    emenda = json.loads(
-        (ROOT / "data/protocol/hash_normalization_amendment.json").read_text(
-            encoding="utf-8"
-        )
-    )
-    assert emenda["schema_version"] == "hash-normalization-amendment-v1"
-    assert emenda["entradas"], "a emenda não pode ficar sem registro das mudanças"
-
-    for entrada in emenda["entradas"] + emenda["entradas_em_cascata"]:
-        assert len(entrada["sha256_anterior_crlf" if "sha256_anterior_crlf" in entrada else "sha256_anterior"]) == 64
-        assert len(entrada["sha256_vigente_lf"]) == 64
-        assert (ROOT / entrada["arquivo"]).is_file()

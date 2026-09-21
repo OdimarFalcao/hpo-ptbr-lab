@@ -2,18 +2,15 @@
 __pycache__/
 .pytest_cache/
 *.pyc
-.streamlit/secrets.toml
-.streamlit/*.log
+*.egg-info/
+build/
 data/raw/*
 !data/raw/.gitkeep
-notebooks/.ipynb_checkpoints/
 output/
 tmp/
-web/node_modules/
-web/dist/
-web/coverage/
-web/*.tsbuildinfo
-# derivado de data/raw/phenotype.hpoa; regenerar com: python scripts/hpo_panel_cli.py snapshot
+# pasta de configuracao da CLI da Salesforce (outro projeto, nao pertence a este)
+.sf/
+# derivado de data/raw/phenotype.hpoa; regenerar com: hpo-painel snapshot
 data/processed/hpo_annotations.csv
-# derivado do ClinVar (grande); regenerar com: python scripts/hpo_panel_cli.py clinvar --build GRCh37
+# derivado do ClinVar (grande); regenerar com: hpo-painel clinvar --build GRCh37
 data/processed/clinvar_pathogenic.csv

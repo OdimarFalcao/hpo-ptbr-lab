@@ -4,20 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hpo-ptbr-lab"
-version = "0.1.0"
-description = "Protótipo reproduzível para recuperação de termos HPO em português brasileiro"
+version = "0.2.0"
+description = "Painel de alvos fenotípicos: de quais doenças monogênicas um conjunto de dados de DNA antigo permite perguntar"
 requires-python = ">=3.11"
-dependencies = [
-  "pandas>=2.0,<3",
-  "rapidfuzz>=3.0,<4",
-  "rank-bm25>=0.2.2,<1",
-  "streamlit>=1.40,<2",
-]
+# Sem dependências: o painel usa só a biblioteca padrão, e um teste garante isso.
+dependencies = []
 
 [project.optional-dependencies]
-semantic = [
-  "sentence-transformers>=5.6,<6",
-]
+dev = ["pytest>=8,<9"]
+
+[project.scripts]
+hpo-painel = "hpo_ptbr.cli.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

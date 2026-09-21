@@ -1,48 +1,23 @@
-"""Ferramentas do protótipo HPO-PTBR.
+"""Painel de alvos fenotípicos para DNA antigo.
 
-As importações são preguiçosas (PEP 562) por um motivo concreto: a bancada
-de ranqueamento depende de `rapidfuzz`, `rank_bm25` e dos modelos
-semânticos, enquanto o painel de alvos fenotípicos depende apenas da
-biblioteca padrão. Importar tudo aqui fazia com que `hpo_panel_cli.py`
-falhasse com `ModuleNotFoundError: rapidfuzz` sem nunca ter precisado de
-correspondência aproximada.
+Cruza doenças monogênicas (HPO), genes (HPO genes_to_disease), variantes
+patogênicas (ClinVar) e posições genotipadas (painel EIGENSTRAT, como o
+AADR 1240K) para medir de quais doenças um conjunto de dados genômicos
+antigos permite perguntar.
 
-Cada nome continua acessível como antes (`from hpo_ptbr import FuzzyMapper`);
-o módulo correspondente só é carregado no primeiro acesso.
+Só biblioteca padrão. Módulos:
+
+- `ontology`        vocabulário e hierarquia da HPO
+- `hpoa`            doença -> fenótipos (phenotype.hpoa)
+- `gene_disease`    gene <-> doença (genes_to_disease.txt)
+- `term_targets`    fenótipo -> doenças -> genes
+- `clinvar`         variantes patogênicas germinativas por build
+- `genotype_panel`  posições e alelos ensaiados; verificação do build
+- `target_coverage` o cruzamento, doença a doença
+- `hashing`         hashes de conteúdo independentes de plataforma
+- `data`            metadados do snapshot terminológico
+- `cli`             a interface de linha de comando (`hpo-painel`)
+
+A bancada de anotação de texto clínico que coexistiu com este painel está
+preservada na etiqueta git `frente-a-final`.
 """
-
-from __future__ import annotations
-
-from importlib import import_module
-from typing import Any
-
-_EXPORTS = {
-    "HpoRecord": "data",
-    "load_metadata": "data",
-    "load_snapshot": "data",
-    "EvidenceExtractor": "evidence",
-    "EvidenceSpan": "evidence",
-    "TextMappingResult": "evidence",
-    "SemanticEvidenceExtractor": "semantic_evidence",
-    "evaluate_cases": "evaluation",
-    "HybridMapper": "hybrid",
-    "HybridEvidenceExtractor": "hybrid_evidence",
-    "Bm25Mapper": "rankers",
-    "ExactMapper": "rankers",
-    "FuzzyMapper": "rankers",
-    "BilingualSemanticMapper": "semantic",
-    "SemanticMapper": "semantic",
-}
-
-__all__ = sorted(_EXPORTS)
-
-
-def __getattr__(name: str) -> Any:
-    modulo = _EXPORTS.get(name)
-    if modulo is None:
-        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
-    return getattr(import_module(f".{modulo}", __name__), name)
-
-
-def __dir__() -> list[str]:
-    return sorted({*globals(), *_EXPORTS})

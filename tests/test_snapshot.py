@@ -5,13 +5,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_snapshot_ids_and_pilot_targets_are_consistent():
+def test_snapshot_tem_rotulos_portugueses():
     with (ROOT / "data/processed/hpo_ptbr.csv").open(encoding="utf-8", newline="") as handle:
-        snapshot_ids = {row["hpo_id"] for row in csv.DictReader(handle) if row["label_pt"]}
-    with (ROOT / "data/eval/pilot_cases.csv").open(encoding="utf-8", newline="") as handle:
-        cases = list(csv.DictReader(handle))
-    assert len(cases) == 30
-    assert all(case["target_hpo_id"] in snapshot_ids for case in cases)
+        linhas = list(csv.DictReader(handle))
+    assert linhas, "snapshot terminológico vazio"
+    assert all(linha["hpo_id"].startswith("HP:") for linha in linhas)
+    assert sum(1 for linha in linhas if linha["label_pt"]) > 0
 
 
 def test_metadata_has_reproducibility_fields():

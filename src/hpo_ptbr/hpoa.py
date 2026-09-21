@@ -252,7 +252,6 @@ def build_snapshot(
             record["excluded"] = "true" if annotation.excluded else "false"
             writer.writerow(record)
 
-    phenotypic = ontology.phenotypic_abnormality_ids
     used_p = {a.hpo_id for a in annotations if a.aspect == "P"}
     translated = {h for h in used_p if ontology.concepts[h].label_pt}
     aspect_counts: dict[str, int] = {}
