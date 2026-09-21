@@ -54,6 +54,16 @@ A Fase 2 corrige uma limitação metodológica dos testes antigos: descrições 
 
 Validação e holdout continuam sem casos no repositório e dependem de autoria independente e revisão clínica. Não foi adicionado modelo, tradução não oficial, prontuário real, telemetria ou gate aprovado.
 
+Na primeira iteração corretiva, sugestões e exportações foram limitadas a descendentes de `HP:0000118`, sem a raiz. Isso eliminou falsos fenótipos como `Começo`, mas não melhorou o recall em linguagem natural. O resultado negativo permanece registrado em `data/results/phase2_iteration1_scope_filter.json`.
+
+Na segunda iteração, um índice exclusivamente offline passou a representar os 19.119 fenótipos com rótulos oficiais PT, rótulos oficiais EN e sinônimos exatos EN, sempre com idioma, fonte e versão. Os 12.139 conceitos sem rótulo PT são marcados como `unavailable`; nenhuma tradução foi criada. Em nove trechos-ouro, Exact, Fuzzy e BM25 recuperaram 0/9 alvos no Top-5 e o SapBERT local recuperou 1/9, mas 0/4 entre os conceitos sem PT. O candidato reprovou a regra pré-registrada e não foi integrado à aplicação. Protocolo e relatório: `data/protocol/phase2_iteration2_offline_protocol.json` e `data/results/phase2_iteration2_offline_report.md`.
+
+Para reproduzir a Iteração 2 com o modelo já presente no cache local:
+
+```powershell
+python scripts/run_phase2_iteration2_offline.py
+```
+
 Para reproduzir somente o desenvolvimento:
 
 ```powershell

@@ -22,6 +22,10 @@ Registro documental de 11/09/2026. Origem: [visão canônica e fontes V1–V3](A
 | D16 | Implementada na infraestrutura da Fase 2 | Congelar o baseline por hashes mesmo com árvore local suja; autorizar somente desenvolvimento sintético; manter validação sem autoria e holdout selado sem conteúdo até participação independente |
 | D17 | Implementada na avaliação da Fase 2 | Paráfrase sintética não é tradução oficial. Rótulo PT é copiado do snapshot ou fica ausente; o padrão-ouro técnico permanece pendente de revisão clínica |
 | D18 | Implementada na avaliação da Fase 2 | Tempo humano só pode vir de arquivo local fornecido explicitamente. Sem estudo autorizado, reportar proxy de componentes de correção e `human_elapsed_seconds: null`, sem telemetria automática |
+| D19 | Implementada em 14/09/2026 | O universo de fenótipos da bancada foi restringido aos descendentes de `HP:0000118`, excluindo a raiz. A ontologia completa permanece consultável, mas modificadores e outras categorias não podem ser sugeridos, selecionados ou exportados como fenótipos |
+| D20 | Resultado negativo preservado | A Iteração 1 eliminou `começou → HP:0003674` e o único span incorreto da Fase 2, mas não melhorou recall nem ranking. Cobertura de conceitos sem PT e compreensão de paráfrases permanecem problemas separados |
+| D21 | Autorizada pelo PO e implementada offline em 14/09/2026 | Conceitos fenotípicos sem tradução PT podem ser representados com rótulo oficial EN, fonte e versão, `label_pt_status=unavailable` e revisão humana obrigatória. Essa autorização não permite inventar tradução nem integrar automaticamente o método à bancada |
+| D22 | Resultado negativo preservado | O índice oficial completo tornou 12.139 fenótipos sem PT representáveis, mas Exact, Fuzzy e BM25 recuperaram 0/9 alvos no Top-5; SapBERT recuperou 1/9 e 0/4 alvos sem PT. A regra pré-registrada falhou e nenhuma alteração foi integrada à API ou ao frontend |
 
 ## Como evoluir este registro
 
@@ -29,7 +33,7 @@ Nova decisão deve registrar problema, alternativas, responsável pela aprovaç�
 
 ## Pendências antes da implementação posterior
 
-- Aprovar protocolo específico de cobertura/especificidade e definir gate prospectivo.
+- Revisar com orientador/especialista o protocolo de cobertura/especificidade já executado no desenvolvimento e definir gates clínicos antes de validação; não ajustar a partir do futuro holdout.
 - Revisar clinicamente a rubrica e o padrão-ouro técnico da Fase 2; aprovar autoria independente, tamanho, gates e abertura futura de validação/holdout.
 - Definir fonte licenciada e versionada de relações doença–gene–fenótipo; escolher baseline de priorização apenas depois de conhecer os dados.
 - Definir fontes bibliográficas e procedimento humano de verificação de suporte.

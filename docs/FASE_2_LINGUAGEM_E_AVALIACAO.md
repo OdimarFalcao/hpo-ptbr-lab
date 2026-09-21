@@ -312,3 +312,41 @@ Esses números descrevem apenas nove menções sintéticas não adjudicadas. Nã
 3. Especificar mudanças pequenas no detector e nas regras de incerteza/família e compará-las sempre contra o manifesto congelado.
 4. Criar validação por autoria independente somente depois de congelar as alternativas; manter o holdout fora do repositório acessível ao desenvolvimento.
 5. Planejar um estudo humano separado para medir tempo e ações; até lá, manter o proxy claramente rotulado.
+
+## 13. Iteração 1 — filtro da árvore fenotípica
+
+Em 14/09/2026, após os erros manuais `começou → HP:0003674`, `esquerda → HP:0012835` e candidatos de modo de herança, foi implementado um invariante: candidatos do perfil devem ser descendentes de `HP:0000118`, sem aceitar a raiz.
+
+O índice completo de 19.836 conceitos não foi removido e continua disponível para inspeção ontológica. O universo traduzido usado automaticamente caiu de 7.158 registros para 6.980 fenótipos. Busca de seleção e exportação aplicam a mesma barreira, impedindo que uma requisição adulterada reintroduza categoria não fenotípica.
+
+No caso sintético de marcos do desenvolvimento, o único span `começou` desapareceu. Nos onze casos de desenvolvimento, as previsões caíram de um span incorreto para zero: `wrong_span` passou de 1 para 0 e `mention_not_detected` de 8 para 9. Recall exato, recall relaxado e Accuracy@5 permaneceram em 0%. Portanto, a iteração corrigiu escopo e reduziu dano, mas não tornou a extração útil.
+
+Não foram alterados limiar, scorer, modelo, contexto, tradução ou dataset oficial. O próximo problema é tornar conceitos sem rótulo PT representáveis sem confundir alcançabilidade com recuperação de paráfrases.
+
+## 14. Iteração 2 — cobertura oficial e linking offline
+
+O PO autorizou avaliar conceitos sem rótulo PT desde que a ausência fosse explícita, o rótulo oficial inglês e sua fonte/versão fossem preservados e toda decisão continuasse humana. Antes da execução foi registrado `data/protocol/phase2_iteration2_offline_protocol.json`. Validação e holdout permaneceram fechados.
+
+O índice derivado contém os 19.119 descendentes de `HP:0000118`, sem a raiz: 6.980 com rótulo PT e 12.139 com `label_pt_status=unavailable`. Foram indexados 49.218 termos: 6.980 rótulos oficiais PT, 19.119 rótulos oficiais EN e 23.119 sinônimos exatos EN. Cada candidato registra o termo que determinou o score, idioma, campo, fonte, versão e revisão humana obrigatória. Nenhum dataset oficial ou tradução foi alterado.
+
+### Resultado observado
+
+| Método em trecho-ouro | Accuracy@1 | Accuracy@5 | Alvos sem PT no Top-5 |
+|---|---:|---:|---:|
+| baseline fuzzy PT | 0/9 | 0/9 | 0/4 |
+| termos oficiais exact | 0/9 | 0/9 | 0/4 |
+| termos oficiais fuzzy | 0/9 | 0/9 | 0/4 |
+| termos oficiais BM25 | 0/9 | 0/9 | 0/4 |
+| termos oficiais SapBERT local | 0/9 | 1/9 | 0/4 |
+
+O único alvo correto apareceu na terceira posição para “vem perdendo força de forma contínua” (`HP:0003323`). Nos outros oito casos, o alvo ficou fora do Top-5. Entre os primeiros candidatos errados apareceram conceitos lexical ou semanticamente próximos, como anomalia da orelha interna para comprometimento do ouvido interno, e conceitos específicos não sustentados pelo texto. Isso confirma que alcançabilidade terminológica não equivale a normalização correta.
+
+O detector congelado continuou produzindo zero spans nos onze casos e zero falsos positivos nos dois controles. Esse controle não torna o linking seguro: rankers avaliados em span-ouro não detectam menções e, portanto, não possuem taxa própria de falso positivo. O experimento mediu somente linking condicionado a um trecho fornecido.
+
+### Decisão e limites
+
+A regra pré-registrada exigia ganho no Top-5, recuperação de pelo menos um alvo sem PT e ausência de aumento de falsos positivos automáticos. A segunda condição falhou. O status é `do_not_integrate`; API, frontend, detector e exportação não receberam o novo índice.
+
+Os nove alvos são desenvolvimento sintético com padrão-ouro técnico pendente de revisão clínica. O ganho de um caso não demonstra generalização. A primeira construção dos embeddings do SapBERT no CPU também foi custosa; eventual candidato futuro precisaria de cache derivado e versionado, mas desempenho de produção não foi objetivo desta execução.
+
+Próxima recomendação objetiva: antes de outro método, revisar clinicamente spans e granularidade dos nove alvos e classificar os oito erros por relação ontológica. Só depois definir uma hipótese nova e única para linking de paráfrases, preservando o índice como infraestrutura rastreável e mantendo a aplicação sem integração.

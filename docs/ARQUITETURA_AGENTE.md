@@ -6,7 +6,7 @@ Referência de escopo: [visão canônica](AGENTE.md), fontes V1–V3. Este docum
 
 | Capacidade | Estado e evidência local |
 |---|---|
-| Detecção lexical de menções com offsets | Implementada em `src/hpo_ptbr/evidence.py`; fluxo padrão em `src/hpo_ptbr/web_api.py` |
+| Detecção lexical de menções com offsets | Implementada em `src/hpo_ptbr/evidence.py`; fluxo padrão em `src/hpo_ptbr/web_api.py`. Desde a Iteração 1 da Fase 2, o universo automático contém somente descendentes de `HP:0000118`, sem a raiz |
 | Exact, Fuzzy e BM25 | Implementados em `src/hpo_ptbr/rankers.py` |
 | Recuperação SapBERT | Opcional, local e acionada explicitamente; `sapbert.py`, `semantic.py` e endpoint semântico |
 | Contexto presente/ausente/incerto/familiar | Regras em `src/hpo_ptbr/assertion.py`; confirmação humana |
@@ -51,3 +51,17 @@ Critérios de avanço: [roadmap](ROADMAP_AGENTE.md) e [avaliação](AVALIACAO_AG
 Cada anotação exportada preserva trecho e offsets, conceito selecionado, contexto (`present`, `absent`, `uncertain` ou `family_history`), origem automática/manual, métodos de recuperação, decisão humana e sinalização de modificação da sugestão. A caracterização possui `onset_age`, `severity`, `evolution`, `frequency`, `laterality` e `family_history`; valores ausentes geram `pending_characterization` em ordem fixa. Pendências não são convertidas em negação e não bloqueiam a exportação depois que todas as decisões de inclusão/descarte foram revisadas.
 
 A proveniência terminológica da exportação fixa versão HPO, commit da tradução e fontes com hashes. `label_pt_status` diferencia rótulo português oficial de tradução indisponível. Sinônimos do índice atual são oficiais da HPO em inglês; ampliar sinônimos portugueses depende de uma fonte rastreável e revisão especializada.
+
+## Iteração 1 da Fase 2 — escopo fenotípico
+
+O índice ontológico completo continua disponível para inspeção em `/api/concepts/{id}`. Detecção, Exact/Fuzzy/BM25, SapBERT sob demanda, busca usada para seleção e exportação aceitam somente descendentes de `HP:0000118`, excluindo a própria raiz. O recorte reduz os 7.158 registros traduzidos para 6.980 fenótipos traduzidos e impede que início, lateralidade, herança ou a raiz sejam anotados como fenótipos.
+
+A mudança é uma barreira estrutural, não um novo método. Limiar, scorer, modelos e datasets permaneceram iguais. No desenvolvimento da Fase 2, o único span errado desapareceu e o recall permaneceu em zero; veja `data/results/phase2_iteration1_scope_filter.json`.
+
+## Iteração 2 da Fase 2 — índice oficial offline
+
+`src/hpo_ptbr/official_term_index.py` deriva em memória, sem modificar o snapshot, um índice dos 19.119 descendentes fenotípicos. Cada entrada identifica HPO ID, texto, idioma, campo, escopo, fonte e versão. São aceitos somente rótulo oficial PT, rótulo oficial EN e sinônimo exato EN; ausência de português permanece `label_pt_status=unavailable` e toda sugestão exige revisão humana.
+
+O índice e seus rankers não são importados pela API nem pelo frontend. `scripts/run_phase2_iteration2_offline.py` os avalia somente sobre os trechos-ouro sintéticos do desenvolvimento, enquanto o detector da Iteração 1 permanece congelado para o controle ponta a ponta. Essa separação impede que melhoria de linking seja apresentada como melhoria de detecção.
+
+O resultado não justificou integração: somente o SapBERT encontrou um alvo no Top-5, e nenhum dos quatro alvos sem português foi recuperado. Exact, Fuzzy e BM25 ficaram em zero. O manifesto registra 49.218 termos oficiais, hashes e versões das duas fontes em `data/results/phase2_iteration2_term_index_manifest.json`.
