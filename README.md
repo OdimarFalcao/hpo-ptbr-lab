@@ -1,44 +1,52 @@
 # Alcance Genômico
 
-Mostra quais doenças podem ser investigadas com os dados genômicos disponíveis
-e resume os indivíduos descritos no conjunto de dados.
+O Alcance Genômico avalia **de quais doenças monogênicas um conjunto de dados genômicos permite perguntar** se um indivíduo carrega a variante causadora. Foi desenvolvido para dados de DNA antigo, em que cada conjunto de dados lê apenas uma parte do genoma, e serve como etapa preparatória para a inferência de doenças monogênicas em indivíduos antigos.
 
-O uso atual é o estudo de DNA antigo do AADR. O comando da ferramenta é
-`alcance`.
+A ferramenta também descreve os indivíduos presentes no conjunto de dados: origem, datação, tipo de sequenciamento e cobertura.
+
+O comando é `alcance`.
+
+## Como funciona
+
+Uma doença monogênica é causada por uma alteração específica no DNA. Para saber se um conjunto de dados permite investigá-la, a ferramenta liga quatro fontes públicas:
+
+```text
+doença ─── gene ─── variante patogênica ─── posição lida no conjunto de dados
+ (HPO)     (HPO)        (ClinVar)              (painel de genotipagem do AADR)
+```
+
+Uma doença é considerada **alcançável** quando o conjunto de dados lê a posição da variante patogênica e distingue os dois alelos envolvidos.
+
+O **painel de genotipagem** é a lista fixa de posições do DNA que um conjunto de dados lê em todos os indivíduos. O painel 1240K do AADR lê cerca de 1,2 milhão de posições. Neste projeto, "painel" tem sempre esse sentido.
 
 ## Resultado atual
 
-### Alcance do painel 1240K
-
-AADR v66.p1 1240K (GRCh37) × ClinVar de 11/09/2026:
+**Alcance do painel 1240K** (AADR v66.p1, GRCh37) com o ClinVar de 11/09/2026:
 
 | etapa | resultado |
 |---|---:|
-| SNV patogênicas no ClinVar | 178.934 |
-| em posição examinada pelo 1240K | 108 |
-| com os alelos corretos | 54 |
-| variantes distintas com alelos corretos | 52 |
-| genes | 17 |
+| variantes patogênicas de uma base (SNV) no ClinVar | 178.934 |
+| em posição lida pelo painel 1240K | 108 |
+| com os dois alelos distinguidos pelo painel | 54 (52 variantes, 17 genes) |
 | doenças OMIM alcançáveis | **33 de 6.484** |
-| doenças alcançáveis incluindo Orphanet | 56 de 9.142 |
+| doenças alcançáveis, incluindo Orphanet | 56 de 9.142 |
 
-Incluir variantes de origem não declarada no ClinVar não muda o conjunto de
-doenças alcançáveis.
-
-### Metadados do AADR
+**Indivíduos do AADR** (arquivo de metadados `.anno`, v66.p1):
 
 | medida | resultado |
 |---|---:|
-| registros no `.anno` | 23.089 |
-| `Individual ID` distintos e não vazios | 21.433 |
-| IDs presentes em mais de uma linha | 1.262 |
-| registros com data `0` e `present` | 3.970 |
-| registros com `Political Entity = Brazil` | 87 |
+| registros | 23.089 |
+| indivíduos distintos | 21.433 |
+| registros de pessoas atuais, usados como referência | 3.970 |
+| registros do Brasil | 87 |
 
-Essas são contagens descritivas, sem exclusões. Os 23.089 registros não
-representam 23.089 indivíduos antigos: há IDs repetidos e registros atuais.
+Um mesmo indivíduo pode ter mais de um registro, e os registros atuais fazem parte do total.
+
+A discussão desses resultados está em `docs\relatorios\o_que_os_dados_permitem_perguntar.docx`.
 
 ## Instalação
+
+Requer Python 3.11 ou superior. A ferramenta usa apenas a biblioteca padrão.
 
 ```powershell
 git clone https://github.com/OdimarFalcao/hpo-ptbr-lab.git
@@ -48,39 +56,27 @@ python -m venv .venv
 pip install -e .[dev]
 ```
 
-Isso instala o comando `alcance` e o `pytest`. Sem instalar o projeto, use
-`python scripts\alcance.py` no lugar de `alcance`.
+O comando `alcance` fica disponível com o ambiente virtual ativo. Como alternativa, use `python scripts\alcance.py` no lugar de `alcance`.
 
 ## Dados de entrada
 
-A ferramenta não baixa arquivos. Coloque as fontes em `data\raw\`, que fica
-fora do git.
+Os arquivos de origem ficam em `data\raw\`, fora do controle de versão.
 
-| arquivo | finalidade | versão usada |
-|---|---|---|
-| `phenotype.hpoa` | doença → fenótipos | HPO 2026-06-23 |
-| `genes_to_disease.txt` | gene ↔ doença | HPO 2026-06-23 |
-| `variant_summary.txt.gz` | variantes e classificações do ClinVar | 11/09/2026 |
-| `v66.p1_1240K.aadr.patch.PUB.snp` | posições e alelos do painel 1240K | AADR v66.p1 |
-| `v66.p1_1240K.aadr.PUB.anno` | metadados dos indivíduos | AADR v66.p1 |
+| arquivo | conteúdo | versão | origem |
+|---|---|---|---|
+| `phenotype.hpoa` | sintomas de cada doença | HPO 2026-06-23 | [HPO](https://github.com/obophenotype/human-phenotype-ontology/releases/tag/v2026-06-23) |
+| `genes_to_disease.txt` | genes de cada doença | HPO 2026-06-23 | [HPO](https://github.com/obophenotype/human-phenotype-ontology/releases/tag/v2026-06-23) |
+| `variant_summary.txt.gz` | variantes e sua classificação clínica | 11/09/2026 | [ClinVar, NCBI](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/) |
+| `v66.p1_1240K.aadr.patch.PUB.snp` | posições e alelos do painel 1240K | AADR v66.p1 | [Harvard Dataverse](https://doi.org/10.7910/DVN/FFIDCW) |
+| `v66.p1_1240K.aadr.PUB.anno` | metadados dos indivíduos | AADR v66.p1 | [Harvard Dataverse](https://doi.org/10.7910/DVN/FFIDCW) |
 
-As fontes da HPO estão na [release 2026-06-23](https://github.com/obophenotype/human-phenotype-ontology/releases/tag/v2026-06-23).
-Os arquivos do AADR estão no [Harvard Dataverse](https://doi.org/10.7910/DVN/FFIDCW).
-O ClinVar vem do [NCBI](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/).
+Os nomes do `.snp` e do `.anno` diferem (`patch`); a correspondência entre os dois arquivos está em verificação e fica registrada no manifesto do `anno`.
 
-O `.snp` contém `patch` no nome e o `.anno` não. A correspondência entre os
-dois arquivos ainda não foi confirmada; o manifesto do `anno` registra essa
-incerteza.
+Os rótulos da HPO em português e o índice da ontologia já acompanham o repositório, em `data\processed\`.
 
-Os rótulos oficiais em português e o índice da ontologia já estão em
-`data\processed\`. Eles só precisam ser regenerados quando a release da HPO
-mudar.
+## Uso
 
-## Executar
-
-### 1. Calcular o alcance de doenças
-
-Execute em ordem:
+**Alcance de doenças**, na ordem:
 
 ```powershell
 alcance snapshot
@@ -89,20 +85,15 @@ alcance clinvar --build GRCh37
 alcance coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
 ```
 
-O build é obrigatório e verificado. A aplicação não o infere, não cruza
-builds diferentes e não faz liftover.
+A versão do genoma de referência (`--build`) é informada pelo usuário e conferida contra o próprio arquivo, para que todas as fontes sejam comparadas na mesma versão.
 
-### 2. Descrever os indivíduos
+**Descrição dos indivíduos:**
 
 ```powershell
 alcance anno data\raw\v66.p1_1240K.aadr.PUB.anno
 ```
 
-O comando mostra todas as distribuições com até 200 valores distintos. Acima
-disso, mostra os 30 valores mais frequentes. Vazios, `..`, `n/a` e valores
-semelhantes são contados e preservados.
-
-### 3. Consultar HPO
+**Consultas à HPO**, a qualquer momento depois do `snapshot`:
 
 ```powershell
 alcance search "ataxia"
@@ -110,58 +101,41 @@ alcance profile OMIM:224900
 alcance term HP:0001251
 ```
 
-`search` procura doenças pelo nome; ainda não existe busca de termos HPO pelo
-rótulo.
-
 ## Comandos
 
 | comando | função |
 |---|---|
-| `snapshot` | normaliza as associações doença–fenótipo e gene–doença |
-| `panel` | caracteriza o painel de genotipagem e verifica o build declarado |
-| `clinvar` | seleciona variantes patogênicas germinativas no build declarado |
-| `coverage` | cruza doenças, variantes e posições/alelos do painel |
-| `anno` | descreve o arquivo de metadados do AADR sem filtrar |
-| `search` | procura doenças por nome |
-| `profile` | mostra fenótipos e genes de uma doença |
-| `term` | mostra doenças e genes associados diretamente a um termo HPO |
+| `snapshot` | prepara as associações doença–sintoma e gene–doença da HPO |
+| `panel` | descreve o painel de genotipagem e confere a versão do genoma |
+| `clinvar` | seleciona as variantes patogênicas herdadas |
+| `coverage` | calcula, doença a doença, até onde o painel alcança |
+| `anno` | descreve os indivíduos do conjunto de dados |
+| `search` | encontra o identificador de uma doença pelo nome |
+| `profile` | mostra os sintomas e os genes de uma doença |
+| `term` | mostra as doenças e os genes associados a um sintoma |
 
-Use `alcance <comando> --help` para ver as opções. O contrato completo de
-entrada e saída está em [`docs/USO_ALCANCE.md`](docs/USO_ALCANCE.md).
+As opções de cada comando aparecem em `alcance <comando> --help`. O comportamento detalhado está em [`docs/USO_ALCANCE.md`](docs/USO_ALCANCE.md).
 
-## Saídas e proveniência
+## Resultados e proveniência
 
-Os resultados ficam em `data\processed\`.
+Os resultados ficam em `data\processed\`. Cada comando grava também um manifesto (`*_metadata.json`) com a impressão digital (sha256) da fonte, a versão usada e as contagens de cada etapa, o que permite reproduzir qualquer número.
 
 | arquivo | comando | conteúdo |
 |---|---|---|
-| `hpo_annotations.csv` | `snapshot` | associações doença–fenótipo normalizadas |
-| `gene_disease.csv` | `snapshot` | associações gene–doença normalizadas |
-| `genotype_panel_metadata.json` | `panel` | descrição do painel e verificação do build |
-| `clinvar_pathogenic.csv` | `clinvar` | variantes mantidas após o funil de seleção |
-| `target_coverage.csv` | `coverage` | nível alcançado para cada doença |
-| `aadr_anno_metadata.json` | `anno` | descrição das colunas e distribuições do `.anno` |
+| `hpo_annotations.csv` | `snapshot` | associações doença–sintoma |
+| `gene_disease.csv` | `snapshot` | associações gene–doença |
+| `genotype_panel_metadata.json` | `panel` | descrição do painel e verificação da versão do genoma |
+| `clinvar_pathogenic.csv` | `clinvar` | variantes patogênicas selecionadas |
+| `target_coverage.csv` | `coverage` | nível alcançado por cada doença |
+| `aadr_anno_metadata.json` | `anno` | descrição dos indivíduos |
 
-Cada ingestão grava um manifesto `*_metadata.json` com o sha256 da fonte,
-versão declarada — ou o registro de que não foi declarada — e contagens de
-entrada, saída e exclusões.
+## Como ler os resultados
 
-## Como interpretar
-
-- **Alcançável** significa que o painel distingue os alelos da variante
-  patogênica. Não significa que a variante foi observada em alguém.
-- Estar apenas na mesma posição não basta: o par de alelos também precisa
-  corresponder.
-- O cálculo considera SNV. Indels, CNV e variantes estruturais não são
-  observáveis pelo painel de SNPs.
-- `term` e `coverage` usam anotações diretas da HPO, sem expansão pela
-  hierarquia. Os resultados não são exaustivos.
-- O Orphanet chega sem classificação de associação mendeliana. Filtrar por
-  associação mendeliana remove esse catálogo.
-- O `anno` não define ainda o que conta como Brasil, América do Sul, indivíduo
-  antigo, genoma inteiro ou cobertura suficiente.
-- Termos sem tradução oficial aparecem em inglês com `[sem PT]`; não há
-  tradução automática.
+- **Alcançável** indica que a pergunta pode ser feita com os dados: o painel lê a posição e distingue os alelos da variante. A resposta para cada indivíduo vem da análise dos seus genótipos.
+- O cálculo abrange as variantes de uma única base (SNV), que são as observadas por um painel de SNPs.
+- As doenças são ligadas aos sintomas pela anotação direta da HPO. A expansão pela hierarquia da ontologia está entre as próximas etapas.
+- Sintomas com nome oficial em português aparecem em português; os demais aparecem em inglês, marcados com `[sem PT]`.
+- A descrição dos indivíduos apresenta todas as contagens do arquivo. Os critérios de seleção (região, período, tipo de sequenciamento, cobertura) serão definidos com a orientação do projeto.
 
 ## Testes
 
@@ -169,13 +143,9 @@ entrada, saída e exclusões.
 python -m pytest -q
 ```
 
-A aplicação usa apenas a biblioteca padrão. Um teste falha se algum módulo do
-pacote importar uma dependência externa.
-
 ## Atualizar a HPO
 
-Baixe `hp.json`, `hp-pt.babelon.tsv`, `phenotype.hpoa` e
-`genes_to_disease.txt` da mesma release. Depois execute:
+Coloque em `data\raw\` os arquivos `hp.json`, `hp-pt.babelon.tsv`, `phenotype.hpoa` e `genes_to_disease.txt` da nova release e execute:
 
 ```powershell
 python scripts\build_snapshot.py
@@ -183,15 +153,12 @@ python scripts\build_ontology_index.py
 alcance snapshot
 ```
 
-`phenotype.hpoa` declara a release e divergências são recusadas.
-`genes_to_disease.txt` não declara versão; nesse caso, o manifesto registra o
-sha256 e a sobreposição de identificadores com as demais fontes.
+O `snapshot` confere se o `phenotype.hpoa` pertence à mesma release da ontologia.
 
-## Mais informações
+## Documentação
 
-- [`docs/USO_ALCANCE.md`](docs/USO_ALCANCE.md): comportamento detalhado de cada comando.
-- [`AGENTS.md`](AGENTS.md): contrato operacional, termos e riscos conhecidos.
-- `docs\relatorios\o_que_os_dados_permitem_perguntar.docx`: relatório para discussão com o orientador.
+- [`docs/USO_ALCANCE.md`](docs/USO_ALCANCE.md): entradas, saídas e regras de cada comando.
+- [`AGENTS.md`](AGENTS.md): regras de desenvolvimento, termos e pontos de atenção.
+- `docs\relatorios\o_que_os_dados_permitem_perguntar.docx`: resultados e próximos passos.
 
-A antiga bancada de anotação de texto clínico está preservada na tag git
-`frente-a-final` e não faz parte da linha principal.
+A versão anterior do repositório, dedicada à anotação de texto clínico, está preservada na etiqueta git `frente-a-final`.
