@@ -9,11 +9,11 @@ from pathlib import Path
 def _raiz() -> Path:
     """Raiz do projeto: onde ficam `data/raw` e `data/processed`.
 
-    Ordem: variável `HPO_PAINEL_RAIZ`; o repositório que contém este pacote
+    Ordem: variável `ALCANCE_RAIZ`; o repositório que contém este pacote
     (instalação editável, `pip install -e .`); o diretório atual.
     """
-    if os.environ.get("HPO_PAINEL_RAIZ"):
-        return Path(os.environ["HPO_PAINEL_RAIZ"]).resolve()
+    if os.environ.get("ALCANCE_RAIZ"):
+        return Path(os.environ["ALCANCE_RAIZ"]).resolve()
     repositorio = Path(__file__).resolve().parents[3]
     if (repositorio / "data").is_dir():
         return repositorio
@@ -48,7 +48,7 @@ ONTOLOGY_PATH = ROOT / "data/processed/hpo_ontology.json.gz"
 METADATA_PATH = ROOT / "data/processed/metadata.json"
 
 LIMIT_NOTE = (
-    "Painel terminológico versionado. Não constitui diagnóstico, não substitui "
+    "Consulta sobre dados versionados da HPO. Não constitui diagnóstico, não substitui "
     "julgamento profissional e exige revisão antes de qualquer uso."
 )
 

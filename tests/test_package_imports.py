@@ -1,7 +1,7 @@
-"""O painel roda só com a biblioteca padrão.
+"""O Alcance Genômico roda só com a biblioteca padrão.
 
 Garantia de projeto: nenhuma dependência instalável é necessária para
-reproduzir os números do painel. Se algum módulo passar a importar uma
+reproduzir os números da ferramenta. Se algum módulo passar a importar uma
 biblioteca externa, este teste falha e obriga a decisão a ser explícita.
 """
 
@@ -29,7 +29,7 @@ print(",".join(sorted(set(externos))))
 """
 
 
-def test_painel_usa_so_biblioteca_padrao() -> None:
+def test_alcance_usa_so_biblioteca_padrao() -> None:
     resultado = subprocess.run(
         [sys.executable, "-c", SONDA.format(src=str(ROOT / "src"))],
         capture_output=True, text=True, check=True,

@@ -22,4 +22,4 @@ jobs:
       - name: Testes
         run: python -m pytest -q
       - name: CLI instalada responde
-        run: hpo-painel --help
+        run: alcance --help

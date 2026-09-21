@@ -188,7 +188,7 @@ def test_manifesto_registra_proveniencia_completa(snapshot) -> None:
 
 @pytest.mark.skipif(
     not (ROOT / "data/processed/hpo_annotations.csv").is_file(),
-    reason="snapshot HPOA real ainda não foi gerado (rode hpo-painel snapshot)",
+    reason="snapshot HPOA real ainda não foi gerado (rode alcance snapshot)",
 )
 def test_snapshot_real_casa_com_o_vocabulario_em_uso() -> None:
     manifesto = json.loads((ROOT / "data/processed/hpoa_metadata.json").read_text(encoding="utf-8"))

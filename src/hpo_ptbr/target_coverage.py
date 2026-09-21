@@ -1,9 +1,9 @@
-"""Viabilidade do painel de alvos: de quantas doenças o painel genotipado fala.
+"""O cruzamento: de quantas doenças-alvo o painel de genotipagem permite perguntar.
 
 Cruza as quatro fontes:
 
     doença (phenotype.hpoa) ── gene (genes_to_disease) ── variante patogênica
-    (ClinVar) ── posição e alelos ensaiados (.snp do painel)
+    (ClinVar) ── posição e alelos ensaiados (.snp do painel de genotipagem)
 
 e classifica cada doença pelo **ponto mais fundo que alcança** no funil:
 

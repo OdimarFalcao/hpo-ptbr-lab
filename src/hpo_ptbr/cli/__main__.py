@@ -1,4 +1,4 @@
-"""Ponto de entrada da CLI: `hpo-painel <comando>` ou `python -m hpo_ptbr.cli`.
+"""Ponto de entrada da CLI: `alcance <comando>` ou `python -m hpo_ptbr.cli`.
 
 Este arquivo só declara os argumentos e despacha. Cada comando vive no seu
 módulo; o cálculo vive nos módulos de `hpo_ptbr`, onde é testado.
@@ -18,21 +18,25 @@ from .variantes import command_clinvar
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Painel de alvos fenotípicos, a partir de dados versionados locais."
+        prog="alcance",
+        description=(
+            "Alcance Genômico: de quais doenças monogênicas os dados de DNA antigo "
+            "permitem perguntar. Usa só dados versionados locais."
+        ),
     )
     sub = parser.add_subparsers(dest="comando", required=True)
 
     sub.add_parser("snapshot", help="Normaliza as fontes presentes em data/raw e grava os manifestos.")
 
     painel = sub.add_parser(
-        "panel", help="Caracteriza um painel de posições genotipadas (.snp EIGENSTRAT)."
+        "panel", help="Caracteriza um painel de genotipagem (.snp EIGENSTRAT) e verifica o build."
     )
     painel.add_argument("snp", help="Caminho do arquivo .snp (formato EIGENSTRAT).")
     painel.add_argument(
         "--build",
         required=True,
         choices=list(genotype_panel.GENOME_BUILDS),
-        help="Build do genoma do painel. Obrigatório: não é inferido do arquivo.",
+        help="Build do genoma do painel de genotipagem. Obrigatório: não é inferido do arquivo.",
     )
     painel.add_argument("--rotulo", default="", help="Nome do painel no manifesto.")
     painel.add_argument("--url", default="", help="URL de origem, para proveniência.")
@@ -83,7 +87,7 @@ def main() -> int:
     )
     variantes.add_argument(
         "--build", required=True, choices=list(genotype_panel.GENOME_BUILDS),
-        help="Build a reter. Precisa ser o mesmo do painel (AADR 1240K: GRCh37).",
+        help="Build a reter. Precisa ser o mesmo do painel de genotipagem (AADR 1240K: GRCh37).",
     )
     variantes.add_argument(
         "--incluir-origem-desconhecida", action="store_true",
@@ -91,12 +95,12 @@ def main() -> int:
     )
 
     cobertura = sub.add_parser(
-        "coverage", help="Cruza doenças-alvo, ClinVar e painel: de quantas doenças o painel fala."
+        "coverage", help="Cruza doenças-alvo, ClinVar e painel de genotipagem: de quantas doenças dá para perguntar."
     )
-    cobertura.add_argument("snp", help="Caminho do arquivo .snp do painel.")
+    cobertura.add_argument("snp", help="Caminho do arquivo .snp do painel de genotipagem.")
     cobertura.add_argument(
         "--build", required=True, choices=list(genotype_panel.GENOME_BUILDS),
-        help="Build do painel. É verificado contra o arquivo.",
+        help="Build do painel de genotipagem. É verificado contra o arquivo.",
     )
     cobertura.add_argument("--rotulo", default="", help="Nome do painel no relatório.")
     cobertura.add_argument(

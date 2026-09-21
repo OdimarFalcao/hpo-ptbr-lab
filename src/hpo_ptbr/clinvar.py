@@ -1,13 +1,13 @@
 """Variantes patogênicas do ClinVar (`variant_summary.txt.gz`).
 
-Quarta fonte do painel de alvos, e a primeira fora da HPO:
+Quarta fonte do Alcance Genômico, e a primeira fora da HPO:
 
 - `hp.json`             -> vocabulário de fenótipos
 - `phenotype.hpoa`      -> doença apresenta fenótipo
 - `genes_to_disease`    -> gene associado a doença
 - `variant_summary`     -> **qual alteração exata no DNA** causa a doença
 
-É ela que permite a pergunta do painel genotipado: o que se procura no genoma
+É ela que permite a pergunta ao painel de genotipagem: o que se procura no genoma
 não é o gene, é a posição e o alelo da variante patogênica.
 
 ## Filtros, em ordem, todos contabilizados no manifesto
@@ -140,7 +140,7 @@ def disease_ids_from_phenotype_field(valor: str) -> tuple[str, ...]:
     """Extrai OMIM e Orphanet de `PhenotypeIDS`, no vocabulario da HPO.
 
     O ClinVar escreve `Orphanet:100`; a HPO escreve `ORPHA:100`. Sem essa
-    traducao, nenhuma variante do Orphanet casaria com o painel de alvos.
+    traducao, nenhuma variante do Orphanet casaria com as doenças-alvo.
     """
     omim = {f"OMIM:{n}" for n in _OMIM.findall(valor)}
     orpha = {f"ORPHA:{n}" for n in _ORPHANET.findall(valor)}

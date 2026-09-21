@@ -170,7 +170,7 @@ def test_classificacao_com_modificador_e_retida(snapshot) -> None:
 
 
 def test_orphanet_e_traduzido_para_o_prefixo_da_hpo(snapshot) -> None:
-    """Sem isso, nenhuma variante do Orphanet casaria com o painel de alvos."""
+    """Sem isso, nenhuma variante do Orphanet casaria com as doenças-alvo."""
     csv_path, _ = snapshot
     variante = {v.variation_id: v for v in load_snapshot(csv_path)}["100"]
     assert variante.disease_ids == ("OMIM:208900", "ORPHA:100")

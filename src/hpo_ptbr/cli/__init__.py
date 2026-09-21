@@ -1,1 +1,1 @@
-"""Interface de linha de comando do painel de alvos. Ver `__main__`."""
+"""Interface de linha de comando do Alcance Genômico (`alcance`). Ver `__main__`."""

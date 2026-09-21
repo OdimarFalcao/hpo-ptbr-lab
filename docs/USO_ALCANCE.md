@@ -1,18 +1,18 @@
-# Uso — painel de alvos fenotípicos
+# Uso do Alcance Genômico
 
-Guia operacional da CLI `hpo-painel`. Tudo aqui roda sobre dados versionados
+Guia operacional da CLI `alcance`. Tudo aqui roda sobre dados versionados
 locais: **nenhum comando baixa nada da rede**.
 
-Os exemplos usam `python scripts\hpo_panel_cli.py`, que funciona sem
+Os exemplos usam `python scripts\alcance.py`, que funciona sem
 instalar. Com o projeto instalado (`pip install -e .[dev]`), troque por
-`hpo-painel`: `hpo-painel coverage ...` é o mesmo que
-`python scripts\hpo_panel_cli.py coverage ...`.
+`alcance`: `alcance coverage ...` é o mesmo que
+`python scripts\alcance.py coverage ...`.
 
 ---
 
 ## 0. Pré-requisitos
 
-O painel precisa apenas da biblioteca padrão do Python (3.11+), sem
+A ferramenta precisa apenas da biblioteca padrão do Python (3.11+), sem
 nenhuma dependência. Se algum comando falhar, confirme qual interpretador
 está em uso:
 
@@ -27,7 +27,7 @@ release da HPO** (em uso: `2026-06-23`):
 |---|---|---|
 | `phenotype.hpoa` | doença apresenta fenótipo | release da HPO |
 | `genes_to_disease.txt` | gene associado a doença, e de que tipo | release da HPO |
-| `v66.p1_1240K.aadr.patch.PUB.snp` | posições genotipadas do painel AADR | Harvard Dataverse |
+| `v66.p1_1240K.aadr.patch.PUB.snp` | posições do painel 1240K do AADR | Harvard Dataverse |
 | `variant_summary.txt.gz` | variantes do ClinVar | NCBI (ver seção 6) |
 
 ---
@@ -38,7 +38,7 @@ Roda uma vez por release. Converte os arquivos brutos em CSVs versionados
 com manifesto de proveniência.
 
 ```
-python scripts\hpo_panel_cli.py snapshot
+python scripts\alcance.py snapshot
 ```
 
 O que ele garante, e por que importa:
@@ -61,7 +61,7 @@ manifestos `*_metadata.json`.
 ## 2. `search` — achar o identificador de uma doença
 
 ```
-python scripts\hpo_panel_cli.py search "ataxia" --limite 10
+python scripts\alcance.py search "ataxia" --limite 10
 ```
 
 Busca por substring no **nome da doença**. Entre colchetes vêm os genes
@@ -74,10 +74,10 @@ associados, quando existem.
 Da doença para os fenótipos e genes.
 
 ```
-python scripts\hpo_panel_cli.py profile OMIM:224900
-python scripts\hpo_panel_cli.py profile OMIM:224900 --somente-mendelianas
-python scripts\hpo_panel_cli.py profile OMIM:224900 --aspects P C I
-python scripts\hpo_panel_cli.py profile OMIM:224900 --json
+python scripts\alcance.py profile OMIM:224900
+python scripts\alcance.py profile OMIM:224900 --somente-mendelianas
+python scripts\alcance.py profile OMIM:224900 --aspects P C I
+python scripts\alcance.py profile OMIM:224900 --json
 ```
 
 Aspectos: `P` fenótipo (padrão), `C` curso clínico, `I` herança,
@@ -94,10 +94,10 @@ fonte) — a afirmação oposta, não uma ocorrência.
 Do achado para as doenças candidatas. É o comando que monta o recorte.
 
 ```
-python scripts\hpo_panel_cli.py term HP:0001249
-python scripts\hpo_panel_cli.py term HP:0001249 --somente-mendelianas
-python scripts\hpo_panel_cli.py term HP:0001249 --somente-com-gene --limite 50
-python scripts\hpo_panel_cli.py term HP:0001249 --json
+python scripts\alcance.py term HP:0001249
+python scripts\alcance.py term HP:0001249 --somente-mendelianas
+python scripts\alcance.py term HP:0001249 --somente-com-gene --limite 50
+python scripts\alcance.py term HP:0001249 --json
 ```
 
 O rodapé é a parte que decide se o recorte se sustenta:
@@ -132,10 +132,10 @@ pela fonte.
 
 ---
 
-## 5. `panel` — caracterizar o painel de posições genotipadas
+## 5. `panel` — caracterizar o painel de genotipagem
 
 ```
-python scripts\hpo_panel_cli.py panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp ^
+python scripts\alcance.py panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp ^
   --build GRCh37 --rotulo "AADR v66.p1 1240K"
 ```
 
@@ -171,11 +171,11 @@ Baixe **pelo navegador ou PowerShell** (a ferramenta não baixa nada):
 
 ```
 curl.exe -L -C - -o data\raw\variant_summary.txt.gz https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
-python scripts\hpo_panel_cli.py clinvar --build GRCh37
+python scripts\alcance.py clinvar --build GRCh37
 ```
 
 **Entrada:** `variant_summary.txt.gz` (várias centenas de MB). `--build` é
-obrigatório e precisa ser o do painel — o AADR 1240K é GRCh37.
+obrigatório e precisa ser o do painel de genotipagem — o 1240K do AADR é GRCh37.
 
 **O que faz, em ordem, contando cada exclusão:**
 
@@ -192,7 +192,7 @@ origem (`unknown`, `not provided`). Por padrão elas ficam fora, e o manifesto
 conta quantas patogênicas saíram por isso. Para incluí-las:
 
 ```
-python scripts\hpo_panel_cli.py clinvar --build GRCh37 --incluir-origem-desconhecida
+python scripts\alcance.py clinvar --build GRCh37 --incluir-origem-desconhecida
 ```
 
 No ClinVar de setembro de 2026 isso acrescenta 38.942 patogênicas e não muda
@@ -208,15 +208,15 @@ fica registrado.
 
 ---
 
-## 7. `coverage` — de quantas doenças o painel fala
+## 7. `coverage` — de quantas doenças dá para perguntar
 
 ```
-python scripts\hpo_panel_cli.py coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
-python scripts\hpo_panel_cli.py coverage ... --estrelas-minimas 2
+python scripts\alcance.py coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
+python scripts\alcance.py coverage ... --estrelas-minimas 2
 ```
 
 **Entrada:** os snapshots de `snapshot` e `clinvar`, mais o `.snp`. O build
-do painel é verificado de novo; builds divergentes são recusados.
+do painel de genotipagem é verificado de novo; builds divergentes são recusados.
 
 **O que faz:** para cada doença com perfil fenotípico e gene associado,
 encontra as variantes patogênicas ligadas **diretamente** a ela (campo
@@ -263,12 +263,12 @@ o caso errado**:
 
 ```
 :: declara o build errado de propósito — deve acusar e sair com 1
-python scripts\hpo_panel_cli.py panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh38
+python scripts\alcance.py panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh38
 echo %ERRORLEVEL%
 
 :: identificador inexistente — deve falhar, não devolver lista vazia
-python scripts\hpo_panel_cli.py term HP:1234567
-python scripts\hpo_panel_cli.py profile OMIM:999999
+python scripts\alcance.py term HP:1234567
+python scripts\alcance.py profile OMIM:999999
 ```
 
 Uma verificação que nunca reprova nada não está verificando nada.

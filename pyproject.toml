@@ -5,16 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hpo-ptbr-lab"
 version = "0.2.0"
-description = "Painel de alvos fenotípicos: de quais doenças monogênicas um conjunto de dados de DNA antigo permite perguntar"
+description = "Alcance Genômico: de quais doenças monogênicas um conjunto de dados de DNA antigo permite perguntar"
 requires-python = ">=3.11"
-# Sem dependências: o painel usa só a biblioteca padrão, e um teste garante isso.
+# Sem dependências: a ferramenta usa só a biblioteca padrão, e um teste garante isso.
 dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<9"]
 
 [project.scripts]
-hpo-painel = "hpo_ptbr.cli.__main__:main"
+alcance = "hpo_ptbr.cli.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

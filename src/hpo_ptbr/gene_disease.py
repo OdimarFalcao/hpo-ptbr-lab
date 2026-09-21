@@ -197,7 +197,7 @@ def build_snapshot(
                 "MENDELIAN remove integralmente as fontes listadas em "
                 "sources_without_classification, e isso nao significa que essas "
                 "doencas nao sejam monogenicas: significa que a fonte nao declara. "
-                "Um painel de alvos construido com esse filtro precisa registrar a "
+                "Um conjunto de doencas-alvo construido com esse filtro precisa registrar a "
                 "exclusao como decisao, nao herda-la sem aviso."
             ),
         },

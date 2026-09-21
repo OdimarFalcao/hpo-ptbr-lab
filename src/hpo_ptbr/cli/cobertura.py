@@ -45,18 +45,18 @@ def command_coverage(args: argparse.Namespace) -> int:
     saida_csv = COVERAGE_CSV.with_name(f"target_coverage{sufixo}.csv")
     saida_manifesto = COVERAGE_MANIFEST.with_name(f"target_coverage{sufixo}_metadata.json")
 
-    print("Carregando painel...")
+    print("Carregando painel de genotipagem...")
     painel = genotype_panel.load_panel(caminho_snp, args.build, panel_label=args.rotulo)
     verificacao = genotype_panel.verify_declared_build(painel)
     if verificacao["verdict"] in {"contradiz_declaracao", "contraditorio", "impossivel"}:
-        print(f"Build do painel não sobrevive à verificação: {verificacao['explanation']}",
+        print(f"Build do painel de genotipagem não sobrevive à verificação: {verificacao['explanation']}",
               file=sys.stderr)
         return 1
 
     print("Carregando anotações, genes e variantes...")
     variantes = clinvar.load_snapshot(CLINVAR_CSV)
     snvs_na_posicao = target_coverage.snv_positions_on_panel(variantes, painel)
-    print(f"Lendo alelos do painel em {_milhar(len(snvs_na_posicao))} posições...")
+    print(f"Lendo alelos do painel de genotipagem em {_milhar(len(snvs_na_posicao))} posições...")
     alelos = genotype_panel.read_panel_alleles(caminho_snp, snvs_na_posicao)
 
     try:

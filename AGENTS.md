@@ -4,8 +4,8 @@ Atualizado em 2026-09-21.
 
 ## Objetivo
 
-Painel de alvos fenotípicos para DNA antigo: dado um conjunto de posições
-genotipadas, medir de quais doenças monogênicas é possível perguntar se um
+Alcance Genômico (comando `alcance`): dado um painel de genotipagem (a lista
+fixa de posições que um conjunto de dados lê, como o 1240K do AADR), medir de quais doenças monogênicas é possível perguntar se um
 indivíduo carrega a variante causadora. Serve ao objetivo (c) do mestrado do
 PO (inferência de doenças monogênicas em dados genômicos antigos).
 
@@ -35,16 +35,23 @@ src/hpo_ptbr/
   cli/                 um módulo por comando; __main__ só despacha
 scripts/
   build_snapshot.py, build_ontology_index.py   geram o snapshot terminológico
-  hpo_panel_cli.py                             atalho para a CLI
+  alcance.py                             atalho para a CLI
 ```
 
 Cálculo fica nos módulos; a CLI só lê argumentos, chama e imprime.
 
 ## Pontos de entrada
 
-- `hpo-painel <comando>` (após `pip install -e .[dev]`)
-- `python scripts/hpo_panel_cli.py <comando>` (sem instalar)
+- `alcance <comando>` (após `pip install -e .[dev]`)
+- `python scripts/alcance.py <comando>` (sem instalar)
 - `python -m pytest -q`
+
+## Termos
+
+- **Painel de genotipagem** (ou **painel 1240K**): a lista fixa de posições do
+  DNA que um conjunto de dados lê em todos os indivíduos. É o único sentido de
+  "painel" no projeto. Nunca usar "painel" para a ferramenta.
+- **Alcance Genômico**: o nome da ferramenta. Comando `alcance`.
 
 ## Regras
 

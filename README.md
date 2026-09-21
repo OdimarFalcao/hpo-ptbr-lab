@@ -1,15 +1,19 @@
-# HPO-PTBR Lab: painel de alvos fenotípicos
+# Alcance Genômico
 
 Mede **de quais doenças monogênicas um conjunto de dados de DNA antigo permite perguntar** se um indivíduo carrega a variante causadora.
+
+Comando: `alcance`. Repositório: `hpo-ptbr-lab`.
 
 Para isso, cruza quatro fontes públicas:
 
 ```text
-doença ── gene ── variante patogênica ── posição e alelos ensaiados no painel
- (HPO)    (HPO)        (ClinVar)              (arquivo .snp, ex.: AADR 1240K)
+doença ── gene ── variante patogênica ── posição e alelos lidos pelo painel de genotipagem
+ (HPO)    (HPO)        (ClinVar)              (arquivo .snp, ex.: painel 1240K do AADR)
 ```
 
 Usa só a biblioteca padrão do Python 3.11+ e não tem dependências. Não faz diagnóstico.
+
+**Termo usado:** *painel de genotipagem* é a lista fixa de posições do DNA que um conjunto de dados lê em todos os indivíduos. O *painel 1240K* do AADR lê 1,2 milhão de posições. "Painel" neste projeto sempre tem esse sentido.
 
 ---
 
@@ -23,7 +27,7 @@ python -m venv .venv
 pip install -e .[dev]
 ```
 
-Isso registra o comando `hpo-painel`. Sem instalar, use `python scripts\hpo_panel_cli.py` no lugar de `hpo-painel`.
+Isso registra o comando `alcance`. Sem instalar, use `python scripts\alcance.py` no lugar de `alcance`.
 
 ---
 
@@ -53,10 +57,10 @@ Os rótulos em português e o índice da ontologia (`data\processed\hpo_ptbr.csv
 ## Uso: primeira execução, em ordem
 
 ```
-hpo-painel snapshot
-hpo-painel panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
-hpo-painel clinvar --build GRCh37
-hpo-painel coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
+alcance snapshot
+alcance panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
+alcance clinvar --build GRCh37
+alcance coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
 ```
 
 Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quantas vezes quiser.
@@ -67,13 +71,13 @@ Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quanta
 
 | comando | o que faz | exemplo |
 |---|---|---|
-| `snapshot` | Normaliza `phenotype.hpoa` e `genes_to_disease.txt`. Recusa a execução se a release não bater com a da ontologia. | `hpo-painel snapshot` |
-| `search` | Acha o identificador de uma doença pelo nome. | `hpo-painel search "ataxia"` |
-| `profile` | Doença → fenótipos e genes. | `hpo-painel profile OMIM:224900` |
-| `term` | Fenótipo → doenças que o apresentam → genes. | `hpo-painel term HP:0001251` |
-| `panel` | Caracteriza um `.snp` e **verifica** o build declarado contra o próprio arquivo. Sai com erro se a declaração for contradita. | `hpo-painel panel <arquivo.snp> --build GRCh37` |
-| `clinvar` | Filtra o ClinVar: build declarado, origem germinativa, Pathogenic/Likely pathogenic. Conta cada exclusão. | `hpo-painel clinvar --build GRCh37` |
-| `coverage` | Cruza doenças × ClinVar × painel e classifica cada doença pelo ponto mais fundo que alcança. | `hpo-painel coverage <arquivo.snp> --build GRCh37` |
+| `snapshot` | Normaliza `phenotype.hpoa` e `genes_to_disease.txt`. Recusa a execução se a release não bater com a da ontologia. | `alcance snapshot` |
+| `search` | Acha o identificador de uma doença pelo nome. | `alcance search "ataxia"` |
+| `profile` | Doença → fenótipos e genes. | `alcance profile OMIM:224900` |
+| `term` | Fenótipo → doenças que o apresentam → genes. | `alcance term HP:0001251` |
+| `panel` | Caracteriza um `.snp` e **verifica** o build declarado contra o próprio arquivo. Sai com erro se a declaração for contradita. | `alcance panel <arquivo.snp> --build GRCh37` |
+| `clinvar` | Filtra o ClinVar: build declarado, origem germinativa, Pathogenic/Likely pathogenic. Conta cada exclusão. | `alcance clinvar --build GRCh37` |
+| `coverage` | Cruza doenças × ClinVar × painel de genotipagem e classifica cada doença pelo ponto mais fundo que alcança. | `alcance coverage <arquivo.snp> --build GRCh37` |
 
 **Opções**
 
@@ -85,7 +89,7 @@ Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quanta
 | `term` | `--somente-com-gene` | só doenças com algum gene associado |
 | `term`, `search` | `--limite N` | quantas linhas exibir |
 | `profile`, `term` | `--json` | saída estruturada, para uso em scripts |
-| `panel`, `coverage` | `--rotulo "nome"` | nome do painel no relatório |
+| `panel`, `coverage` | `--rotulo "nome"` | nome do painel de genotipagem no relatório |
 | `clinvar` | `--incluir-origem-desconhecida` | aceita também origem `unknown`/`not provided` |
 | `coverage` | `--estrelas-minimas 0-4` | exige nível mínimo de revisão no ClinVar |
 
@@ -111,24 +115,24 @@ Todos ficam em `data\processed\`. Cada `*_metadata.json` registra o sha256 da fo
 
 ## Resultado atual
 
-Painel AADR v66.p1 1240K × ClinVar de 11/09/2026:
+Painel 1240K do AADR (v66.p1) × ClinVar de 11/09/2026:
 
 | | |
 |---|---|
 | SNV patogênicas no ClinVar (GRCh37) | 178.934 |
-| em posição ensaiada pelo painel | 108 |
+| em posição lida pelo painel 1240K | 108 |
 | com os alelos certos | 54 (52 variantes, 17 genes) |
 | doenças mendelianas (OMIM) alcançadas | **33 de 6.484** |
 | incluindo Orphanet | 56 de 9.142 |
 
-O conjunto de doenças é o mesmo com ou sem `--incluir-origem-desconhecida`. Relatório completo: `docs\relatorios\viabilidade_painel_1240K.docx`.
+O conjunto de doenças é o mesmo com ou sem `--incluir-origem-desconhecida`. Relatório: `docs\relatorios\o_que_os_dados_permitem_perguntar.docx`.
 
 ---
 
 ## Limitações
 
-- Mede se a pergunta **pode ser feita** com o painel. Não mede se alguém carrega a variante.
-- Considera só SNV: painel de SNPs não observa inserções, deleções ou variação estrutural.
+- Mede se a pergunta **pode ser feita** com o painel de genotipagem. Não mede se alguém carrega a variante.
+- Considera só SNV: um painel de genotipagem de SNPs não observa inserções, deleções ou variação estrutural.
 - Considera só a anotação direta da HPO, sem expansão pela hierarquia da ontologia.
 - Termo sem rótulo oficial em português aparece em inglês, marcado `[sem PT]`, e nunca é traduzido automaticamente.
 
@@ -149,7 +153,7 @@ Salve `hp.json` e `hp-pt.babelon.tsv` da nova release em `data\raw\` e rode:
 ```
 python scripts\build_snapshot.py
 python scripts\build_ontology_index.py
-hpo-painel snapshot
+alcance snapshot
 ```
 
 Baixe `phenotype.hpoa` e `genes_to_disease.txt` **da mesma release**. O `snapshot` recusa um `phenotype.hpoa` de outra release; o `genes_to_disease.txt` não declara versão, então a verificação possível é a sobreposição de doenças registrada no manifesto.
@@ -158,7 +162,7 @@ Baixe `phenotype.hpoa` e `genes_to_disease.txt` **da mesma release**. O `snapsho
 
 ## Documentação
 
-- [`docs/USO_PAINEL_DE_ALVOS.md`](docs/USO_PAINEL_DE_ALVOS.md): entrada e saída de cada comando, em detalhe.
+- [`docs/USO_ALCANCE.md`](docs/USO_ALCANCE.md): entrada e saída de cada comando, em detalhe.
 - [`AGENTS.md`](AGENTS.md): regras e riscos conhecidos, para quem mexe no código.
 
 A bancada de anotação de texto clínico que existia neste repositório está preservada na etiqueta `frente-a-final` (`git checkout frente-a-final`).

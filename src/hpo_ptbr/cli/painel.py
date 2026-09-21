@@ -33,7 +33,7 @@ def command_panel(args: argparse.Namespace) -> int:
     simbolo = {"consistente": "verificado", "contradiz_declaracao": "CONTRADITO",
                "contraditorio": "CONTRADITORIO", "inconclusivo": "não verificável",
                "impossivel": "IMPOSSÍVEL"}[verificacao["verdict"]]
-    print(f"Painel: {dados['label']}")
+    print(f"Painel de genotipagem: {dados['label']}")
     print(f"  build declarado       : {manifesto['genome_build']['declared']}  ({simbolo})")
     print(f"  posições ensaiadas    : {_milhar(dados['assayed_positions'])}")
     print(f"  autossômicas          : {_milhar(dados['autosomal_positions'])}")
