@@ -1,26 +1,10 @@
 # Alcance Genômico
 
-Ferramenta de linha de comando para avaliar quais doenças podem ser
-investigadas em um conjunto de dados genômicos.
+Mostra quais doenças podem ser investigadas com os dados genômicos disponíveis
+e resume os indivíduos descritos no conjunto de dados.
 
-O uso atual é DNA antigo, com o painel 1240K do AADR. O comando é `alcance`.
-
-## Escopo atual
-
-- `coverage`: cruza HPO, ClinVar e as posições e alelos de um painel de
-  genotipagem para listar doenças investigáveis.
-- `anno`: descreve os metadados dos indivíduos do AADR, sem filtrar ou
-  classificar registros.
-
-Para calcular o alcance, cruza quatro fontes públicas:
-
-```text
-doença ── gene ── variante patogênica ── posição e alelos lidos pelo painel de genotipagem
- (HPO)    (HPO)        (ClinVar)              (arquivo .snp, ex.: painel 1240K do AADR)
-```
-
-O cálculo mede viabilidade: não lê o arquivo de genótipos (`.geno`) e não faz
-diagnóstico. O `.anno` também não participa desse cálculo.
+O uso atual é o estudo de DNA antigo do AADR. O comando da ferramenta é
+`alcance`.
 
 ## Resultado atual
 
