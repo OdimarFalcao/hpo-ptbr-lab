@@ -1,0 +1,285 @@
+{
+  "schema_version": "genotype-panel-manifest-v1",
+  "generated_at_utc": "2026-09-15T17:44:17.188604+00:00",
+  "source": {
+    "url": "",
+    "file": "v66.p1_1240K.aadr.patch.PUB.snp",
+    "sha256": "1189e253b82058822fddabc4966c1448dea70373a96c40106e720bedd93b55bf",
+    "format": "EIGENSTRAT .snp"
+  },
+  "genome_build": {
+    "declared": "GRCh37",
+    "inferred": false,
+    "verification": {
+      "declared": "GRCh37",
+      "verdict": "consistente",
+      "explanation": "15 cromossomo(s) so cabem em GRCh37, que e o build declarado. Nenhum aponta para outro build.",
+      "chromosomes_exclusive_to": {
+        "GRCh37": 15,
+        "GRCh38": 0
+      },
+      "chromosomes_compatible_with": {
+        "GRCh37": 24,
+        "GRCh38": 9
+      },
+      "evidence": [
+        {
+          "chromosome": "1",
+          "max_position": 249210707,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "2",
+          "max_position": 243044147,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "3",
+          "max_position": 197836412,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "4",
+          "max_position": 190897284,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "5",
+          "max_position": 180690937,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "6",
+          "max_position": 170909002,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "7",
+          "max_position": 159119486,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "8",
+          "max_position": 146296414,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "9",
+          "max_position": 141039840,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "10",
+          "max_position": 135434303,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "11",
+          "max_position": 134942906,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "12",
+          "max_position": 133840842,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "13",
+          "max_position": 115103150,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "14",
+          "max_position": 107287663,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "15",
+          "max_position": 102398060,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "16",
+          "max_position": 90149922,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "17",
+          "max_position": 81041077,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "18",
+          "max_position": 78016633,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "19",
+          "max_position": 59087479,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "20",
+          "max_position": 62912463,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "21",
+          "max_position": 48100155,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "22",
+          "max_position": 51178090,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        },
+        {
+          "chromosome": "X",
+          "max_position": 155234382,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": true
+          },
+          "decides_for": null
+        },
+        {
+          "chromosome": "Y",
+          "max_position": 59033249,
+          "fits": {
+            "GRCh37": true,
+            "GRCh38": false
+          },
+          "decides_for": "GRCh37"
+        }
+      ],
+      "method": "Uma posicao nao pode exceder o comprimento do cromossomo naquela montagem. Verificacao interna, sem consulta externa."
+    },
+    "note": "O build nao e inferido do arquivo: e declarado por quem executa e precisa vir da documentacao do conjunto de dados. Cruzar fontes de builds diferentes produz intersecao espuria."
+  },
+  "panel": {
+    "label": "AADR v66.p1 1240K",
+    "assayed_positions": 1233013,
+    "autosomal_positions": 1150639,
+    "by_chromosome": {
+      "1": 93166,
+      "2": 98657,
+      "3": 81416,
+      "4": 71634,
+      "5": 74004,
+      "6": 78867,
+      "7": 62595,
+      "8": 63916,
+      "9": 52765,
+      "10": 61131,
+      "11": 57163,
+      "12": 56133,
+      "13": 40441,
+      "14": 37903,
+      "15": 35991,
+      "16": 36000,
+      "17": 30733,
+      "18": 35327,
+      "19": 19273,
+      "20": 30377,
+      "21": 16727,
+      "22": 16420,
+      "X": 49704,
+      "Y": 32670
+    },
+    "resembles_known_panel": "1240K (captura, ~1,24 milhao de SNPs)",
+    "size_match_is_suggestive_only": true
+  },
+  "parsing": {
+    "unknown_chromosome_codes": [],
+    "note": "Códigos de cromossomo fora do esperado são contados e listados, nunca descartados em silêncio."
+  },
+  "no_normalized_copy": "O .snp ja e tabular e minimo; nao se gera copia derivada. A proveniencia e o sha256 do arquivo original."
+}

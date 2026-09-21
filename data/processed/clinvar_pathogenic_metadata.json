@@ -1,0 +1,94 @@
+{
+  "schema_version": "clinvar-pathogenic-snapshot-manifest-v1",
+  "generated_at_utc": "2026-09-21T13:13:49.358823+00:00",
+  "source": {
+    "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz",
+    "file": "variant_summary.txt.gz",
+    "sha256": "f25970aa49619fc73cdf8c878a3a20faaa69a0abd56cc8e14954f1d143e7e44e",
+    "declares_release": false,
+    "latest_last_evaluated": "2026-09-11",
+    "significance_column": "ClinicalSignificance",
+    "note": "variant_summary nao declara versao. latest_last_evaluated e a data de avaliacao mais recente nas linhas retidas: aproxima a data de corte, nao e a versao."
+  },
+  "genome_build": {
+    "declared": "GRCh37",
+    "liftover": false
+  },
+  "filters": {
+    "origin_accepted": [
+      "germline",
+      "germline/somatic",
+      "not provided",
+      "unknown"
+    ],
+    "include_undeclared_origin": true,
+    "significance_accepted": [
+      "Likely pathogenic",
+      "Pathogenic",
+      "Pathogenic/Likely pathogenic"
+    ]
+  },
+  "funnel": {
+    "rows_read": 9056310,
+    "rows_in_build": 4547596,
+    "germline": 4296489,
+    "pathogenic_or_likely": 378395,
+    "without_vcf_position": 30705,
+    "duplicates": 87,
+    "malformed_rows": 0,
+    "retained": 347603
+  },
+  "excluded": {
+    "conflicting_classifications": 166586,
+    "by_significance_top": {
+      "Uncertain significance": 2362336,
+      "Likely benign": 1098241,
+      "Benign": 212755,
+      "Conflicting classifications of pathogenicity": 166586,
+      "Benign/Likely benign": 67217,
+      "not provided": 7401,
+      "other": 1484,
+      "risk factor": 357,
+      "association": 311,
+      "drug response": 200,
+      "conflicting data from submitters": 177,
+      "Uncertain significance/Uncertain risk allele": 143
+    },
+    "by_origin": {
+      "not applicable": 244119,
+      "somatic": 6988
+    },
+    "pathogenic_by_origin": {
+      "somatic": 1147,
+      "not applicable": 31
+    },
+    "note": "by_origin conta todas as classificacoes; pathogenic_by_origin conta so as patogenicas/provaveis que o filtro de origem removeu."
+  },
+  "retained": {
+    "by_variant_type": {
+      "single nucleotide variant": 190848,
+      "Deletion": 93605,
+      "Duplication": 37576,
+      "Microsatellite": 11481,
+      "Indel": 7802,
+      "Insertion": 6172,
+      "Inversion": 115,
+      "Variation": 4
+    },
+    "snv": 190848,
+    "by_review_stars": {
+      "0": 29925,
+      "1": 219300,
+      "2": 85815,
+      "3": 12540,
+      "4": 23
+    },
+    "genes": 5974,
+    "linked_to_omim_or_orphanet": 268738,
+    "without_disease_link": 78865
+  },
+  "outputs": {
+    "csv": "data/processed/clinvar_pathogenic.csv",
+    "csv_sha256": "7c3f667cf73e9c78a70dc0578e5267df2be1a051838cd5a9c34b83c865358ccc"
+  }
+}

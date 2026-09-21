@@ -1,0 +1,69 @@
+{
+  "schema_version": "target-coverage-manifest-v1",
+  "generated_at_utc": "2026-09-21T12:53:29.451693+00:00",
+  "sources": {
+    "hpoa_manifest": "data/processed/hpoa_metadata.json",
+    "gene_disease_manifest": "data/processed/gene_disease_metadata.json",
+    "clinvar_manifest": "data/processed/clinvar_pathogenic_metadata.json",
+    "clinvar_sha256": "f25970aa49619fc73cdf8c878a3a20faaa69a0abd56cc8e14954f1d143e7e44e",
+    "panel_file": "v66.p1_1240K.aadr.patch.PUB.snp",
+    "panel_build_verification": "consistente"
+  },
+  "genome_build": "GRCh37",
+  "panel_label": "AADR v66.p1 1240K",
+  "min_review_stars": 0,
+  "universes": {
+    "mendelian_declared_by_omim": {
+      "diseases": 6484,
+      "by_tier": {
+        "sem_variante_patogenica": 344,
+        "sem_snv": 198,
+        "snv_fora_do_painel": 5888,
+        "posicao_alelo_diferente": 21,
+        "alelo_por_fita_oposta": 0,
+        "alelo_patogenico_ensaiado": 33
+      },
+      "percent_allele_assayed": 0.51
+    },
+    "any_gene_association": {
+      "diseases": 9142,
+      "by_tier": {
+        "sem_variante_patogenica": 873,
+        "sem_snv": 251,
+        "snv_fora_do_painel": 7925,
+        "posicao_alelo_diferente": 37,
+        "alelo_por_fita_oposta": 0,
+        "alelo_patogenico_ensaiado": 56
+      },
+      "percent_allele_assayed": 0.61
+    }
+  },
+  "variants": {
+    "pathogenic_retained": 320712,
+    "ignored_below_min_stars": 0,
+    "snv_considered": 178934,
+    "snv_at_panel_position": 108,
+    "allele_match": 54,
+    "strand_flip_match": 0,
+    "different_alleles": 54
+  },
+  "tier_labels": {
+    "sem_variante_patogenica": "sem variante patogênica ligada no ClinVar",
+    "sem_snv": "só variantes que não são SNV",
+    "snv_fora_do_painel": "SNV, mas nenhuma em posição ensaiada",
+    "posicao_alelo_diferente": "posição ensaiada, alelos diferentes",
+    "alelo_por_fita_oposta": "alelo casa pela fita oposta",
+    "alelo_patogenico_ensaiado": "alelo patogênico ensaiado"
+  },
+  "limitations": [
+    "Mede se a pergunta pode ser feita com o painel, não se algum indivíduo carrega a variante.",
+    "Posição ensaiada não garante genótipo observado: cobertura, dano pós-morte e filtros de qualidade decidem isso por amostra.",
+    "Ligação variante→doença pelo PhenotypeIDS do ClinVar; variante sem esse vínculo não conta para nenhuma doença.",
+    "Somente SNV: um painel de SNPs não observa indels nem variação estrutural.",
+    "Casamento pela fita oposta é provável, não confirmado."
+  ],
+  "outputs": {
+    "csv": "data/processed/target_coverage.csv",
+    "csv_sha256": "f9cc96d5499c25b789e6e6c345ca580de50fcc8e464968015e58b2008c9d8584"
+  }
+}

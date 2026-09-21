@@ -13,5 +13,7 @@ web/node_modules/
 web/dist/
 web/coverage/
 web/*.tsbuildinfo
-# derivado de data/raw/phenotype.hpoa; regenerar com: python scripts/hpoa_cli.py snapshot
+# derivado de data/raw/phenotype.hpoa; regenerar com: python scripts/hpo_panel_cli.py snapshot
 data/processed/hpo_annotations.csv
+# derivado do ClinVar (grande); regenerar com: python scripts/hpo_panel_cli.py clinvar --build GRCh37
+data/processed/clinvar_pathogenic.csv

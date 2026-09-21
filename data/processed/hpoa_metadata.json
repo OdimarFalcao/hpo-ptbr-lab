@@ -1,6 +1,6 @@
 {
   "schema_version": "hpoa-snapshot-manifest-v1",
-  "generated_at_utc": "2026-09-14T20:52:41.426477+00:00",
+  "generated_at_utc": "2026-09-21T10:35:53.489047+00:00",
   "source": {
     "url": "https://github.com/obophenotype/human-phenotype-ontology/releases/download/v2026-06-23/phenotype.hpoa",
     "file": "phenotype.hpoa",

@@ -1,6 +1,6 @@
 {
   "schema_version": "gene-disease-snapshot-manifest-v1",
-  "generated_at_utc": "2026-09-14T21:00:25.699964+00:00",
+  "generated_at_utc": "2026-09-21T10:35:56.268048+00:00",
   "source": {
     "url": "https://github.com/obophenotype/human-phenotype-ontology/releases/download/v2026-06-23/genes_to_disease.txt",
     "file": "genes_to_disease.txt",
@@ -25,6 +25,22 @@
       "ORPHA": 8288
     },
     "mendelian_diseases": 6600
+  },
+  "association_type_caveat": {
+    "by_source": {
+      "ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/mim2gene_medgen": {
+        "MENDELIAN": 7075,
+        "POLYGENIC": 581
+      },
+      "http://www.orphadata.org/data/xml/en_product6.xml": {
+        "UNKNOWN": 8288
+      }
+    },
+    "sources_without_classification": [
+      "http://www.orphadata.org/data/xml/en_product6.xml"
+    ],
+    "associations_unclassified": 8288,
+    "note": "association_type nao e preenchido por todas as fontes. Filtrar por MENDELIAN remove integralmente as fontes listadas em sources_without_classification, e isso nao significa que essas doencas nao sejam monogenicas: significa que a fonte nao declara. Um painel de alvos construido com esse filtro precisa registrar a exclusao como decisao, nao herda-la sem aviso."
   },
   "consistency": {
     "checked_against_hpoa_snapshot": true,

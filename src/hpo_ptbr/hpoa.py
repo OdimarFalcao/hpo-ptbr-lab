@@ -118,6 +118,18 @@ class HpoaIndex:
                 return annotation.disease_name
         return None
 
+    def for_term(self, hpo_id: str) -> tuple[HpoaAnnotation, ...]:
+        """Índice reverso: quais doenças citam este termo.
+
+        Devolve inclusive as anotações com `excluded=True` (qualificador NOT),
+        que afirmam o contrário — 'esta doença não apresenta este fenótipo'.
+        Filtrá-las aqui esconderia do chamador uma afirmação que existe na
+        fonte; separá-las é responsabilidade de quem interpreta.
+        """
+        wanted = hpo_id.strip().upper()
+        found = [a for a in self.annotations if a.hpo_id.upper() == wanted]
+        return tuple(sorted(found, key=lambda a: (a.database_id, a.evidence, a.reference)))
+
     def search_diseases(self, term: str, limit: int = 20) -> list[tuple[str, str]]:
         """Busca por substring no nome da doença. Determinística."""
         needle = term.strip().casefold()
