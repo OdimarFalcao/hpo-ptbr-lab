@@ -8,6 +8,16 @@ instalar. Com o projeto instalado (`pip install -e .[dev]`), troque por
 `alcance`: `alcance coverage ...` é o mesmo que
 `python scripts\alcance.py coverage ...`.
 
+A ferramenta responde a duas perguntas, com comandos separados:
+
+| pergunta | comandos | fontes |
+|---|---|---|
+| **De quais doenças os dados permitem perguntar?** | `snapshot`, `search`, `profile`, `term`, `panel`, `clinvar`, `coverage` | HPO, ClinVar, `.snp` do AADR |
+| **Quem são os indivíduos do conjunto de dados?** | `anno` | `.anno` do AADR |
+
+O `anno` é independente: o `coverage` não usa o `.anno`, e o resultado de
+cobertura vale para qualquer indivíduo lido pelo painel de genotipagem.
+
 ---
 
 ## 0. Pré-requisitos
@@ -20,8 +30,8 @@ está em uso:
 python -c "import sys; print(sys.version, sys.prefix)"
 ```
 
-Os arquivos brutos precisam existir em `data/raw/`, todos da **mesma
-release da HPO** (em uso: `2026-06-23`):
+Os arquivos brutos precisam existir em `data/raw/`. As fontes da HPO devem
+ser todas da **mesma release** (em uso: `2026-06-23`):
 
 | arquivo | o que é | origem |
 |---|---|---|
@@ -29,6 +39,7 @@ release da HPO** (em uso: `2026-06-23`):
 | `genes_to_disease.txt` | gene associado a doença, e de que tipo | release da HPO |
 | `v66.p1_1240K.aadr.patch.PUB.snp` | posições do painel 1240K do AADR | Harvard Dataverse |
 | `variant_summary.txt.gz` | variantes do ClinVar | NCBI (ver seção 6) |
+| `v66.p1_1240K.aadr.PUB.anno` | metadados dos indivíduos do AADR | Harvard Dataverse |
 
 ---
 
@@ -215,7 +226,7 @@ python scripts\alcance.py coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --bu
 python scripts\alcance.py coverage ... --estrelas-minimas 2
 ```
 
-**Entrada:** os snapshots de `snapshot` e `clinvar`, mais o `.snp`. O build
+**Entrada:** os snapshots de `snapshot` e `clinvar`, mais o `.snp`. Não usa o `.anno`. O build
 do painel de genotipagem é verificado de novo; builds divergentes são recusados.
 
 **O que faz:** para cada doença com perfil fenotípico e gene associado,
@@ -247,6 +258,52 @@ nível, contagens e IDs das variantes casadas) e
 `_origem_ampliada` e não sobrescrevem os do recorte conservador.
 
 Isto mede se a pergunta **pode ser feita**, não se alguém carrega a variante.
+
+---
+
+## 8. `anno` — descrever os indivíduos do AADR
+
+Lê o `.anno`, a planilha de metadados do AADR (uma linha por registro, com
+local, data, tipo de sequenciamento, cobertura e avaliação de qualidade), e
+descreve o conteúdo **sem classificar nem filtrar ninguém**.
+
+```
+python scripts\alcance.py anno data\raw\v66.p1_1240K.aadr.PUB.anno
+```
+
+A saída traz:
+
+- a lista exata das 49 colunas;
+- contagem de linhas e de indivíduos distintos (`Individual ID`), porque a
+  mesma pessoa pode aparecer em mais de uma linha, com processamentos
+  diferentes;
+- quantos registros são de pessoas atuais (data `0` e `present`), usados como
+  referência;
+- a distribuição dos valores das colunas de local, tipo de dado, cobertura e
+  data. Colunas com até 200 valores distintos aparecem por inteiro; acima
+  disso, os 30 mais frequentes.
+
+Vazios e valores como `..` e `n/a` são contados à parte e nunca descartados.
+
+No arquivo v66.p1:
+
+| | |
+|---|---|
+| registros (linhas) | 23.089 |
+| indivíduos distintos (`Individual ID`) | 21.433 |
+| indivíduos que aparecem em mais de uma linha | 1.262 |
+| registros de pessoas atuais | 3.970 |
+| registros com `Political Entity` = Brazil | 87 |
+
+**Não confunda linha com indivíduo, nem registro com indivíduo antigo.**
+23.089 é o número de linhas; os 3.970 atuais estão incluídos nele.
+
+**Correspondência com o `.snp`.** Os nomes publicados diferem
+(`...aadr.PUB.anno` e `...aadr.patch.PUB.snp`). O manifesto registra o `.snp`
+usado pelos outros comandos e declara que a correspondência entre os dois
+**ainda não foi confirmada**. A URL de origem fica vazia até ser verificada.
+
+**Saída:** `data\processed\aadr_anno_metadata.json`.
 
 ---
 
@@ -282,3 +339,8 @@ Uma verificação que nunca reprova nada não está verificando nada.
   para isso — percorre um caminho único num grafo de múltiplos pais e perde
   cerca de 42% dos ancestrais reais.
 - Busca de termo HPO por rótulo.
+- Critérios para recortar indivíduos do `.anno` (país, região, antigo ou
+  atual, genoma inteiro ou captura, cobertura mínima). O `anno` só descreve;
+  a definição dos critérios depende do PO e do orientador.
+- Confirmação de que o `.anno` e o `.snp` usados pertencem ao mesmo
+  lançamento do AADR.

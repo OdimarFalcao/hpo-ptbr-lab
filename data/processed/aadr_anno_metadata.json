@@ -1,0 +1,3082 @@
+{
+  "schema_version": "aadr-anno-description-v1",
+  "generated_at_utc": "2026-09-21T15:17:47.956687+00:00",
+  "source": {
+    "url": "",
+    "file": "v66.p1_1240K.aadr.PUB.anno",
+    "sha256": "4a8e15d0b8d5a8bd6c929ccab7ff83a17091dc91b5e0d8015d9896dd9a5f7f7a",
+    "format": "AADR .anno (TSV com campos entre aspas)",
+    "version_declared_in_file": null,
+    "version_note": "O conteúdo do arquivo não declara versão; a identificação v66.p1 vem do nome publicado e a proveniência é fixada pelo sha256.",
+    "related_snp_file": "v66.p1_1240K.aadr.patch.PUB.snp",
+    "related_snp_correspondence_confirmed": false,
+    "related_snp_note": "Este é o arquivo .snp usado pelos outros comandos para o painel de genotipagem 1240K; a correspondência entre ele e este .anno ainda não foi confirmada."
+  },
+  "individuals": 23089,
+  "individual_counts": {
+    "rows": 23089,
+    "distinct_nonempty_individual_ids": 21433,
+    "individual_ids_in_multiple_rows": 1262,
+    "rows_with_empty_individual_id": 0
+  },
+  "current_records": {
+    "date_mean_bp_equals_0": 3970,
+    "full_date_equals_present": 3970,
+    "both_fields": 3970,
+    "rows_excluded": 0,
+    "note": "Contagens descritivas de indivíduos atuais; estes registros permanecem no arquivo e em todas as demais contagens."
+  },
+  "column_count": 49,
+  "columns": [
+    "Genetic ID (suffices: \".DG\" is a high coverage shotgun genome with diploid genotype calls; \".SG\" is a high coverage shotgun genome with diploid genotype calls; \".AG,  .TW, .BY, .AA, .EC, .WGC\"  are Agilent 1240K or Twist Ancient DNA or \"Big Yoruba\" or \"Archaic Admixture\" or \"Exome\" or \"Whole-Genome Capture\" data respectively; each analyzed position is represented by a randomly chosen sequence allowing for combinations when merged (separable by readgroups if possible).  \".HO\" is Affymetrix Human Origins genotype data and \"REF\" is reference haploid data.",
+    "Persistent Genetic ID",
+    "Individual ID",
+    "Skeletal code",
+    "Skeletal element",
+    "First publication: Abbreviation for earliest paper that reported data from this individual (this is not always the same as the data being analyzed, which may be from a different or improved dataset)",
+    "Publication abbreviation",
+    "doi for publication of this representation of the data",
+    "Link to the most permanent repository hosting these data",
+    "Method for Determining Date; unless otherwise specified, calibrations use 95.4% intervals from OxCal v4.4.2 Bronk Ramsey (2009); r5; Atmospheric data from Reimer et al (2020)",
+    "Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]",
+    "Date standard deviation in BP [OxCal sigma for a direct radiocarbon date, and standard deviation of the uniform distribution between the two bounds for a contextual date]",
+    "Full Date One of two formats. (Format 1) 95.4% CI calibrated radiocarbon age (Conventional Radiocarbon Age BP, Lab number) e.g. 2624-2350 calBCE (3990+-40 BP, Ua-35016). (Format 2) Archaeological context range, e.g. 2500-1700 BCE",
+    "Age at death, Morphological sex from physical anthropology",
+    "Group ID",
+    "Locality",
+    "Political Entity",
+    "Latitude",
+    "Longitude",
+    "Pulldown Strategy",
+    "Suffices (indicating data types used for sources which can be a subset of that in bam)",
+    "Data type",
+    "No. Libraries",
+    "Mean coverage on 1.15M autosomal targets for full bam (if no off-target entry not up-to-date)",
+    "Mean coverage on non-targeted autosomal SNPs for full bam - not yet computed if \"\"..\"\" and bam restricted to on-target SNPs if \"\"0\"\"",
+    "SNPs hit on autosomal targets (Computed using easystats on enhance 2M capture subset) ",
+    "SNPs hit on autosomal targets (Computed using easystats on 1240k snpset)",
+    "SNPs hit on autosomal targets (Computed using easystats on HO snpset)",
+    "SNPs hit on autosomal targets (Computed using easystats on Compatibility snpset)",
+    "SNPs hit on autosomal targets (Computed using easystats on Compatibility_HO snpset)",
+    "Molecular Sex",
+    "Family relations",
+    "Sum total of ROH segments >20cM",
+    "Sum total of ROH segments >20cM",
+    "Y haplogroup in terminal mutation notation automatically called based on Y-full 12.03 with the software described in Lazaridis et al. Science 2022",
+    "Y haplogroup  in ISOGG notation automatically called based on Yfull 12.03 with the software described in Lazaridis et al. Science 2022",
+    "Y haplogroup manually called if different from automatic",
+    "mtDNA coverage (merged data)",
+    "mtDNA haplogroup if >2x or published",
+    "mtDNA match to consensus if >10x (merged data) [estimates are typically off by (uncorrected + power(10,-0.271*LOG(mt-coverage)-1.120)]",
+    "Damage rate in first nucleotide on sequences overlapping 1240k targets (merged data)",
+    "Sex ratio [Y/(Y+X) counts] (merged data)",
+    "ANGSD MOM 95% CI truncated at 0 (only if male and >=200 SNPs) [estimates are typically 0.005 too high]",
+    "hapConX 95% CI truncated at 0 (only if male and >=2000 SNPs covered on X chromosome) [estimates are typically 0.005 too high]",
+    "Library type (minus=no.damage.correction, half=damage.retained.at.last.position, plus=damage.fully.corrected, ds=double.stranded.library.preparation, ss=single.stranded.library.preparation)",
+    "Libraries",
+    "endogenous by library (computed on shotgun data)",
+    "ASSESSMENT",
+    "ASSESSMENT WARNINGS: X contamination interval is listed if lower bound is >=0.005 for either ANGSD or hapConX, \"QUESTIONABLE\" if lower bound is 0.015-0.035 for hapConX (or ANGSD if no hapConX computation), \"CRITICAL\" or \"FAIL\" if lower bound is >0.03  for hapConX (or ANGSD if no hapConX computation) |mtcontam confidence interval is listed if coverage >10 and upper bound is <0.98, \"QUESTIONABLE\" if upper bound is 0.9-0.95; \"CRITICAL\" if upper bound is <0.9, QUESTIONABLE status gets overriden by ANGSD or hapConX if upper bound of contamination estimate is <0.01 | damage for ds.half is \"CRITICAL/FAIL\" if <0.01, and recorded but passed if 0.01-0.03; libraries with untreated last base are \"CRITICAL\" or \"FAIL\" if <0.01, \"QUESTIONABLE\" if 0.01-0.03, and recorded but passed if 0.03-0.1 | sex.ratio is QUESTIONABLE if [0.03,0.1) or (0.30,0.32]; CRITICAL/FAIL if [0.1,0.3] | f4(All,Damage;CEU,CHB) for non-damage-restricted samples is \"CRITICAL/FAIL\" if |Z|>=3.5, QUESTIONABLE if 3.5>Z>=3.0, listed if Z>=2.0"
+  ],
+  "described_columns": [
+    {
+      "category": "local",
+      "column_number": 16,
+      "column": "Locality",
+      "distinct_values": 4031,
+      "empty_values": 0,
+      "ambiguous_values": 11,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "Mödling-An der Goldenen Stiege (Lower Austria, Mödling District)",
+          "count": 484
+        },
+        {
+          "value": "Rákóczifalva-Bagi-földek (Jász-Nagykun-Szolnok Coiunty, Szolnok)",
+          "count": 334
+        },
+        {
+          "value": "Sint-Truiden Groenmarkt (Flemish Region, Limburg, of Hasselt Arrondissement)",
+          "count": 288
+        },
+        {
+          "value": "Cambridgeshire (England)",
+          "count": 247
+        },
+        {
+          "value": "Leobersdorf (Lower Austria, Baden District)",
+          "count": 164
+        },
+        {
+          "value": "Gurgy Les Noisats (Bourgogne-Franche-Comté Region, Yonne Department, Auxerre Arrondissement)",
+          "count": 125
+        },
+        {
+          "value": "Çatalhöyük (Konya, Çumra)",
+          "count": 119
+        },
+        {
+          "value": "Western Divisions",
+          "count": 115
+        },
+        {
+          "value": "Yoruba (Ibadan)",
+          "count": 109
+        },
+        {
+          "value": "Southern China (Han)",
+          "count": 108
+        },
+        {
+          "value": "Tuscany",
+          "count": 108
+        },
+        {
+          "value": "Gujarat, modern (migrants sampled in Houston Texas)",
+          "count": 106
+        },
+        {
+          "value": "Beijing (Han)",
+          "count": 105
+        },
+        {
+          "value": "Puerto Rico, modern",
+          "count": 105
+        },
+        {
+          "value": "Tokyo",
+          "count": 105
+        },
+        {
+          "value": "Asparn Schletz (Niederösterreich, Mistelbach)",
+          "count": 104
+        },
+        {
+          "value": "Tamils, modern",
+          "count": 103
+        },
+        {
+          "value": "Telugu, modern",
+          "count": 103
+        },
+        {
+          "value": "Webuye",
+          "count": 103
+        },
+        {
+          "value": "Naton Beach Site (Guam, Tamuning-Tumon-Harmon Municipality, Tamuning)",
+          "count": 102
+        },
+        {
+          "value": "Lahore (Punjab)",
+          "count": 100
+        },
+        {
+          "value": "Utah, modern",
+          "count": 99
+        },
+        {
+          "value": "Xishuangbanna (Dai)",
+          "count": 99
+        },
+        {
+          "value": "Barbados (Caribbean)",
+          "count": 96
+        },
+        {
+          "value": "Medellin",
+          "count": 94
+        },
+        {
+          "value": "Ho Chi Minh City",
+          "count": 93
+        },
+        {
+          "value": "Israel, modern 1",
+          "count": 93
+        },
+        {
+          "value": "Unknown, Finland",
+          "count": 92
+        },
+        {
+          "value": "Esan",
+          "count": 91
+        },
+        {
+          "value": "Chichén Itzá (Yucatán)",
+          "count": 89
+        }
+      ]
+    },
+    {
+      "category": "local",
+      "column_number": 17,
+      "column": "Political Entity",
+      "distinct_values": 145,
+      "empty_values": 0,
+      "ambiguous_values": 10,
+      "distribution_complete": true,
+      "values_shown": 145,
+      "display_rule": "distribuição completa (até 200 valores distintos)",
+      "value_counts": [
+        {
+          "value": "Russia",
+          "count": 1890
+        },
+        {
+          "value": "United Kingdom",
+          "count": 1496
+        },
+        {
+          "value": "China",
+          "count": 1479
+        },
+        {
+          "value": "Hungary",
+          "count": 1475
+        },
+        {
+          "value": "Italy",
+          "count": 944
+        },
+        {
+          "value": "Austria",
+          "count": 878
+        },
+        {
+          "value": "Spain",
+          "count": 802
+        },
+        {
+          "value": "Germany",
+          "count": 770
+        },
+        {
+          "value": "Denmark",
+          "count": 654
+        },
+        {
+          "value": "France",
+          "count": 644
+        },
+        {
+          "value": "USA",
+          "count": 588
+        },
+        {
+          "value": "Turkey",
+          "count": 548
+        },
+        {
+          "value": "Pakistan",
+          "count": 518
+        },
+        {
+          "value": "Poland",
+          "count": 513
+        },
+        {
+          "value": "Czechia",
+          "count": 499
+        },
+        {
+          "value": "Belgium",
+          "count": 469
+        },
+        {
+          "value": "Ukraine",
+          "count": 439
+        },
+        {
+          "value": "Sweden",
+          "count": 416
+        },
+        {
+          "value": "Croatia",
+          "count": 310
+        },
+        {
+          "value": "Mongolia",
+          "count": 287
+        },
+        {
+          "value": "Argentina",
+          "count": 280
+        },
+        {
+          "value": "Israel",
+          "count": 266
+        },
+        {
+          "value": "Kazakhstan",
+          "count": 266
+        },
+        {
+          "value": "Serbia",
+          "count": 251
+        },
+        {
+          "value": "Romania",
+          "count": 240
+        },
+        {
+          "value": "Nigeria",
+          "count": 238
+        },
+        {
+          "value": "Armenia",
+          "count": 236
+        },
+        {
+          "value": "India",
+          "count": 236
+        },
+        {
+          "value": "Kenya",
+          "count": 236
+        },
+        {
+          "value": "Mexico",
+          "count": 214
+        },
+        {
+          "value": "Greece",
+          "count": 189
+        },
+        {
+          "value": "Bulgaria",
+          "count": 182
+        },
+        {
+          "value": "Peru",
+          "count": 180
+        },
+        {
+          "value": "Netherlands",
+          "count": 174
+        },
+        {
+          "value": "Japan",
+          "count": 169
+        },
+        {
+          "value": "Iran",
+          "count": 151
+        },
+        {
+          "value": "Portugal",
+          "count": 140
+        },
+        {
+          "value": "Dominican Republic",
+          "count": 132
+        },
+        {
+          "value": "Puerto Rico",
+          "count": 130
+        },
+        {
+          "value": "Vietnam",
+          "count": 126
+        },
+        {
+          "value": "Colombia",
+          "count": 124
+        },
+        {
+          "value": "Norway",
+          "count": 120
+        },
+        {
+          "value": "Slovakia",
+          "count": 117
+        },
+        {
+          "value": "Finland",
+          "count": 115
+        },
+        {
+          "value": "Gambia",
+          "count": 115
+        },
+        {
+          "value": "Guam",
+          "count": 106
+        },
+        {
+          "value": "Ireland",
+          "count": 104
+        },
+        {
+          "value": "Sri Lanka",
+          "count": 103
+        },
+        {
+          "value": "Turkmenistan",
+          "count": 99
+        },
+        {
+          "value": "Barbados",
+          "count": 96
+        },
+        {
+          "value": "Bangladesh",
+          "count": 88
+        },
+        {
+          "value": "Estonia",
+          "count": 88
+        },
+        {
+          "value": "Brazil",
+          "count": 87
+        },
+        {
+          "value": "Papua New Guinea",
+          "count": 87
+        },
+        {
+          "value": "Sierra Leone",
+          "count": 87
+        },
+        {
+          "value": "Uzbekistan",
+          "count": 84
+        },
+        {
+          "value": "Kyrgyzstan",
+          "count": 81
+        },
+        {
+          "value": "Moldova",
+          "count": 81
+        },
+        {
+          "value": "Switzerland",
+          "count": 80
+        },
+        {
+          "value": "Tunisia",
+          "count": 71
+        },
+        {
+          "value": "Cuba",
+          "count": 70
+        },
+        {
+          "value": "Latvia",
+          "count": 67
+        },
+        {
+          "value": "Sudan",
+          "count": 67
+        },
+        {
+          "value": "Jordan",
+          "count": 55
+        },
+        {
+          "value": "Taiwan",
+          "count": 55
+        },
+        {
+          "value": "Nepal",
+          "count": 48
+        },
+        {
+          "value": "Iceland",
+          "count": 47
+        },
+        {
+          "value": "Lebanon",
+          "count": 45
+        },
+        {
+          "value": "Thailand",
+          "count": 43
+        },
+        {
+          "value": "Vanuatu",
+          "count": 41
+        },
+        {
+          "value": "Yemen",
+          "count": 40
+        },
+        {
+          "value": "Bahamas",
+          "count": 37
+        },
+        {
+          "value": "Slovenia",
+          "count": 37
+        },
+        {
+          "value": "Algeria",
+          "count": 34
+        },
+        {
+          "value": "Lithuania",
+          "count": 34
+        },
+        {
+          "value": "South Africa",
+          "count": 34
+        },
+        {
+          "value": "Albania",
+          "count": 33
+        },
+        {
+          "value": "Tanzania",
+          "count": 30
+        },
+        {
+          "value": "Morocco",
+          "count": 29
+        },
+        {
+          "value": "Montenegro",
+          "count": 27
+        },
+        {
+          "value": "Georgia",
+          "count": 26
+        },
+        {
+          "value": "North Macedonia",
+          "count": 26
+        },
+        {
+          "value": "Senegal",
+          "count": 26
+        },
+        {
+          "value": "Belize",
+          "count": 24
+        },
+        {
+          "value": "Central African Republic",
+          "count": 24
+        },
+        {
+          "value": "Greenland",
+          "count": 24
+        },
+        {
+          "value": "Bolivia",
+          "count": 21
+        },
+        {
+          "value": "Syria",
+          "count": 21
+        },
+        {
+          "value": "Chile",
+          "count": 20
+        },
+        {
+          "value": "Indonesia",
+          "count": 20
+        },
+        {
+          "value": "Saint Helena",
+          "count": 20
+        },
+        {
+          "value": "Congo",
+          "count": 19
+        },
+        {
+          "value": "Namibia",
+          "count": 19
+        },
+        {
+          "value": "Tajikistan",
+          "count": 19
+        },
+        {
+          "value": "Canada",
+          "count": 18
+        },
+        {
+          "value": "Palau",
+          "count": 18
+        },
+        {
+          "value": "Republic of Korea",
+          "count": 18
+        },
+        {
+          "value": "Faroe Islands",
+          "count": 17
+        },
+        {
+          "value": "Panama",
+          "count": 16
+        },
+        {
+          "value": "Iraq",
+          "count": 15
+        },
+        {
+          "value": "Channel Islands",
+          "count": 14
+        },
+        {
+          "value": "Cambodia",
+          "count": 12
+        },
+        {
+          "value": "Crimea",
+          "count": 12
+        },
+        {
+          "value": "Malawi",
+          "count": 12
+        },
+        {
+          "value": "Saint Lucia",
+          "count": 12
+        },
+        {
+          "value": "Australia",
+          "count": 11
+        },
+        {
+          "value": "Federated States of Micronesia",
+          "count": 11
+        },
+        {
+          "value": "..",
+          "count": 10
+        },
+        {
+          "value": "Cameroon",
+          "count": 10
+        },
+        {
+          "value": "Venezuela",
+          "count": 9
+        },
+        {
+          "value": "Azerbaijan",
+          "count": 7
+        },
+        {
+          "value": "Honduras",
+          "count": 7
+        },
+        {
+          "value": "Canary Islands",
+          "count": 5
+        },
+        {
+          "value": "Curacao",
+          "count": 5
+        },
+        {
+          "value": "Democratic Republic of the Congo",
+          "count": 5
+        },
+        {
+          "value": "Malaysia",
+          "count": 5
+        },
+        {
+          "value": "Bahrain",
+          "count": 4
+        },
+        {
+          "value": "Botswana",
+          "count": 4
+        },
+        {
+          "value": "Cyprus",
+          "count": 4
+        },
+        {
+          "value": "Egypt",
+          "count": 4
+        },
+        {
+          "value": "Ethiopia",
+          "count": 4
+        },
+        {
+          "value": "Gibraltar",
+          "count": 4
+        },
+        {
+          "value": "Guadeloupe",
+          "count": 4
+        },
+        {
+          "value": "Laos",
+          "count": 4
+        },
+        {
+          "value": "Tonga",
+          "count": 4
+        },
+        {
+          "value": "French Polynesia",
+          "count": 3
+        },
+        {
+          "value": "Malta",
+          "count": 3
+        },
+        {
+          "value": "Philippines",
+          "count": 3
+        },
+        {
+          "value": "Sint Maarten",
+          "count": 3
+        },
+        {
+          "value": "Abkhazia",
+          "count": 2
+        },
+        {
+          "value": "Brunei",
+          "count": 2
+        },
+        {
+          "value": "Haiti",
+          "count": 2
+        },
+        {
+          "value": "Luxembourg",
+          "count": 2
+        },
+        {
+          "value": "Myanmar",
+          "count": 2
+        },
+        {
+          "value": "Uruguay",
+          "count": 2
+        },
+        {
+          "value": "Afghanistan",
+          "count": 1
+        },
+        {
+          "value": "Angola",
+          "count": 1
+        },
+        {
+          "value": "Bosnia-Herzegovina",
+          "count": 1
+        },
+        {
+          "value": "Lesotho",
+          "count": 1
+        },
+        {
+          "value": "New Zealand",
+          "count": 1
+        },
+        {
+          "value": "Paraguay",
+          "count": 1
+        },
+        {
+          "value": "Solomon Islands",
+          "count": 1
+        },
+        {
+          "value": "South Sudan",
+          "count": 1
+        },
+        {
+          "value": "Uganda",
+          "count": 1
+        },
+        {
+          "value": "Zambia",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "local",
+      "column_number": 18,
+      "column": "Latitude",
+      "distinct_values": 3805,
+      "empty_values": 0,
+      "ambiguous_values": 784,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "..",
+          "count": 784
+        },
+        {
+          "value": "48.08152",
+          "count": 484
+        },
+        {
+          "value": "47.075",
+          "count": 334
+        },
+        {
+          "value": "50.815",
+          "count": 288
+        },
+        {
+          "value": "52.205",
+          "count": 247
+        },
+        {
+          "value": "47.916667",
+          "count": 164
+        },
+        {
+          "value": "47.97",
+          "count": 125
+        },
+        {
+          "value": "32",
+          "count": 124
+        },
+        {
+          "value": "37.6661",
+          "count": 119
+        },
+        {
+          "value": "13.453056",
+          "count": 115
+        },
+        {
+          "value": "22",
+          "count": 109
+        },
+        {
+          "value": "7.396389",
+          "count": 109
+        },
+        {
+          "value": "40.00001",
+          "count": 108
+        },
+        {
+          "value": "23.2",
+          "count": 107
+        },
+        {
+          "value": "18.406389",
+          "count": 105
+        },
+        {
+          "value": "37.85001",
+          "count": 105
+        },
+        {
+          "value": "39.916667",
+          "count": 105
+        },
+        {
+          "value": "48.579752",
+          "count": 104
+        },
+        {
+          "value": "1.3",
+          "count": 103
+        },
+        {
+          "value": "13.519983",
+          "count": 102
+        },
+        {
+          "value": "31.549722",
+          "count": 100
+        },
+        {
+          "value": "40.760833",
+          "count": 99
+        },
+        {
+          "value": "13.17",
+          "count": 96
+        },
+        {
+          "value": "6.230833",
+          "count": 94
+        },
+        {
+          "value": "10.80001",
+          "count": 93
+        },
+        {
+          "value": "6.5",
+          "count": 91
+        },
+        {
+          "value": "20.683056",
+          "count": 89
+        },
+        {
+          "value": "23.763889",
+          "count": 87
+        },
+        {
+          "value": "47.7467",
+          "count": 87
+        },
+        {
+          "value": "-12.06",
+          "count": 86
+        }
+      ]
+    },
+    {
+      "category": "local",
+      "column_number": 19,
+      "column": "Longitude",
+      "distinct_values": 3702,
+      "empty_values": 0,
+      "ambiguous_values": 784,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "..",
+          "count": 784
+        },
+        {
+          "value": "16.28535",
+          "count": 484
+        },
+        {
+          "value": "20.226",
+          "count": 334
+        },
+        {
+          "value": "5.186",
+          "count": 288
+        },
+        {
+          "value": "0.1225",
+          "count": 247
+        },
+        {
+          "value": "16.216667",
+          "count": 164
+        },
+        {
+          "value": "3.56",
+          "count": 154
+        },
+        {
+          "value": "35",
+          "count": 141
+        },
+        {
+          "value": "9",
+          "count": 140
+        },
+        {
+          "value": "32.8257",
+          "count": 119
+        },
+        {
+          "value": "-16.5775",
+          "count": 115
+        },
+        {
+          "value": "3.916667",
+          "count": 109
+        },
+        {
+          "value": "72.7",
+          "count": 106
+        },
+        {
+          "value": "-66.063889",
+          "count": 105
+        },
+        {
+          "value": "116.383333",
+          "count": 105
+        },
+        {
+          "value": "139.001",
+          "count": 105
+        },
+        {
+          "value": "16.46931",
+          "count": 104
+        },
+        {
+          "value": "106.65",
+          "count": 103
+        },
+        {
+          "value": "36.8",
+          "count": 103
+        },
+        {
+          "value": "144.806559",
+          "count": 102
+        },
+        {
+          "value": "6",
+          "count": 101
+        },
+        {
+          "value": "74.343611",
+          "count": 100
+        },
+        {
+          "value": "-111.89111",
+          "count": 99
+        },
+        {
+          "value": "100.8",
+          "count": 99
+        },
+        {
+          "value": "-59.5525",
+          "count": 96
+        },
+        {
+          "value": "-75.590556",
+          "count": 94
+        },
+        {
+          "value": "-88.568611",
+          "count": 89
+        },
+        {
+          "value": "22.395",
+          "count": 87
+        },
+        {
+          "value": "90.388889",
+          "count": 87
+        },
+        {
+          "value": "-77.0375",
+          "count": 86
+        }
+      ]
+    },
+    {
+      "category": "tipo_de_dado",
+      "column_number": 20,
+      "column": "Pulldown Strategy",
+      "distinct_values": 7,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": true,
+      "values_shown": 7,
+      "display_rule": "distribuição completa (até 200 valores distintos)",
+      "value_counts": [
+        {
+          "value": "Native Pulldown on 3.2M snpset",
+          "count": 19350
+        },
+        {
+          "value": "Native pulldown on 3.2M snpset",
+          "count": 2475
+        },
+        {
+          "value": "From existing genotype calls and reference conversion from hg20 to hg19",
+          "count": 929
+        },
+        {
+          "value": "From existing genotype calls",
+          "count": 283
+        },
+        {
+          "value": "Repulldown on 3.2M snpset",
+          "count": 33
+        },
+        {
+          "value": "Native Pulldown on 3.2M snpset, bam seems to be largely restricted to enriched sites",
+          "count": 16
+        },
+        {
+          "value": "Native Pulldown  on 3.2M snpset",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "category": "tipo_de_dado",
+      "column_number": 21,
+      "column": "Suffices (indicating data types used for sources which can be a subset of that in bam)",
+      "distinct_values": 18,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": true,
+      "values_shown": 18,
+      "display_rule": "distribuição completa (até 200 valores distintos)",
+      "value_counts": [
+        {
+          "value": "AG",
+          "count": 11241
+        },
+        {
+          "value": "SG",
+          "count": 6722
+        },
+        {
+          "value": "DG",
+          "count": 3800
+        },
+        {
+          "value": "TW",
+          "count": 688
+        },
+        {
+          "value": "AG.SG",
+          "count": 250
+        },
+        {
+          "value": "AG.TW",
+          "count": 238
+        },
+        {
+          "value": "IM",
+          "count": 44
+        },
+        {
+          "value": "WGC.SG",
+          "count": 32
+        },
+        {
+          "value": "AG.BY",
+          "count": 19
+        },
+        {
+          "value": "AG.BY.AA",
+          "count": 16
+        },
+        {
+          "value": "WGC",
+          "count": 12
+        },
+        {
+          "value": "EC",
+          "count": 11
+        },
+        {
+          "value": "SG.AG",
+          "count": 6
+        },
+        {
+          "value": "REF",
+          "count": 4
+        },
+        {
+          "value": "TW.SG",
+          "count": 3
+        },
+        {
+          "value": "AA",
+          "count": 1
+        },
+        {
+          "value": "AG.TW.BY",
+          "count": 1
+        },
+        {
+          "value": "SG.AG.TW",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "tipo_de_dado",
+      "column_number": 22,
+      "column": "Data type",
+      "distinct_values": 28,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": true,
+      "values_shown": 28,
+      "display_rule": "distribuição completa (até 200 valores distintos)",
+      "value_counts": [
+        {
+          "value": "1240k",
+          "count": 11079
+        },
+        {
+          "value": "Shotgun",
+          "count": 6630
+        },
+        {
+          "value": "Shotgun.diploid",
+          "count": 3800
+        },
+        {
+          "value": "Twist1.4M",
+          "count": 537
+        },
+        {
+          "value": "1240k,Twist1.4M",
+          "count": 490
+        },
+        {
+          "value": "1240k,Shotgun",
+          "count": 203
+        },
+        {
+          "value": "Shotgun pulled down only on 1240k autosomal targets - need to make a whole genome bam",
+          "count": 86
+        },
+        {
+          "value": "Immune Capture",
+          "count": 44
+        },
+        {
+          "value": "1240K",
+          "count": 43
+        },
+        {
+          "value": "Shotgun,WholeGenomeCapture",
+          "count": 36
+        },
+        {
+          "value": "1240k sequenced so deeply it is effectively also Shotgun",
+          "count": 29
+        },
+        {
+          "value": "1240k,BigYoruba",
+          "count": 19
+        },
+        {
+          "value": "1240k,BigYoruba,ArchaicAdmixture",
+          "count": 15
+        },
+        {
+          "value": "50K,1240k",
+          "count": 14
+        },
+        {
+          "value": "WholeGenomeCapture",
+          "count": 12
+        },
+        {
+          "value": "ExomeCapture",
+          "count": 11
+        },
+        {
+          "value": "50K,1240k,Shotgun(Shotgun is the dominant data type)",
+          "count": 8
+        },
+        {
+          "value": "1240k without off-target content need to make a whole genome bam",
+          "count": 7
+        },
+        {
+          "value": "1240k,Shotgun(Shotgun is the dominant data type)",
+          "count": 5
+        },
+        {
+          "value": "1240k,shotgun",
+          "count": 4
+        },
+        {
+          "value": "1240K,Twist1.4M",
+          "count": 4
+        },
+        {
+          "value": "Reference Genome",
+          "count": 4
+        },
+        {
+          "value": "Twist1.4M,Shotgun",
+          "count": 3
+        },
+        {
+          "value": "390K",
+          "count": 2
+        },
+        {
+          "value": "1240k manual processing that results in minimal coverage on non-1240k targets",
+          "count": 1
+        },
+        {
+          "value": "1240k,Shotgun,Twist1.4M",
+          "count": 1
+        },
+        {
+          "value": "1240k,Twist1.4M,BigYoruba",
+          "count": 1
+        },
+        {
+          "value": "AA204",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "tipo_de_dado",
+      "column_number": 45,
+      "column": "Library type (minus=no.damage.correction, half=damage.retained.at.last.position, plus=damage.fully.corrected, ds=double.stranded.library.preparation, ss=single.stranded.library.preparation)",
+      "distinct_values": 298,
+      "empty_values": 0,
+      "ambiguous_values": 7485,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "ds.half",
+          "count": 7525
+        },
+        {
+          "value": "..",
+          "count": 7485
+        },
+        {
+          "value": "ss.USER",
+          "count": 2149
+        },
+        {
+          "value": "ds.minus",
+          "count": 1896
+        },
+        {
+          "value": "ss.minus",
+          "count": 664
+        },
+        {
+          "value": "ds.half,ds.half",
+          "count": 560
+        },
+        {
+          "value": "ds.half,ds.half,ds.half,ds.half",
+          "count": 326
+        },
+        {
+          "value": "half",
+          "count": 290
+        },
+        {
+          "value": "ds.half,ds.half,ds.half",
+          "count": 289
+        },
+        {
+          "value": "ds.plus",
+          "count": 102
+        },
+        {
+          "value": "ds.minus,ds.minus",
+          "count": 98
+        },
+        {
+          "value": "ds",
+          "count": 88
+        },
+        {
+          "value": "minus,minus,half,half",
+          "count": 85
+        },
+        {
+          "value": "ss.USER,ss.USER",
+          "count": 78
+        },
+        {
+          "value": "ds.half,ss.USER",
+          "count": 64
+        },
+        {
+          "value": "ds.half,ds.half,ds.half,ds.half,ds.half",
+          "count": 62
+        },
+        {
+          "value": "minus",
+          "count": 61
+        },
+        {
+          "value": "ds.half ",
+          "count": 57
+        },
+        {
+          "value": "ds.half,ds.half,ds.half,ds.half,ds.half,ds.half",
+          "count": 54
+        },
+        {
+          "value": "ds.minus,ds.half",
+          "count": 41
+        },
+        {
+          "value": "plus",
+          "count": 36
+        },
+        {
+          "value": "ds.half,ds.half,ds.half,ds.half,ds.half,ds.half,ds.half",
+          "count": 33
+        },
+        {
+          "value": "ds.half,ss.USER,ss.USER",
+          "count": 33
+        },
+        {
+          "value": "ss.minus,ss.USER,ss.minus,ss.USER",
+          "count": 33
+        },
+        {
+          "value": "ds.half,ds.half,ds.half,ds.half,ds.half,ds.half,ds.half,ds.half",
+          "count": 30
+        },
+        {
+          "value": "ds.half,ds.half,ss.USER,ss.USER",
+          "count": 29
+        },
+        {
+          "value": "ss.USER,ds.half",
+          "count": 28
+        },
+        {
+          "value": "ds.half,ds.half,ds.half,ds.half,ds.half,ds.half,ds.half,ds.half,ds.half",
+          "count": 26
+        },
+        {
+          "value": "ss.minus,ss.minus",
+          "count": 26
+        },
+        {
+          "value": "ds.minus.half ",
+          "count": 22
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 24,
+      "column": "Mean coverage on 1.15M autosomal targets for full bam (if no off-target entry not up-to-date)",
+      "distinct_values": 17958,
+      "empty_values": 0,
+      "ambiguous_values": 3794,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "..",
+          "count": 3794
+        },
+        {
+          "value": "0.0036",
+          "count": 7
+        },
+        {
+          "value": "0.0136",
+          "count": 6
+        },
+        {
+          "value": "0.0206",
+          "count": 6
+        },
+        {
+          "value": "0.0023",
+          "count": 5
+        },
+        {
+          "value": "0.0024",
+          "count": 5
+        },
+        {
+          "value": "0.003",
+          "count": 5
+        },
+        {
+          "value": "0.0032",
+          "count": 5
+        },
+        {
+          "value": "0.0043",
+          "count": 5
+        },
+        {
+          "value": "0.0046",
+          "count": 5
+        },
+        {
+          "value": "0.0047",
+          "count": 5
+        },
+        {
+          "value": "0.0053",
+          "count": 5
+        },
+        {
+          "value": "0.0118",
+          "count": 5
+        },
+        {
+          "value": "0.0215",
+          "count": 5
+        },
+        {
+          "value": "0.0243",
+          "count": 5
+        },
+        {
+          "value": "0.0288",
+          "count": 5
+        },
+        {
+          "value": "0.0444",
+          "count": 5
+        },
+        {
+          "value": "0.0476",
+          "count": 5
+        },
+        {
+          "value": "0.0635",
+          "count": 5
+        },
+        {
+          "value": "0.0875",
+          "count": 5
+        },
+        {
+          "value": "0.0026",
+          "count": 4
+        },
+        {
+          "value": "0.0035",
+          "count": 4
+        },
+        {
+          "value": "0.0039",
+          "count": 4
+        },
+        {
+          "value": "0.004",
+          "count": 4
+        },
+        {
+          "value": "0.0044",
+          "count": 4
+        },
+        {
+          "value": "0.0049",
+          "count": 4
+        },
+        {
+          "value": "0.0051",
+          "count": 4
+        },
+        {
+          "value": "0.0058",
+          "count": 4
+        },
+        {
+          "value": "0.0064",
+          "count": 4
+        },
+        {
+          "value": "0.007",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 25,
+      "column": "Mean coverage on non-targeted autosomal SNPs for full bam - not yet computed if \"\"..\"\" and bam restricted to on-target SNPs if \"\"0\"\"",
+      "distinct_values": 14428,
+      "empty_values": 0,
+      "ambiguous_values": 4791,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "..",
+          "count": 4791
+        },
+        {
+          "value": "0.0001",
+          "count": 74
+        },
+        {
+          "value": "0.0003",
+          "count": 40
+        },
+        {
+          "value": "0.0002",
+          "count": 39
+        },
+        {
+          "value": "0",
+          "count": 36
+        },
+        {
+          "value": "0.0004",
+          "count": 35
+        },
+        {
+          "value": "0.0005",
+          "count": 33
+        },
+        {
+          "value": "0.0006",
+          "count": 27
+        },
+        {
+          "value": "0.0008",
+          "count": 23
+        },
+        {
+          "value": "0.001",
+          "count": 22
+        },
+        {
+          "value": "0.0007",
+          "count": 21
+        },
+        {
+          "value": "0.0022",
+          "count": 20
+        },
+        {
+          "value": "0.0012",
+          "count": 18
+        },
+        {
+          "value": "0.002",
+          "count": 18
+        },
+        {
+          "value": "0.0043",
+          "count": 18
+        },
+        {
+          "value": "0.0011",
+          "count": 17
+        },
+        {
+          "value": "0.0026",
+          "count": 17
+        },
+        {
+          "value": "0.0015",
+          "count": 16
+        },
+        {
+          "value": "0.0018",
+          "count": 16
+        },
+        {
+          "value": "9.9288E-07",
+          "count": 16
+        },
+        {
+          "value": "0.0009",
+          "count": 15
+        },
+        {
+          "value": "0.0021",
+          "count": 15
+        },
+        {
+          "value": "0.0025",
+          "count": 15
+        },
+        {
+          "value": "0.0028",
+          "count": 15
+        },
+        {
+          "value": "0.003",
+          "count": 15
+        },
+        {
+          "value": "0.0034",
+          "count": 15
+        },
+        {
+          "value": "0.0038",
+          "count": 15
+        },
+        {
+          "value": "0.0054",
+          "count": 15
+        },
+        {
+          "value": "0.0013",
+          "count": 14
+        },
+        {
+          "value": "0.0016",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 26,
+      "column": "SNPs hit on autosomal targets (Computed using easystats on enhance 2M capture subset) ",
+      "distinct_values": 20729,
+      "empty_values": 0,
+      "ambiguous_values": 32,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "..",
+          "count": 32
+        },
+        {
+          "value": "1814188",
+          "count": 29
+        },
+        {
+          "value": "1814170",
+          "count": 28
+        },
+        {
+          "value": "1814162",
+          "count": 24
+        },
+        {
+          "value": "1814165",
+          "count": 24
+        },
+        {
+          "value": "1814171",
+          "count": 24
+        },
+        {
+          "value": "1814205",
+          "count": 24
+        },
+        {
+          "value": "1814152",
+          "count": 23
+        },
+        {
+          "value": "1814197",
+          "count": 23
+        },
+        {
+          "value": "1814174",
+          "count": 22
+        },
+        {
+          "value": "1814175",
+          "count": 21
+        },
+        {
+          "value": "1814185",
+          "count": 21
+        },
+        {
+          "value": "1814189",
+          "count": 21
+        },
+        {
+          "value": "1814203",
+          "count": 21
+        },
+        {
+          "value": "1814158",
+          "count": 20
+        },
+        {
+          "value": "1814178",
+          "count": 20
+        },
+        {
+          "value": "1814194",
+          "count": 20
+        },
+        {
+          "value": "1814210",
+          "count": 20
+        },
+        {
+          "value": "1814140",
+          "count": 19
+        },
+        {
+          "value": "1814169",
+          "count": 19
+        },
+        {
+          "value": "1814180",
+          "count": 19
+        },
+        {
+          "value": "1814198",
+          "count": 19
+        },
+        {
+          "value": "1814207",
+          "count": 19
+        },
+        {
+          "value": "1814135",
+          "count": 18
+        },
+        {
+          "value": "1814176",
+          "count": 18
+        },
+        {
+          "value": "1814186",
+          "count": 18
+        },
+        {
+          "value": "1814213",
+          "count": 18
+        },
+        {
+          "value": "1814141",
+          "count": 17
+        },
+        {
+          "value": "1814160",
+          "count": 17
+        },
+        {
+          "value": "1814163",
+          "count": 17
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 27,
+      "column": "SNPs hit on autosomal targets (Computed using easystats on 1240k snpset)",
+      "distinct_values": 20535,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "1101642",
+          "count": 37
+        },
+        {
+          "value": "1101632",
+          "count": 36
+        },
+        {
+          "value": "1101638",
+          "count": 35
+        },
+        {
+          "value": "1101630",
+          "count": 32
+        },
+        {
+          "value": "1101624",
+          "count": 31
+        },
+        {
+          "value": "1101633",
+          "count": 31
+        },
+        {
+          "value": "1101644",
+          "count": 31
+        },
+        {
+          "value": "1101626",
+          "count": 30
+        },
+        {
+          "value": "1101628",
+          "count": 30
+        },
+        {
+          "value": "1101634",
+          "count": 29
+        },
+        {
+          "value": "1101655",
+          "count": 29
+        },
+        {
+          "value": "1101615",
+          "count": 28
+        },
+        {
+          "value": "1101636",
+          "count": 28
+        },
+        {
+          "value": "1101637",
+          "count": 28
+        },
+        {
+          "value": "1101639",
+          "count": 27
+        },
+        {
+          "value": "1101643",
+          "count": 27
+        },
+        {
+          "value": "1101648",
+          "count": 27
+        },
+        {
+          "value": "1101652",
+          "count": 27
+        },
+        {
+          "value": "1101640",
+          "count": 26
+        },
+        {
+          "value": "1101631",
+          "count": 25
+        },
+        {
+          "value": "1101647",
+          "count": 25
+        },
+        {
+          "value": "1101651",
+          "count": 25
+        },
+        {
+          "value": "1101654",
+          "count": 25
+        },
+        {
+          "value": "1101666",
+          "count": 25
+        },
+        {
+          "value": "1101617",
+          "count": 24
+        },
+        {
+          "value": "1101618",
+          "count": 24
+        },
+        {
+          "value": "1101623",
+          "count": 24
+        },
+        {
+          "value": "1101627",
+          "count": 24
+        },
+        {
+          "value": "1101649",
+          "count": 24
+        },
+        {
+          "value": "1101650",
+          "count": 24
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 28,
+      "column": "SNPs hit on autosomal targets (Computed using easystats on HO snpset)",
+      "distinct_values": 20025,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "544243",
+          "count": 108
+        },
+        {
+          "value": "544247",
+          "count": 101
+        },
+        {
+          "value": "544241",
+          "count": 96
+        },
+        {
+          "value": "544244",
+          "count": 92
+        },
+        {
+          "value": "544242",
+          "count": 89
+        },
+        {
+          "value": "544245",
+          "count": 85
+        },
+        {
+          "value": "544246",
+          "count": 85
+        },
+        {
+          "value": "544249",
+          "count": 80
+        },
+        {
+          "value": "544240",
+          "count": 77
+        },
+        {
+          "value": "544238",
+          "count": 73
+        },
+        {
+          "value": "544248",
+          "count": 73
+        },
+        {
+          "value": "544250",
+          "count": 72
+        },
+        {
+          "value": "544239",
+          "count": 70
+        },
+        {
+          "value": "544236",
+          "count": 63
+        },
+        {
+          "value": "544253",
+          "count": 57
+        },
+        {
+          "value": "544251",
+          "count": 55
+        },
+        {
+          "value": "544252",
+          "count": 54
+        },
+        {
+          "value": "544235",
+          "count": 52
+        },
+        {
+          "value": "544237",
+          "count": 51
+        },
+        {
+          "value": "544234",
+          "count": 49
+        },
+        {
+          "value": "544232",
+          "count": 48
+        },
+        {
+          "value": "544198",
+          "count": 36
+        },
+        {
+          "value": "544233",
+          "count": 35
+        },
+        {
+          "value": "544255",
+          "count": 33
+        },
+        {
+          "value": "544197",
+          "count": 30
+        },
+        {
+          "value": "544254",
+          "count": 30
+        },
+        {
+          "value": "544201",
+          "count": 29
+        },
+        {
+          "value": "544202",
+          "count": 28
+        },
+        {
+          "value": "544190",
+          "count": 26
+        },
+        {
+          "value": "544195",
+          "count": 26
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 29,
+      "column": "SNPs hit on autosomal targets (Computed using easystats on Compatibility snpset)",
+      "distinct_values": 20458,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "1232823",
+          "count": 63
+        },
+        {
+          "value": "1232825",
+          "count": 58
+        },
+        {
+          "value": "1232826",
+          "count": 52
+        },
+        {
+          "value": "1232828",
+          "count": 51
+        },
+        {
+          "value": "1232829",
+          "count": 51
+        },
+        {
+          "value": "1232838",
+          "count": 48
+        },
+        {
+          "value": "1232827",
+          "count": 46
+        },
+        {
+          "value": "1232816",
+          "count": 45
+        },
+        {
+          "value": "1232824",
+          "count": 44
+        },
+        {
+          "value": "1232832",
+          "count": 44
+        },
+        {
+          "value": "1232836",
+          "count": 44
+        },
+        {
+          "value": "1232821",
+          "count": 43
+        },
+        {
+          "value": "1232835",
+          "count": 43
+        },
+        {
+          "value": "1232830",
+          "count": 42
+        },
+        {
+          "value": "1232818",
+          "count": 41
+        },
+        {
+          "value": "1232831",
+          "count": 41
+        },
+        {
+          "value": "1232817",
+          "count": 40
+        },
+        {
+          "value": "1232837",
+          "count": 39
+        },
+        {
+          "value": "1232815",
+          "count": 38
+        },
+        {
+          "value": "1232820",
+          "count": 38
+        },
+        {
+          "value": "1232833",
+          "count": 38
+        },
+        {
+          "value": "1232822",
+          "count": 37
+        },
+        {
+          "value": "1232813",
+          "count": 36
+        },
+        {
+          "value": "1232819",
+          "count": 36
+        },
+        {
+          "value": "1232834",
+          "count": 36
+        },
+        {
+          "value": "1232840",
+          "count": 34
+        },
+        {
+          "value": "1232814",
+          "count": 33
+        },
+        {
+          "value": "1232844",
+          "count": 33
+        },
+        {
+          "value": "1232839",
+          "count": 32
+        },
+        {
+          "value": "1232841",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 30,
+      "column": "SNPs hit on autosomal targets (Computed using easystats on Compatibility_HO snpset)",
+      "distinct_values": 19283,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "274923",
+          "count": 210
+        },
+        {
+          "value": "274925",
+          "count": 207
+        },
+        {
+          "value": "274926",
+          "count": 204
+        },
+        {
+          "value": "274924",
+          "count": 192
+        },
+        {
+          "value": "274922",
+          "count": 178
+        },
+        {
+          "value": "274927",
+          "count": 163
+        },
+        {
+          "value": "274921",
+          "count": 131
+        },
+        {
+          "value": "274920",
+          "count": 122
+        },
+        {
+          "value": "274928",
+          "count": 94
+        },
+        {
+          "value": "274919",
+          "count": 75
+        },
+        {
+          "value": "274918",
+          "count": 71
+        },
+        {
+          "value": "274929",
+          "count": 60
+        },
+        {
+          "value": "274917",
+          "count": 51
+        },
+        {
+          "value": "274903",
+          "count": 46
+        },
+        {
+          "value": "274901",
+          "count": 45
+        },
+        {
+          "value": "274904",
+          "count": 45
+        },
+        {
+          "value": "274907",
+          "count": 45
+        },
+        {
+          "value": "274908",
+          "count": 45
+        },
+        {
+          "value": "274899",
+          "count": 44
+        },
+        {
+          "value": "274905",
+          "count": 44
+        },
+        {
+          "value": "274906",
+          "count": 43
+        },
+        {
+          "value": "274916",
+          "count": 37
+        },
+        {
+          "value": "274902",
+          "count": 34
+        },
+        {
+          "value": "274909",
+          "count": 32
+        },
+        {
+          "value": "274910",
+          "count": 32
+        },
+        {
+          "value": "274930",
+          "count": 28
+        },
+        {
+          "value": "274898",
+          "count": 27
+        },
+        {
+          "value": "274911",
+          "count": 27
+        },
+        {
+          "value": "274913",
+          "count": 26
+        },
+        {
+          "value": "274900",
+          "count": 24
+        }
+      ]
+    },
+    {
+      "category": "cobertura",
+      "column_number": 38,
+      "column": "mtDNA coverage (merged data)",
+      "distinct_values": 8458,
+      "empty_values": 0,
+      "ambiguous_values": 11835,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "..",
+          "count": 11835
+        },
+        {
+          "value": "142",
+          "count": 15
+        },
+        {
+          "value": "163",
+          "count": 15
+        },
+        {
+          "value": "183",
+          "count": 15
+        },
+        {
+          "value": "120",
+          "count": 14
+        },
+        {
+          "value": "114",
+          "count": 12
+        },
+        {
+          "value": "139",
+          "count": 12
+        },
+        {
+          "value": "107",
+          "count": 11
+        },
+        {
+          "value": "157",
+          "count": 11
+        },
+        {
+          "value": "137",
+          "count": 10
+        },
+        {
+          "value": "113",
+          "count": 9
+        },
+        {
+          "value": "115",
+          "count": 9
+        },
+        {
+          "value": "116",
+          "count": 9
+        },
+        {
+          "value": "122",
+          "count": 9
+        },
+        {
+          "value": "130",
+          "count": 9
+        },
+        {
+          "value": "131",
+          "count": 9
+        },
+        {
+          "value": "132",
+          "count": 9
+        },
+        {
+          "value": "168",
+          "count": 9
+        },
+        {
+          "value": "174",
+          "count": 9
+        },
+        {
+          "value": "177",
+          "count": 9
+        },
+        {
+          "value": "198",
+          "count": 9
+        },
+        {
+          "value": "199",
+          "count": 9
+        },
+        {
+          "value": "204",
+          "count": 9
+        },
+        {
+          "value": "104",
+          "count": 8
+        },
+        {
+          "value": "106",
+          "count": 8
+        },
+        {
+          "value": "117",
+          "count": 8
+        },
+        {
+          "value": "118",
+          "count": 8
+        },
+        {
+          "value": "138",
+          "count": 8
+        },
+        {
+          "value": "148",
+          "count": 8
+        },
+        {
+          "value": "178",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "category": "data",
+      "column_number": 10,
+      "column": "Method for Determining Date; unless otherwise specified, calibrations use 95.4% intervals from OxCal v4.4.2 Bronk Ramsey (2009); r5; Atmospheric data from Reimer et al (2020)",
+      "distinct_values": 914,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "Direct: IntCal20",
+          "count": 6689
+        },
+        {
+          "value": "Context: Archaeological",
+          "count": 6389
+        },
+        {
+          "value": "Modern",
+          "count": 3970
+        },
+        {
+          "value": "Direct (WARNING: MISSING LAB CODE): IntCal20",
+          "count": 383
+        },
+        {
+          "value": "Direct: SHCal20",
+          "count": 324
+        },
+        {
+          "value": "Context: Historical",
+          "count": 319
+        },
+        {
+          "value": "Method: Tethering to radiocarbon dated close genetic relatives drives down standard error of a non-radiocarbon date",
+          "count": 312
+        },
+        {
+          "value": "Context: Direct dates on other individuals at site",
+          "count": 170
+        },
+        {
+          "value": "Direct (WARNING MISSING LAB CODE): IntCal20",
+          "count": 158
+        },
+        {
+          "value": "Context: Date from the same context",
+          "count": 147
+        },
+        {
+          "value": "Direct: IntCal20, R_Combine",
+          "count": 116
+        },
+        {
+          "value": "Context: Date of other individual(s) from same site",
+          "count": 112
+        },
+        {
+          "value": "Direct: IntCal20; R_combine",
+          "count": 104
+        },
+        {
+          "value": "Context (CAUTION: guess based on external source material)",
+          "count": 98
+        },
+        {
+          "value": "Context: Archaeological and historical",
+          "count": 93
+        },
+        {
+          "value": "Direct (WARNING: MISSING UNCALIBRATED DATE)",
+          "count": 82
+        },
+        {
+          "value": "Direct: IntCal20 (WARNING: Missing lab code)",
+          "count": 79
+        },
+        {
+          "value": "Direct (WARNING: NO UNCALIBRATED DATE OR LAB CODE)",
+          "count": 72
+        },
+        {
+          "value": "Direct: IntCal20 (WARNING: MISSING LAB CODE)",
+          "count": 65
+        },
+        {
+          "value": "Context: Approximate union of 29 direct dates from individuals from same site and context for which we have genetic data except for the chronological outlier Asp6",
+          "count": 64
+        },
+        {
+          "value": "Direct: IntCal20 with reservoir effect correction",
+          "count": 54
+        },
+        {
+          "value": "Context: Date(s) of site I20809, I11902, I7129, I15623, I7132, I7130, I7133, I7136, I23351, I7128, I7127, I7137, I4089, I7134, I18116",
+          "count": 51
+        },
+        {
+          "value": "Method: Radiocarbon dated close genetic relatives",
+          "count": 49
+        },
+        {
+          "value": "Context: Direct date(s) from site",
+          "count": 44
+        },
+        {
+          "value": "Context: Direct dates on individuals at the same site",
+          "count": 39
+        },
+        {
+          "value": "Context: Dates on individual(s) from same site (I0941, I1028, I1064, I1056, I1054, I1058, I1053, I1017, I1057, I1029, I1027, I1020, I0984)",
+          "count": 38
+        },
+        {
+          "value": "Direct (WARNING CHECK IF MARINE CORRECTION REQUIRED): IntCal20",
+          "count": 37
+        },
+        {
+          "value": "Direct: IntCal20 (there is almost certainly a freshwater reservoir effect correction but this is not applied)",
+          "count": 37
+        },
+        {
+          "value": "Context: Date(s) from same site (I10293, I10052, I10272)",
+          "count": 33
+        },
+        {
+          "value": "Context: Date(s) on other individuals from same site (I6327, I6254, I6328, I6336, I6340, I6141, I6334, I6253, I6329, I6332, I6256, I6257, I6324, I6250, I6255, I6331, I6251, I6252, I6140, I6258, I6333, I6330, I6139, I6138, I6325, I6326, I6337, I6338, I19147)",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "category": "data",
+      "column_number": 11,
+      "column": "Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]",
+      "distinct_values": 4612,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "0",
+          "count": 3970
+        },
+        {
+          "value": "1225",
+          "count": 724
+        },
+        {
+          "value": "700",
+          "count": 255
+        },
+        {
+          "value": "850",
+          "count": 239
+        },
+        {
+          "value": "1200",
+          "count": 226
+        },
+        {
+          "value": "1000",
+          "count": 222
+        },
+        {
+          "value": "800",
+          "count": 215
+        },
+        {
+          "value": "1350",
+          "count": 208
+        },
+        {
+          "value": "950",
+          "count": 195
+        },
+        {
+          "value": "1250",
+          "count": 191
+        },
+        {
+          "value": "7100",
+          "count": 154
+        },
+        {
+          "value": "900",
+          "count": 141
+        },
+        {
+          "value": "1175",
+          "count": 133
+        },
+        {
+          "value": "1550",
+          "count": 125
+        },
+        {
+          "value": "1450",
+          "count": 123
+        },
+        {
+          "value": "2250",
+          "count": 122
+        },
+        {
+          "value": "1750",
+          "count": 118
+        },
+        {
+          "value": "975",
+          "count": 102
+        },
+        {
+          "value": "1100",
+          "count": 101
+        },
+        {
+          "value": "2500",
+          "count": 95
+        },
+        {
+          "value": "1325",
+          "count": 91
+        },
+        {
+          "value": "225",
+          "count": 91
+        },
+        {
+          "value": "1075",
+          "count": 90
+        },
+        {
+          "value": "3300",
+          "count": 85
+        },
+        {
+          "value": "1300",
+          "count": 84
+        },
+        {
+          "value": "2200",
+          "count": 84
+        },
+        {
+          "value": "3825",
+          "count": 83
+        },
+        {
+          "value": "1150",
+          "count": 80
+        },
+        {
+          "value": "2850",
+          "count": 78
+        },
+        {
+          "value": "2550",
+          "count": 76
+        }
+      ]
+    },
+    {
+      "category": "data",
+      "column_number": 12,
+      "column": "Date standard deviation in BP [OxCal sigma for a direct radiocarbon date, and standard deviation of the uniform distribution between the two bounds for a contextual date]",
+      "distinct_values": 303,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "0",
+          "count": 4030
+        },
+        {
+          "value": "58",
+          "count": 1809
+        },
+        {
+          "value": "43",
+          "count": 1432
+        },
+        {
+          "value": "87",
+          "count": 1286
+        },
+        {
+          "value": "29",
+          "count": 1076
+        },
+        {
+          "value": "144",
+          "count": 753
+        },
+        {
+          "value": "115",
+          "count": 665
+        },
+        {
+          "value": "72",
+          "count": 608
+        },
+        {
+          "value": "101",
+          "count": 455
+        },
+        {
+          "value": "173",
+          "count": 361
+        },
+        {
+          "value": "14",
+          "count": 352
+        },
+        {
+          "value": "42",
+          "count": 220
+        },
+        {
+          "value": "45",
+          "count": 215
+        },
+        {
+          "value": "37",
+          "count": 207
+        },
+        {
+          "value": "40",
+          "count": 200
+        },
+        {
+          "value": "202",
+          "count": 199
+        },
+        {
+          "value": "50",
+          "count": 197
+        },
+        {
+          "value": "54",
+          "count": 186
+        },
+        {
+          "value": "39",
+          "count": 183
+        },
+        {
+          "value": "49",
+          "count": 180
+        },
+        {
+          "value": "47",
+          "count": 179
+        },
+        {
+          "value": "51",
+          "count": 179
+        },
+        {
+          "value": "44",
+          "count": 172
+        },
+        {
+          "value": "41",
+          "count": 171
+        },
+        {
+          "value": "38",
+          "count": 170
+        },
+        {
+          "value": "57",
+          "count": 170
+        },
+        {
+          "value": "48",
+          "count": 168
+        },
+        {
+          "value": "289",
+          "count": 164
+        },
+        {
+          "value": "231",
+          "count": 163
+        },
+        {
+          "value": "46",
+          "count": 162
+        }
+      ]
+    },
+    {
+      "category": "data",
+      "column_number": 13,
+      "column": "Full Date One of two formats. (Format 1) 95.4% CI calibrated radiocarbon age (Conventional Radiocarbon Age BP, Lab number) e.g. 2624-2350 calBCE (3990+-40 BP, Ua-35016). (Format 2) Archaeological context range, e.g. 2500-1700 BCE",
+      "distinct_values": 9019,
+      "empty_values": 0,
+      "ambiguous_values": 0,
+      "distribution_complete": false,
+      "values_shown": 30,
+      "display_rule": "30 valores mais frequentes",
+      "value_counts": [
+        {
+          "value": "present",
+          "count": 3970
+        },
+        {
+          "value": "650-800 CE",
+          "count": 701
+        },
+        {
+          "value": "1000-1500 CE",
+          "count": 221
+        },
+        {
+          "value": "1000-1200 CE",
+          "count": 185
+        },
+        {
+          "value": "1000-1300 CE",
+          "count": 171
+        },
+        {
+          "value": "900-1000 CE",
+          "count": 140
+        },
+        {
+          "value": "600-800 CE",
+          "count": 120
+        },
+        {
+          "value": "400-600 CE",
+          "count": 96
+        },
+        {
+          "value": "700-1300 CE",
+          "count": 90
+        },
+        {
+          "value": "1550-1900 CE",
+          "count": 89
+        },
+        {
+          "value": "550-850 CE",
+          "count": 88
+        },
+        {
+          "value": "900-1200 CE",
+          "count": 87
+        },
+        {
+          "value": "400-200 BCE",
+          "count": 83
+        },
+        {
+          "value": "400-1100 CE",
+          "count": 82
+        },
+        {
+          "value": "650-900 CE",
+          "count": 75
+        },
+        {
+          "value": "1-200 calCE (1850±100 BP)",
+          "count": 74
+        },
+        {
+          "value": "5400-4900 BCE",
+          "count": 74
+        },
+        {
+          "value": "1000-800 BCE",
+          "count": 72
+        },
+        {
+          "value": "550-700 CE",
+          "count": 71
+        },
+        {
+          "value": "900-1100 CE",
+          "count": 71
+        },
+        {
+          "value": "5300-5000 BCE",
+          "count": 70
+        },
+        {
+          "value": "700-800 CE",
+          "count": 61
+        },
+        {
+          "value": "100-300 CE",
+          "count": 57
+        },
+        {
+          "value": "550-1200 CE",
+          "count": 55
+        },
+        {
+          "value": "650-750 CE",
+          "count": 54
+        },
+        {
+          "value": "900-1050 CE",
+          "count": 54
+        },
+        {
+          "value": "2500-2000 BCE",
+          "count": 51
+        },
+        {
+          "value": "4400-3500 BCE",
+          "count": 51
+        },
+        {
+          "value": "500-700 CE",
+          "count": 49
+        },
+        {
+          "value": "700-900 CE",
+          "count": 48
+        }
+      ]
+    }
+  ],
+  "parsing": {
+    "data_rows_read": 23089,
+    "rows_excluded": 0,
+    "malformed_rows": 0,
+    "filters_applied": [],
+    "empty_definition": "Campo de comprimento zero entre separadores TSV.",
+    "ambiguous_exact_values_case_insensitive": [
+      ".",
+      "..",
+      "...",
+      "?",
+      "n.a.",
+      "n/a",
+      "na",
+      "not available",
+      "undetermined",
+      "unknown"
+    ],
+    "ambiguous_prefixes_case_insensitive": [
+      "n/a ",
+      "n/a(",
+      "unknown ",
+      "unknown(",
+      "not available "
+    ],
+    "note": "Valores vazios e ambíguos são preservados na distribuição e também contados separadamente; nenhum indivíduo é classificado."
+  }
+}

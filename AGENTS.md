@@ -4,10 +4,21 @@ Atualizado em 2026-09-21.
 
 ## Objetivo
 
-Alcance Genômico (comando `alcance`): dado um painel de genotipagem (a lista
-fixa de posições que um conjunto de dados lê, como o 1240K do AADR), medir de quais doenças monogênicas é possível perguntar se um
-indivíduo carrega a variante causadora. Serve ao objetivo (c) do mestrado do
-PO (inferência de doenças monogênicas em dados genômicos antigos).
+Alcance Genômico (comando `alcance`). Responde a duas perguntas, com comandos
+separados:
+
+1. **De quais doenças os dados permitem perguntar?** Dado um painel de
+   genotipagem (a lista fixa de posições que um conjunto de dados lê, como o
+   1240K do AADR), medir de quais doenças monogênicas é possível perguntar se
+   um indivíduo carrega a variante causadora. Comandos `snapshot`, `search`,
+   `profile`, `term`, `panel`, `clinvar`, `coverage`.
+2. **Quem são os indivíduos do conjunto de dados?** Descrever os metadados do
+   AADR (`.anno`) sem filtrar nem classificar. Comando `anno`.
+
+As duas são independentes: `coverage` não usa o `.anno`.
+
+Serve ao objetivo (c) do mestrado do PO (inferência de doenças monogênicas
+em dados genômicos antigos).
 
 A bancada de anotação de texto clínico que existia aqui foi retirada da
 linha principal e está preservada na etiqueta `frente-a-final`. Não
@@ -30,6 +41,7 @@ src/hpo_ptbr/
   clinvar.py           variantes patogênicas germinativas por build
   genotype_panel.py    posições/alelos ensaiados; verificação do build
   target_coverage.py   cruzamento doença a doença
+  aadr_anno.py         descrição do .anno do AADR, sem filtro
   hashing.py           hashes independentes de plataforma
   data.py              metadados do snapshot terminológico
   cli/                 um módulo por comando; __main__ só despacha
@@ -52,6 +64,9 @@ Cálculo fica nos módulos; a CLI só lê argumentos, chama e imprime.
   DNA que um conjunto de dados lê em todos os indivíduos. É o único sentido de
   "painel" no projeto. Nunca usar "painel" para a ferramenta.
 - **Alcance Genômico**: o nome da ferramenta. Comando `alcance`.
+- **Registro** e **indivíduo** não são sinônimos no `.anno`: uma linha é um
+  registro; a mesma pessoa (`Individual ID`) pode ter várias linhas, e os
+  registros de pessoas atuais (data `0`, `present`) estão incluídos no total.
 
 ## Regras
 
@@ -88,11 +103,21 @@ Cálculo fica nos módulos; a CLI só lê argumentos, chama e imprime.
    sha256 no manifesto.
 5. `data.load_snapshot` descarta conceitos sem `label_pt`. Não usar para
    nada que precise do vocabulário completo; use `ontology`.
+6. O `.anno` (`v66.p1_1240K.aadr.PUB.anno`) e o `.snp`
+   (`v66.p1_1240K.aadr.patch.PUB.snp`) têm nomes diferentes; a
+   correspondência entre os dois não foi confirmada. A URL do `.anno` fica
+   vazia até ser verificada: proveniência não verificada não entra em
+   manifesto.
+7. O `.anno` tem duas colunas com o mesmo nome ("Sum total of ROH segments
+   >20cM"). Colunas são tratadas por índice, nunca por nome.
 
 ## Prioridade atual
 
 1. Discutir com o orientador o resultado do relatório de viabilidade
    (33 doenças OMIM alcançáveis pelo 1240K) e a alternativa de partir das
    leituras brutas de genoma inteiro.
-2. Travessia correta de ancestrais na HPO.
-3. Busca de termo HPO por rótulo.
+2. Parte 1b do `anno`: critérios para recortar indivíduos (país/região,
+   antigo ou atual, genoma inteiro ou captura, cobertura mínima). Os
+   critérios são decisão do PO; não implementar sem eles definidos.
+3. Travessia correta de ancestrais na HPO.
+4. Busca de termo HPO por rótulo.

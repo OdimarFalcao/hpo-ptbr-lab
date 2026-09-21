@@ -2,18 +2,24 @@
 
 Mede **de quais doenças monogênicas um conjunto de dados de DNA antigo permite perguntar** se um indivíduo carrega a variante causadora.
 
-Comando: `alcance`. Repositório: `hpo-ptbr-lab`.
+Comando: `alcance`. Repositório: `hpo-ptbr-lab`. Usa só a biblioteca padrão do Python 3.11+, sem dependências. Não faz diagnóstico.
 
-Para isso, cruza quatro fontes públicas:
+**Termo usado:** *painel de genotipagem* é a lista fixa de posições do DNA que um conjunto de dados lê em todos os indivíduos. O *painel 1240K* do AADR lê 1,2 milhão de posições. "Painel" neste projeto sempre tem esse sentido.
+
+---
+
+## O que a ferramenta responde
+
+**1. De quais doenças os dados permitem perguntar?** Cruza quatro fontes públicas:
 
 ```text
 doença ── gene ── variante patogênica ── posição e alelos lidos pelo painel de genotipagem
  (HPO)    (HPO)        (ClinVar)              (arquivo .snp, ex.: painel 1240K do AADR)
 ```
 
-Usa só a biblioteca padrão do Python 3.11+ e não tem dependências. Não faz diagnóstico.
+**2. Quem são os indivíduos do conjunto de dados?** Descreve os metadados do AADR (arquivo `.anno`): local, data, tipo de sequenciamento, cobertura. Só descreve, sem filtrar nem classificar ninguém.
 
-**Termo usado:** *painel de genotipagem* é a lista fixa de posições do DNA que um conjunto de dados lê em todos os indivíduos. O *painel 1240K* do AADR lê 1,2 milhão de posições. "Painel" neste projeto sempre tem esse sentido.
+As duas perguntas são independentes: o cruzamento da pergunta 1 não usa o `.anno`.
 
 ---
 
@@ -27,7 +33,7 @@ python -m venv .venv
 pip install -e .[dev]
 ```
 
-Isso registra o comando `alcance`. Sem instalar, use `python scripts\alcance.py` no lugar de `alcance`.
+Isso registra o comando `alcance`. Ele só existe com o ambiente ativo (o prompt começa com `(.venv)`). Sem instalar, use `python scripts\alcance.py` no lugar de `alcance`.
 
 ---
 
@@ -40,7 +46,10 @@ A ferramenta não baixa nada. Salve cada arquivo em `data\raw\` (fora do git).
 | `phenotype.hpoa` | doença → fenótipos | HPO 2026-06-23 | `curl.exe -L -o data\raw\phenotype.hpoa https://github.com/obophenotype/human-phenotype-ontology/releases/download/v2026-06-23/phenotype.hpoa` |
 | `genes_to_disease.txt` | gene ↔ doença | HPO 2026-06-23 | `curl.exe -L -o data\raw\genes_to_disease.txt https://github.com/obophenotype/human-phenotype-ontology/releases/download/v2026-06-23/genes_to_disease.txt` |
 | `variant_summary.txt.gz` | variantes do ClinVar (~420 MB) | setembro de 2026 | `curl.exe -L -C - -o data\raw\variant_summary.txt.gz https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz` |
-| `v66.p1_1240K.aadr.patch.PUB.snp` | posições genotipadas do AADR | v66.p1 | [Harvard Dataverse, doi:10.7910/DVN/FFIDCW](https://doi.org/10.7910/DVN/FFIDCW) (baixar pelo navegador) |
+| `v66.p1_1240K.aadr.patch.PUB.snp` | posições do painel 1240K do AADR | v66.p1 | [Harvard Dataverse, doi:10.7910/DVN/FFIDCW](https://doi.org/10.7910/DVN/FFIDCW) (baixar pelo navegador) |
+| `v66.p1_1240K.aadr.PUB.anno` | metadados dos indivíduos do AADR | v66.p1 | mesma coleção no Harvard Dataverse (baixar pelo navegador) |
+
+Os nomes do `.snp` e do `.anno` diferem (`patch`). A correspondência entre os dois ainda não foi confirmada, e o manifesto do `anno` registra isso.
 
 Para conferir se o ClinVar chegou inteiro, compare o MD5 do arquivo com o publicado pelo NCBI:
 
@@ -61,13 +70,16 @@ alcance snapshot
 alcance panel data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
 alcance clinvar --build GRCh37
 alcance coverage data\raw\v66.p1_1240K.aadr.patch.PUB.snp --build GRCh37 --rotulo "AADR v66.p1 1240K"
+alcance anno data\raw\v66.p1_1240K.aadr.PUB.anno
 ```
 
-Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quantas vezes quiser.
+Os quatro primeiros respondem à pergunta 1; o último, à pergunta 2. Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quantas vezes quiser.
 
 ---
 
 ## Comandos
+
+**Pergunta 1: de quais doenças os dados permitem perguntar**
 
 | comando | o que faz | exemplo |
 |---|---|---|
@@ -78,6 +90,12 @@ Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quanta
 | `panel` | Caracteriza um `.snp` e **verifica** o build declarado contra o próprio arquivo. Sai com erro se a declaração for contradita. | `alcance panel <arquivo.snp> --build GRCh37` |
 | `clinvar` | Filtra o ClinVar: build declarado, origem germinativa, Pathogenic/Likely pathogenic. Conta cada exclusão. | `alcance clinvar --build GRCh37` |
 | `coverage` | Cruza doenças × ClinVar × painel de genotipagem e classifica cada doença pelo ponto mais fundo que alcança. | `alcance coverage <arquivo.snp> --build GRCh37` |
+
+**Pergunta 2: quem são os indivíduos**
+
+| comando | o que faz | exemplo |
+|---|---|---|
+| `anno` | Descreve as colunas e os valores do `.anno` do AADR: registros, indivíduos distintos, registros atuais, local, tipo de dado, cobertura e data. Não filtra nem classifica. | `alcance anno data\raw\v66.p1_1240K.aadr.PUB.anno` |
 
 **Opções**
 
@@ -92,14 +110,15 @@ Depois disso, as consultas (`search`, `profile`, `term`) podem ser usadas quanta
 | `panel`, `coverage` | `--rotulo "nome"` | nome do painel de genotipagem no relatório |
 | `clinvar` | `--incluir-origem-desconhecida` | aceita também origem `unknown`/`not provided` |
 | `coverage` | `--estrelas-minimas 0-4` | exige nível mínimo de revisão no ClinVar |
+| `panel`, `anno` | `--url` | URL de origem, registrada no manifesto |
 
-`--build` é obrigatório em `panel`, `clinvar` e `coverage`. O AADR 1240K é **GRCh37**.
+`--build` é obrigatório em `panel`, `clinvar` e `coverage`. O painel 1240K do AADR é **GRCh37**.
 
 ---
 
 ## Arquivos gerados
 
-Todos ficam em `data\processed\`. Cada `*_metadata.json` registra o sha256 da fonte, a versão e as contagens de cada etapa.
+Todos ficam em `data\processed\`. Cada `*_metadata.json` registra o sha256 da fonte, a versão (ou o registro de que a fonte não declara versão) e as contagens de cada etapa.
 
 | arquivo | gerado por | no git |
 |---|---|---|
@@ -108,6 +127,7 @@ Todos ficam em `data\processed\`. Cada `*_metadata.json` registra o sha256 da fo
 | `genotype_panel_metadata.json` | `panel` | sim |
 | `clinvar_pathogenic.csv` + `clinvar_pathogenic_metadata.json` | `clinvar` | só o manifesto |
 | `target_coverage.csv` + `target_coverage_metadata.json` | `coverage` | sim |
+| `aadr_anno_metadata.json` | `anno` | sim |
 
 `target_coverage.csv` tem uma linha por doença, com o nível alcançado e os identificadores das variantes. Se o ClinVar foi ingerido com `--incluir-origem-desconhecida`, os arquivos levam o sufixo `_origem_ampliada` e não sobrescrevem os do recorte padrão.
 
@@ -115,7 +135,7 @@ Todos ficam em `data\processed\`. Cada `*_metadata.json` registra o sha256 da fo
 
 ## Resultado atual
 
-Painel 1240K do AADR (v66.p1) × ClinVar de 11/09/2026:
+**Pergunta 1.** Painel 1240K do AADR (v66.p1) × ClinVar de 11/09/2026:
 
 | | |
 |---|---|
@@ -125,15 +145,29 @@ Painel 1240K do AADR (v66.p1) × ClinVar de 11/09/2026:
 | doenças mendelianas (OMIM) alcançadas | **33 de 6.484** |
 | incluindo Orphanet | 56 de 9.142 |
 
-O conjunto de doenças é o mesmo com ou sem `--incluir-origem-desconhecida`. Relatório: `docs\relatorios\o_que_os_dados_permitem_perguntar.docx`.
+O conjunto de doenças é o mesmo com ou sem `--incluir-origem-desconhecida`.
+
+**Pergunta 2.** Metadados do AADR v66.p1:
+
+| | |
+|---|---|
+| registros (linhas) | 23.089 |
+| indivíduos distintos | 21.433 |
+| registros de pessoas atuais | 3.970 |
+| registros do Brasil | 87 |
+
+Uma mesma pessoa pode aparecer em mais de uma linha, e os registros atuais estão incluídos no total. Por isso "23.089" não é o número de indivíduos antigos.
+
+Relatório: `docs\relatorios\o_que_os_dados_permitem_perguntar.docx`.
 
 ---
 
 ## Limitações
 
-- Mede se a pergunta **pode ser feita** com o painel de genotipagem. Não mede se alguém carrega a variante.
+- Mede se a pergunta **pode ser feita** com o painel de genotipagem. Não mede se alguém carrega a variante: os genótipos dos indivíduos (`.geno`) não são lidos.
 - Considera só SNV: um painel de genotipagem de SNPs não observa inserções, deleções ou variação estrutural.
 - Considera só a anotação direta da HPO, sem expansão pela hierarquia da ontologia.
+- O `anno` descreve o `.anno`, mas ainda não há critérios para recortar indivíduos (país, antigo ou atual, genoma inteiro ou captura, cobertura).
 - Termo sem rótulo oficial em português aparece em inglês, marcado `[sem PT]`, e nunca é traduzido automaticamente.
 
 ---
@@ -163,6 +197,6 @@ Baixe `phenotype.hpoa` e `genes_to_disease.txt` **da mesma release**. O `snapsho
 ## Documentação
 
 - [`docs/USO_ALCANCE.md`](docs/USO_ALCANCE.md): entrada e saída de cada comando, em detalhe.
-- [`AGENTS.md`](AGENTS.md): regras e riscos conhecidos, para quem mexe no código.
+- [`AGENTS.md`](AGENTS.md): termos, regras e riscos conhecidos, para quem mexe no código.
 
 A bancada de anotação de texto clínico que existia neste repositório está preservada na etiqueta `frente-a-final` (`git checkout frente-a-final`).

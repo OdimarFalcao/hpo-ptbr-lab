@@ -36,6 +36,9 @@ GENES_MANIFEST = ROOT / "data/processed/gene_disease_metadata.json"
 
 PANEL_MANIFEST = ROOT / "data/processed/genotype_panel_metadata.json"
 
+AADR_ANNO_URL = ""
+AADR_ANNO_MANIFEST = ROOT / "data/processed/aadr_anno_metadata.json"
+
 CLINVAR_URL = "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz"
 CLINVAR_SOURCE = ROOT / "data/raw/variant_summary.txt.gz"
 CLINVAR_CSV = ROOT / "data/processed/clinvar_pathogenic.csv"

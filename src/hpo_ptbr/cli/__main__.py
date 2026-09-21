@@ -9,6 +9,8 @@ from __future__ import annotations
 import argparse
 
 from .. import genotype_panel
+from ._comum import AADR_ANNO_URL
+from .anno import command_anno
 from .cobertura import command_coverage
 from .consulta import command_profile, command_search, command_term
 from .painel import command_panel
@@ -27,6 +29,12 @@ def main() -> int:
     sub = parser.add_subparsers(dest="comando", required=True)
 
     sub.add_parser("snapshot", help="Normaliza as fontes presentes em data/raw e grava os manifestos.")
+
+    anno = sub.add_parser(
+        "anno", help="Descreve as colunas e os valores do arquivo .anno do AADR, sem filtrar."
+    )
+    anno.add_argument("arquivo", help="Caminho do arquivo .anno do AADR.")
+    anno.add_argument("--url", default=AADR_ANNO_URL, help="URL de origem, para proveniência.")
 
     painel = sub.add_parser(
         "panel", help="Caracteriza um painel de genotipagem (.snp EIGENSTRAT) e verifica o build."
@@ -110,6 +118,7 @@ def main() -> int:
 
     args = parser.parse_args()
     return {
+        "anno": command_anno,
         "clinvar": command_clinvar,
         "coverage": command_coverage,
         "snapshot": command_snapshot,
