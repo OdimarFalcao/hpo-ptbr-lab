@@ -1,40 +1,26 @@
 # Alcance Genômico
 
-Ferramenta de linha de comando para avaliar o que um conjunto de dados
-genômicos permite investigar. O caso de uso atual é DNA antigo e doenças
-monogênicas.
+Ferramenta de linha de comando para avaliar quais doenças podem ser
+investigadas em um conjunto de dados genômicos.
 
-O comando é `alcance`. A aplicação usa Python 3.11+ e somente a biblioteca
-padrão em tempo de execução. Não faz diagnóstico.
+O uso atual é DNA antigo, com o painel 1240K do AADR. O comando é `alcance`.
 
-## O que ela responde
+## Escopo atual
 
-Há dois fluxos independentes.
+- `coverage`: cruza HPO, ClinVar e as posições e alelos de um painel de
+  genotipagem para listar doenças investigáveis.
+- `anno`: descreve os metadados dos indivíduos do AADR, sem filtrar ou
+  classificar registros.
 
-### Alcance de doenças
-
-Dado um painel de genotipagem, identifica para quais doenças existe uma
-variante patogênica cuja posição e cujos alelos são observáveis pelo painel:
+Para calcular o alcance, cruza quatro fontes públicas:
 
 ```text
-doença ── gene ── variante patogênica ── posição e alelos do painel
- (HPO)    (HPO)        (ClinVar)              (arquivo .snp)
+doença ── gene ── variante patogênica ── posição e alelos lidos pelo painel de genotipagem
+ (HPO)    (HPO)        (ClinVar)              (arquivo .snp, ex.: painel 1240K do AADR)
 ```
 
-O resultado diz que a pergunta pode ser feita. Não diz que algum indivíduo
-carrega a variante, pois o arquivo de genótipos (`.geno`) não é lido.
-
-### Descrição dos indivíduos
-
-O comando `anno` descreve o arquivo de metadados do AADR: número de registros,
-indivíduos distintos, local, data, tipo de dado e cobertura. Ele não aplica
-filtros nem classifica indivíduos.
-
-Esse fluxo não participa do cálculo de alcance de doenças.
-
-> **Painel de genotipagem** é a lista fixa de posições e alelos examinados em
-> todos os indivíduos, como o painel 1240K do AADR. Neste projeto, “painel”
-> sempre tem esse significado; o nome da ferramenta é Alcance Genômico.
+O cálculo mede viabilidade: não lê o arquivo de genótipos (`.geno`) e não faz
+diagnóstico. O `.anno` também não participa desse cálculo.
 
 ## Resultado atual
 
